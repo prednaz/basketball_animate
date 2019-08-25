@@ -15,10 +15,15 @@ html, body {
 .label_slider {
   margin-top: 10px;
 }
-#position_display {
+#position_display_precise {
   display: inline-block;
 }
 #speed_display {
   width: 4em;
+  text-align: center;
+}
+
+#position_display_slider {
+  width: 2em;
   text-align: center;
 }

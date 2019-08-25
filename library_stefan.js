@@ -41,11 +41,12 @@ let
     "paused": true,
     "onUpdate": () => {
       position_slider.slider("value", timeline.progress() * 100);
+      position_display_slider.text(timeline.totalTime().toFixed(1));
     },
     "onComplete": () => {
       clock.pause();
       music_dom.pause();
-      play_button.button("option", "label", "Restart");
+      play_button.button("option", "label", play_button_label.restart);
     }
   });
   svg_main = document.querySelector("#main_svg");
@@ -66,9 +67,14 @@ let
     music_dom.currentTime = 0;
     music_dom.play();
   };
-  const play_button = $("#play").button({"label": "Play"});
-  const position_display = $("#position_display");
-  play_button.on("click", event => {
+  const play_button_label = {
+    "play": "Play",
+    "pause": "Pause",
+    "restart": "Restart"
+  }
+  const play_button = $("#play").button({"label": play_button_label.play});
+  const position_display_precise = $("#position_display_precise");
+  play_button.on("click", () => {
     if (timeline.totalProgress() !== 1) {
       const paused = !timeline.paused();
       if (!paused)
@@ -77,33 +83,40 @@ let
         music_dom.pause();
       timeline.paused(paused);
       clock.paused(paused);
-      play_button.button("option", "label", paused ? "Play" : "Pause");
+      play_button.button(
+        "option",
+        "label",
+        paused ? play_button_label.play : play_button_label.pause
+      );
       if (paused)
-        position_display.text(timeline.time() + "s");
+        position_display_precise.text(timeline.totalTime() + "s");
     }
     else {
       music_restart();
       timeline.restart();
       clock.restart();
-      play_button.button("option", "label", "Pause");
+      play_button.button("option", "label", play_button_label.pause);
     }
   });
+  const position_display_slider = $("#position_display_slider");
   const position_slider = $("#position_slider").slider({
     "min": 0,
     "max": 100,
     "step": .1,
-    "stop": (event, ui) => {
-      music_dom.currentTime = timeline.time();
+    "stop": () => {
+      music_dom.currentTime = timeline.totalTime();
     },
     "slide": (event, ui) => {
-      timeline.progress(ui.value/100).pause();
-      clock.totalTime(timeline.time()).pause();
+      timeline.totalProgress(ui.value/100).pause();
+      clock.totalTime(timeline.totalTime()).pause();
+      position_display_slider.text(timeline.totalTime().toFixed(1));
+      position_display_precise.text(timeline.totalTime() + "s");
       music_dom.pause();
-      play_button.button("option", "label", "Play");
+      play_button.button("option", "label", play_button_label.play);
     }
   });
   const speed_display = $("#speed_display");
-  const speed_slider = $("#speed_slider").slider({
+  $("#speed_slider").slider({
     "min": 0,
     "max": 300,
     "step": 1,
