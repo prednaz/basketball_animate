@@ -5,8 +5,9 @@ let
   player_along_path,
   ball_along_path,
   timeline,
+  animation_supplementary,
   svg_main,
-  clock_period,
+  clock,
   svg,
   music_set,
   svg_set;
@@ -44,21 +45,20 @@ let
       position_display_slider.text(timeline.totalTime().toFixed(1));
     },
     "onComplete": () => {
-      clock.pause();
+      animation_supplementary.pause();
       music_dom.pause();
       play_button.button("option", "label", play_button_label.restart);
     }
   });
+  animation_supplementary = new TimelineMax({"paused": true});
   svg_main = document.querySelector("#main_svg");
-  let clock;
-  clock_period = period => {
-    clock = TweenMax.to(svg("#hand_clock"), period, {
+  clock = period => {
+    animation_supplementary.to(svg("#hand_clock"), period, {
         "rotation": "360_cw",
         "transformOrigin": "50% 0%",
         "ease": Power0.easeNone,
-        "repeat": -1,
-        "paused": true
-      });
+        "repeat": -1
+      }, 0);
   };
 
   // user interface
@@ -82,7 +82,7 @@ let
       else
         music_dom.pause();
       timeline.paused(paused);
-      clock.paused(paused);
+      animation_supplementary.paused(paused);
       play_button.button(
         "option",
         "label",
@@ -94,7 +94,7 @@ let
     else {
       music_restart();
       timeline.restart();
-      clock.restart();
+      animation_supplementary.restart();
       play_button.button("option", "label", play_button_label.pause);
     }
   });
@@ -108,7 +108,7 @@ let
     },
     "slide": (event, ui) => {
       timeline.totalProgress(ui.value/100).pause();
-      clock.totalTime(timeline.totalTime()).pause();
+      animation_supplementary.totalTime(timeline.totalTime()).pause();
       position_display_slider.text(timeline.totalTime().toFixed(1));
       position_display_precise.text(timeline.totalTime() + "s");
       music_dom.pause();
@@ -124,7 +124,7 @@ let
     "change": (event, ui) => {
       music_dom.playbackRate = ui.value / 100;
       timeline.timeScale(ui.value/100);
-      clock.timeScale(ui.value/100);
+      animation_supplementary.timeScale(ui.value/100);
     },
     "slide": (event, ui) => {
       speed_display.text(ui.value + "%");

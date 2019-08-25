@@ -2,7 +2,7 @@ music_set("animation/september.wav");
 svg_set("animation/testspielzug.svg");
 
 svg_main.addEventListener("load", () => {
-  clock_period(8);
+  clock(8);
 
 // });
 //
