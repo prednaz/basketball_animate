@@ -1,0 +1,24 @@
+html, body {
+  padding: 0;
+  margin: 0;
+}
+#main_svg {
+  width: 100vw;
+  max-height: 100vh;
+}
+#control {
+  margin: 10px;
+}
+#play {
+  width: 6em;
+}
+.label_slider {
+  margin-top: 10px;
+}
+#position_display {
+  display: inline-block;
+}
+#speed_display {
+  width: 4em;
+  text-align: center;
+}
