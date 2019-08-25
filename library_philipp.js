@@ -1,7 +1,7 @@
 const library = {};
 {
-  const transformation_matrix = (origin, target) =>
-    target.getScreenCTM().inverse().multiply(origin.getScreenCTM());
+  const transformation_matrix = (start, destination) =>
+    destination.getScreenCTM().inverse().multiply(start.getScreenCTM());
   const svg_element = (html_dom, svg_selector) =>
     Array.prototype.concat.apply(
       [],
