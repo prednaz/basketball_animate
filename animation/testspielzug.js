@@ -1,3 +1,5 @@
+//asdfadsfag
+
 music_set("animation/september.wav");
 svg_set("animation/testspielzug.svg");
 
