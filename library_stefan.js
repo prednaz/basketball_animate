@@ -54,11 +54,11 @@ let
   svg_main = document.querySelector("#main_svg");
   clock = period => {
     animation_supplementary.to(svg("#hand_clock"), period, {
-        "rotation": "360_cw",
-        "transformOrigin": "50% 0%",
-        "ease": Power0.easeNone,
-        "repeat": -1
-      }, 0);
+      "rotation": "360_cw",
+      "transformOrigin": "50% 0%",
+      "ease": Power0.easeNone,
+      "repeat": -1
+    }, 0);
   };
 
   // user interface
@@ -71,7 +71,7 @@ let
     "play": "Play",
     "pause": "Pause",
     "restart": "Restart"
-  }
+  };
   const play_button = $("#play").button({"label": play_button_label.play});
   const position_display_precise = $("#position_display_precise");
   play_button.on("click", () => {

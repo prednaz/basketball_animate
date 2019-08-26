@@ -4,227 +4,223 @@ svg_set("animation/testspielzug.svg");
 svg_main.addEventListener("load", () => {
   clock(8);
 
-// });
-//
-// $(window).on("load", () => { // wait for svg and libraries to be loaded
-
-//musical metric
-
-timeline.add(
-    "1.1", "+=4"
-)
-
-timeline.add(
-    "1.2", "+=4.5"
-)
-
-timeline.add(
-    "1.3", "+=5.0"
-)
-
-timeline.add(
-    "1.4", "+=5.5"
-)
-
-timeline.add(
-    "2.1", "+=6.0"
-)
-
-timeline.add(
-    "2.2", "+=6.5"
-)
-
-timeline.add(
-    "2.3", "+=7.0"
-)
-
-timeline.add(
-    "2.4", "+=7.5"
-)
-
-timeline.add(
-    "3.1", "+=8.0"
-)
-
-timeline.add(
-    "3.2", "+=8.5"
-)
-
-timeline.add(
-    "3.3", "+=9.0"
-)
-
-timeline.add(
-    "3.4", "+=9.5"
-)
-
-timeline.add(
-    "4.1", "+=10.0"
-)
-
-timeline.add(
-    "4.2", "+=10.5"
-)
-
-timeline.add(
-    "4.3", "+=11.0"
-)
-
-timeline.add(
-    "4.4", "+=11.5"
-)
-
-timeline.add(
-    "5.1", "+=12.0"
-)
-
-timeline.add(
-    "5.2", "+=12.5"
-)
-
-timeline.add(
-    "5.3", "+=13.0"
-)
-
-
-
-//player1
-
-timeline.add(
-    player_along_path(
-    svg("#player1"),
-    1.5,
-    svg("#move1"),
-    {ease: Power1.easeInOut}
-  ), "1.1"
-)
+  //musical metric
 
   timeline.add(
-      player_along_path(
+    "1.1", "+=4"
+  );
+
+  timeline.add(
+    "1.2", "+=4.5"
+  );
+
+  timeline.add(
+    "1.3", "+=5.0"
+  );
+
+  timeline.add(
+    "1.4", "+=5.5"
+  );
+
+  timeline.add(
+    "2.1", "+=6.0"
+  );
+
+  timeline.add(
+    "2.2", "+=6.5"
+  );
+
+  timeline.add(
+    "2.3", "+=7.0"
+  );
+
+  timeline.add(
+    "2.4", "+=7.5"
+  );
+
+  timeline.add(
+    "3.1", "+=8.0"
+  );
+
+  timeline.add(
+    "3.2", "+=8.5"
+  );
+
+  timeline.add(
+    "3.3", "+=9.0"
+  );
+
+  timeline.add(
+    "3.4", "+=9.5"
+  );
+
+  timeline.add(
+    "4.1", "+=10.0"
+  );
+
+  timeline.add(
+    "4.2", "+=10.5"
+  );
+
+  timeline.add(
+    "4.3", "+=11.0"
+  );
+
+  timeline.add(
+    "4.4", "+=11.5"
+  );
+
+  timeline.add(
+    "5.1", "+=12.0"
+  );
+
+  timeline.add(
+    "5.2", "+=12.5"
+  );
+
+  timeline.add(
+    "5.3", "+=13.0"
+  );
+
+
+
+  //player1
+
+  timeline.add(
+    player_along_path(
+      svg("#player1"),
+      1.5,
+      svg("#move1"),
+      {ease: Power1.easeInOut}
+    ), "1.1"
+  );
+
+  timeline.add(
+    player_along_path(
       svg("#player1"),
       5,
       svg("#move2"),
       {ease: Power1.easeInOut}
     ), "2.1"
-)
+  );
 
-//player2
+  //player2
 
-//player3
-
-timeline.add(
-    player_along_path(
-    svg("#player3"),
-    1.5,
-    svg("#move7"),
-    {ease: Power1.easeInOut}
-  ), "1.1"
-)
-
-timeline.add(
-    player_along_path(
-    svg("#player3"),
-    6.5,
-    svg("#move8"),
-    {ease: Power1.easeInOut}
-  ), "1.4"
-)
-
-//player4
-
-timeline.add(
-    player_along_path(
-    svg("#player4"),
-    1.5,
-    svg("#move5"),
-    {ease: Power1.easeInOut}
-  ), "1.1"
-)
-
-timeline.add(
-    player_along_path(
-    svg("#player4"),
-    4.5,
-    svg("#move6"),
-    {ease: Power1.easeInOut}
-  ), "2.3"
-)
-
-//player5
-
-timeline.add(
-    player_along_path(
-    svg("#player5"),
-    2,
-    svg("#move3"),
-    {ease: Power1.easeInOut}
-  ), "1.1"
-)
-
-timeline.add(
-    player_along_path(
-    svg("#player5"),
-    1.5,
-    svg("#move4"),
-    {ease: Power1.easeInOut}
-  ), "2.3"
-)
-
-//ball
-
-    timeline.add(
-        ball_along_path(
-        svg("#ball"),
-        1.5,
-        svg("#move1"),
-        {ease: Power1.easeInOut}
-      ), "1.1"
-  )
+  //player3
 
   timeline.add(
-      ball_along_path(
+    player_along_path(
+      svg("#player3"),
+      1.5,
+      svg("#move7"),
+      {ease: Power1.easeInOut}
+    ), "1.1"
+  );
+
+  timeline.add(
+    player_along_path(
+      svg("#player3"),
+      6.5,
+      svg("#move8"),
+      {ease: Power1.easeInOut}
+    ), "1.4"
+  );
+
+  //player4
+
+  timeline.add(
+    player_along_path(
+      svg("#player4"),
+      1.5,
+      svg("#move5"),
+      {ease: Power1.easeInOut}
+    ), "1.1"
+  );
+
+  timeline.add(
+    player_along_path(
+      svg("#player4"),
+      4.5,
+      svg("#move6"),
+      {ease: Power1.easeInOut}
+    ), "2.3"
+  );
+
+  //player5
+
+  timeline.add(
+    player_along_path(
+      svg("#player5"),
+      2,
+      svg("#move3"),
+      {ease: Power1.easeInOut}
+    ), "1.1"
+  );
+
+  timeline.add(
+    player_along_path(
+      svg("#player5"),
+      1.5,
+      svg("#move4"),
+      {ease: Power1.easeInOut}
+    ), "2.3"
+  );
+
+  //ball
+
+  timeline.add(
+    ball_along_path(
+      svg("#ball"),
+      1.5,
+      svg("#move1"),
+      {ease: Power1.easeInOut}
+    ), "1.1"
+  );
+
+  timeline.add(
+    ball_along_path(
       svg("#ball"),
       0.5,
       svg("#ball2"),
       {ease: Power1.easeInOut}
     ), "1.4"
-)
+  );
 
-timeline.add(
+  timeline.add(
     ball_along_path(
-    svg("#ball"),
-    0.5,
-    svg("#ball2"),
-    {ease: Power1.easeInOut}
-  ), "1.4"
-)
+      svg("#ball"),
+      0.5,
+      svg("#ball2"),
+      {ease: Power1.easeInOut}
+    ), "1.4"
+  );
 
-timeline.add(
+  timeline.add(
     ball_along_path(
-    svg("#ball"),
-    0.5,
-    svg("#ball3"),
-    {ease: Power1.easeInOut}
-  ), "2.2"
-)
+      svg("#ball"),
+      0.5,
+      svg("#ball3"),
+      {ease: Power1.easeInOut}
+    ), "2.2"
+  );
 
-timeline.add(
+  timeline.add(
     ball_along_path(
-    svg("#ball"),
-    0.5,
-    svg("#ball4"),
-    {ease: Power1.easeInOut}
-  ), "4.2"
-)
+      svg("#ball"),
+      0.5,
+      svg("#ball4"),
+      {ease: Power1.easeInOut}
+    ), "4.2"
+  );
 
-timeline.add(
+  timeline.add(
     ball_along_path(
-    svg("#ball"),
-    0.5,
-    svg("#ball5"),
-    {ease: Power1.easeInOut}
-  ), "4.4"
-)
+      svg("#ball"),
+      0.5,
+      svg("#ball5"),
+      {ease: Power1.easeInOut}
+    ), "4.4"
+  );
 
 
   // timeline

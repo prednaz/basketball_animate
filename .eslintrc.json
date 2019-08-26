@@ -1,28 +1,55 @@
 {
-    "env": {
-        "browser": true,
-        "es6": true
-    },
-    "extends": "eslint:recommended",
-    "parserOptions": {
-        "ecmaVersion": 2018
-    },
-    "rules": {
-        "indent": [
-            "error",
-            2
-        ],
-        "linebreak-style": [
-            "error",
-            "unix"
-        ],
-        "quotes": [
-            "error",
-            "double"
-        ],
-        "semi": [
-            "error",
-            "always"
-        ]
-    }
+  "env": {
+    "browser": true,
+    "es6": true
+  },
+  "extends": "eslint:recommended",
+  "parserOptions": {
+    "ecmaVersion": 2018
+  },
+  "rules": {
+    "indent": [
+      "error",
+      2
+    ],
+    "linebreak-style": [
+      "error",
+      "unix"
+    ],
+    "quotes": [
+      "error",
+      "double"
+    ],
+    "semi": [
+      "error",
+      "always"
+    ],
+    "no-unused-vars": [
+      "error",
+      {
+        "vars": "local",
+        "args": "after-used"
+      }
+    ]
+  },
+  "globals": {
+    "player_to_absolute_position": "readonly",
+    "ball_to_absolute_position": "readonly",
+    "player_along_path": "readonly",
+    "ball_along_path": "readonly",
+    "timeline": "readonly",
+    "animation_supplementary": "readonly",
+    "svg_main": "readonly",
+    "clock": "readonly",
+    "svg": "readonly",
+    "music_set": "readonly",
+    "svg_set": "readonly",
+    "library": "readonly",
+    "Power0": "readonly",
+    "Power1": "readonly",
+    "TimelineMax": "readonly",
+    "TweenMax": "readonly",
+    "$": "readonly",
+    "Snap": "readonly"
+  }
 }

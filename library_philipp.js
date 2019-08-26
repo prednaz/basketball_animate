@@ -43,7 +43,7 @@ const library = {};
     const x1 = unstructured.filter((element, index) => index > 0 && index%2 === 1);
     const x2 = unstructured.filter((element, index) => index > 0 && index%2 === 0);
     return x1.map((value, index) => ({"x": value, "y": x2[index]}));
-  }
+  };
   const bezier = (path, absolute_position) => ({
     type: "cubic",
     values: Snap.path.toCubic(path.getAttribute("d"))
