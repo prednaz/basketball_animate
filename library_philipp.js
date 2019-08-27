@@ -28,7 +28,18 @@ const library = {};
       + transformation.d * coordinate.y
       + transformation.f
   });
-  const transform_target_outer = (target, absolute_position) => {
+  const transform_inner = (interim_result_object, interim_result_target) =>
+    coordinate_relative(
+      coordinate_transform(
+        interim_result_target.defining_element_coordinate,
+        transformation_matrix(
+          interim_result_target.defining_element,
+          interim_result_object.parent
+        )
+      ),
+      interim_result_object.coordinate
+    );
+  const transform_outer_target = (target, absolute_position) => {
     const defining_element = absolute_position.defining_element(target);
     const defining_element_coordinate = absolute_position.coordinate(defining_element);
     return ({
@@ -36,7 +47,7 @@ const library = {};
       "defining_element_coordinate": defining_element_coordinate
     });
   };
-  const transform_object_outer = (object, absolute_position) => {
+  const transform_outer_object = (object, absolute_position) => {
     const defining_element = absolute_position.defining_element(object);
     const transformation_animated = transformation_matrix(
       object,
@@ -70,7 +81,7 @@ const library = {};
       object_absolute_position,
       target_absolute_position
     ) => {
-      const interim_result_target = transform_target_outer(target[0], target_absolute_position);
+      const interim_result_target = transform_outer_target(target[0], target_absolute_position);
       const timeline = new TimelineMax();
       object.forEach(object_current => {
         timeline[function_name](
@@ -78,7 +89,7 @@ const library = {};
           duration,
           Object.assign(
             transform_inner(
-              transform_object_outer(object_current, object_absolute_position),
+              transform_outer_object(object_current, object_absolute_position),
               interim_result_target
             ),
             options
@@ -88,17 +99,6 @@ const library = {};
       });
       return timeline;
     };
-  const transform_inner = (interim_result_object, interim_result_target) =>
-    coordinate_relative(
-      coordinate_transform(
-        interim_result_target.defining_element_coordinate,
-        transformation_matrix(
-          interim_result_target.defining_element,
-          interim_result_object.parent
-        )
-      ),
-      interim_result_object.coordinate
-    );
   const coordinate_2d = unstructured => {
     const x1 = unstructured.filter((element, index) => index > 0 && index%2 === 1);
     const x2 = unstructured.filter((element, index) => index > 0 && index%2 === 0);
@@ -114,32 +114,16 @@ const library = {};
       const timeline = new TimelineMax();
       object.forEach(object_current => {
         const options_current = Object.assign({}, options);
-        const object_defining_element = object_absolute_position.defining_element(object_current);
-        const transformation_animated = transformation_matrix(
-          object_current,
-          object_current.parentElement
-        );
-        const object_coordinate = coordinate_relative(
-          coordinate_transform(
-            object_absolute_position.coordinate(object_defining_element),
-            transformation_matrix(
-              object_defining_element,
-              object_current.parentElement
-            )
-          ),
-          {
-            "x": transformation_animated.e,
-            "y": transformation_animated.f
-          }
-        );
+        const interim_result_object = transform_outer_object(object_current, object_absolute_position);
         options_current.bezier = {
           "type": "cubic",
-          "values": bezier(path[0]).map(target_defining_element_coordinate =>
+          "values": bezier(path[0]).map(coordinate =>
             transform_inner(
-              object_current,
-              object_coordinate,
-              path[0],
-              target_defining_element_coordinate
+              interim_result_object,
+              {
+                "defining_element": path[0],
+                "defining_element_coordinate": coordinate
+              }
             )
           )
         };
