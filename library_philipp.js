@@ -1,5 +1,6 @@
 const library = {};
 {
+  const path_distance = new Map();
   const transformation_matrix = (start, destination) =>
     destination.getScreenCTM().inverse().multiply(start.getScreenCTM());
   const svg_element = (html_dom, svg_selector) =>
@@ -27,6 +28,38 @@ const library = {};
       + transformation.d * coordinate.y
       + transformation.f
   });
+  const transform_target_outer = (target, absolute_position) => {
+    const defining_element = absolute_position.defining_element(target);
+    const defining_element_coordinate = absolute_position.coordinate(defining_element);
+    return ({
+      "defining_element": defining_element,
+      "defining_element_coordinate": defining_element_coordinate
+    });
+  };
+  const transform_object_outer = (object, absolute_position) => {
+    const defining_element = absolute_position.defining_element(object);
+    const transformation_animated = transformation_matrix(
+      object,
+      object.parentElement
+    );
+    const coordinate = coordinate_relative(
+      coordinate_transform(
+        absolute_position.coordinate(defining_element),
+        transformation_matrix(
+          defining_element,
+          object.parentElement
+        )
+      ),
+      {
+        "x": transformation_animated.e,
+        "y": transformation_animated.f
+      }
+    );
+    return ({
+      "parent": object.parentElement,
+      "coordinate": coordinate
+    });
+  };
   const timeline_align_position =
     (
       function_name,
@@ -37,37 +70,16 @@ const library = {};
       object_absolute_position,
       target_absolute_position
     ) => {
-      const target_defining_element = target_absolute_position.defining_element(target[0]);
-      const target_defining_element_coordinate = target_absolute_position.coordinate(target_defining_element);
+      const interim_result_target = transform_target_outer(target[0], target_absolute_position);
       const timeline = new TimelineMax();
       object.forEach(object_current => {
-        const object_defining_element = object_absolute_position.defining_element(object_current);
-        const transformation_animated = transformation_matrix(
-          object_current,
-          object_current.parentElement
-        );
-        const object_coordinate = coordinate_relative(
-          coordinate_transform(
-            object_absolute_position.coordinate(object_defining_element),
-            transformation_matrix(
-              object_defining_element,
-              object_current.parentElement
-            )
-          ),
-          {
-            "x": transformation_animated.e,
-            "y": transformation_animated.f
-          }
-        );
         timeline[function_name](
           object_current,
           duration,
           Object.assign(
-            translation(
-              object_current,
-              object_coordinate,
-              target_defining_element,
-              target_defining_element_coordinate
+            transform_inner(
+              transform_object_outer(object_current, object_absolute_position),
+              interim_result_target
             ),
             options
           ),
@@ -76,21 +88,16 @@ const library = {};
       });
       return timeline;
     };
-  const translation =
-    (
-      object,
-      object_coordinate,
-      target_defining_element,
-      target_defining_element_coordinate
-    ) => coordinate_relative(
+  const transform_inner = (interim_result_object, interim_result_target) =>
+    coordinate_relative(
       coordinate_transform(
-        target_defining_element_coordinate,
+        interim_result_target.defining_element_coordinate,
         transformation_matrix(
-          target_defining_element,
-          object.parentElement
+          interim_result_target.defining_element,
+          interim_result_object.parent
         )
       ),
-      object_coordinate
+      interim_result_object.coordinate
     );
   const coordinate_2d = unstructured => {
     const x1 = unstructured.filter((element, index) => index > 0 && index%2 === 1);
@@ -128,7 +135,7 @@ const library = {};
         options_current.bezier = {
           "type": "cubic",
           "values": bezier(path[0]).map(target_defining_element_coordinate =>
-            translation(
+            transform_inner(
               object_current,
               object_coordinate,
               path[0],

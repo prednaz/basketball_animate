@@ -1,9 +1,9 @@
 // export
 let
-  player_to_absolute_position,
-  ball_to_absolute_position,
-  player_along_path,
-  ball_along_path,
+  // player_to_absolute_position,
+  // ball_to_absolute_position,
+  // player_along_path,
+  // ball_along_path,
   timeline,
   animation_supplementary,
   svg_main,
