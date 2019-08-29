@@ -99,44 +99,7 @@ const library = {};
       });
       return timeline;
     };
-  const coordinate_2d = unstructured => {
-    const x1 = unstructured.filter((element, index) => index > 0 && index%2 === 1);
-    const x2 = unstructured.filter((element, index) => index > 0 && index%2 === 0);
-    return x1.map((value, index) => ({"x": value, "y": x2[index]}));
-  };
-  const bezier = path =>
-    Array.prototype.concat.apply(
-      [],
-      Snap.path.toCubic(path.getAttribute("d")).map(coordinate_2d)
-    );
-  const timeline_along_path = // preserves options argument owing to Object.assign
-    (function_name, object, duration, path, options, object_absolute_position) => {
-      const timeline = new TimelineMax();
-      object.forEach(object_current => {
-        const options_current = Object.assign({}, options);
-        const interim_result_object = transform_outer_object(object_current, object_absolute_position);
-        options_current.bezier = {
-          "type": "cubic",
-          "values": bezier(path[0]).map(coordinate =>
-            transform_inner(
-              interim_result_object,
-              {
-                "defining_element": path[0],
-                "defining_element_coordinate": coordinate
-              }
-            )
-          )
-        };
-        timeline[function_name](
-          object_current,
-          duration,
-          options_current,
-          0
-        );
-      });
-      return timeline;
-    };
-  const timeline_along_path2 =
+  const timeline_along_path =
     (function_name, object, duration, path, options, object_absolute_position) => {
       const timeline = new TimelineMax();
       object.forEach(object_current => {

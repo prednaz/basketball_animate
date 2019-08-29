@@ -1,5 +1,5 @@
 music_set("animation/september.wav");
-svg_set("animation/test.svg");
+svg_set("animation/test2.svg");
 
 const ball_absolute_position = {
   "defining_element": ball => ball.querySelector("circle"),
@@ -38,20 +38,20 @@ svg_main.addEventListener("load", () => {
     {ease: Power0.easeNone}
   ), 0);
 
-  const ball_position = {t: 0};
-  const move1 = svg("#move1")[0];
-  timeline.to(
-    ball_position,
-    3,
-    {
-      t: move1.getTotalLength(),
-      ease: Power0.easeNone,
-      onUpdate: () => {
-        const position = move1.getPointAtLength(ball_position.t);
-        TweenMax.set(svg("#ball2")[0], {x:position.x, y: position.y});
-      }
-    }
-  );
+  // const ball_position = {t: 0};
+  // const move1 = svg("#move1")[0];
+  // timeline.to(
+  //   ball_position,
+  //   3,
+  //   {
+  //     t: move1.getTotalLength(),
+  //     ease: Power0.easeNone,
+  //     onUpdate: () => {
+  //       const position = move1.getPointAtLength(ball_position.t);
+  //       TweenMax.set(svg("#ball2")[0], {x:position.x, y: position.y});
+  //     }
+  //   }
+  // );
   //
   // timeline.add(ball_along_path(
   //   svg("#ball1"),
