@@ -41,7 +41,7 @@ let
   timeline = new TimelineMax({
     "paused": true,
     "onUpdate": () => {
-      position_slider.slider("value", timeline.progress() * 100);
+      position_slider.slider("value", timeline.totalProgress() * 100);
       position_display_slider.text(timeline.totalTime().toFixed(1));
     },
     "onComplete": () => {
