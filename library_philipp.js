@@ -77,34 +77,6 @@ const library = {};
       "coordinate": coordinate
     });
   };
-  const timeline_align_position =
-    (
-      function_name,
-      object,
-      duration,
-      target,
-      options,
-      object_absolute_position,
-      target_absolute_position
-    ) => {
-      const interim_result_target = transform_outer_target(target[0], target_absolute_position);
-      const timeline = new TimelineMax();
-      object.forEach(object_current => {
-        timeline[function_name](
-          object_current,
-          duration,
-          Object.assign(
-            transform_inner(
-              transform_outer_object(object_current, object_absolute_position),
-              interim_result_target
-            ),
-            options
-          ),
-          0
-        );
-      });
-      return timeline;
-    };
   const timeline_along_path_svgtransform =
     (function_name, object, duration, path, options, object_absolute_position, svg) => {
       const timeline = new TimelineMax();
@@ -138,6 +110,34 @@ const library = {};
                 interim_result_object = transform_outer_object_relative(object_current, object_absolute_position);
               }
             },
+            options
+          ),
+          0
+        );
+      });
+      return timeline;
+    };
+  const timeline_align_position =
+    (
+      function_name,
+      object,
+      duration,
+      target,
+      options,
+      object_absolute_position,
+      target_absolute_position
+    ) => {
+      const interim_result_target = transform_outer_target(target[0], target_absolute_position);
+      const timeline = new TimelineMax();
+      object.forEach(object_current => {
+        timeline[function_name](
+          object_current,
+          duration,
+          Object.assign(
+            transform_inner(
+              transform_outer_object(object_current, object_absolute_position),
+              interim_result_target
+            ),
             options
           ),
           0
