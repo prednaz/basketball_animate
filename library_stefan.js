@@ -52,7 +52,8 @@ let
       duration,
       path,
       options,
-      absolute_position
+      absolute_position,
+      svg_main
     );
   const move_start = {
     "defining_element": move => move,
