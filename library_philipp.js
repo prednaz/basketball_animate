@@ -137,9 +137,11 @@ const library = {};
                       path[0].getPointAtLength(path_distance_current.distance)
                   }
                 );
+                interim_result_object.coordinate.x += translate.x;
+                interim_result_object.coordinate.y += translate.y;
                 const transform = transformation_generator.createSVGTransform();
                 transform.setTranslate(translate.x, translate.y);
-                object_current.transform.baseVal.appendItem(transform);
+                object_current.transform.baseVal.insertItemBefore(transform, 0);
               }
             },
             options
