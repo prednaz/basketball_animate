@@ -119,7 +119,6 @@ const library = {};
       const timeline = new TimelineMax();
       const transformation_generator = svg.contentDocument.querySelector("svg");
       object.forEach(object_current => {
-        // const options_current = Object.assign({}, options);
         const interim_result_object = transform_outer_object2(object_current, object_absolute_position);
         const path_distance_current = {"distance": 0};
         path_distance.set(object, path_distance_current);
