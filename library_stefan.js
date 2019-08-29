@@ -107,8 +107,8 @@ let
       music_dom.currentTime = timeline.totalTime();
     },
     "slide": (event, ui) => {
-      timeline.totalProgress(ui.value/100).pause();
-      animation_supplementary.totalTime(timeline.totalTime()).pause();
+      timeline.totalProgress(ui.value/100, false).pause();
+      animation_supplementary.totalTime(timeline.totalTime(), false).pause();
       position_display_slider.text(timeline.totalTime().toFixed(1));
       position_display_precise.text(timeline.totalTime() + "s");
       music_dom.pause();
