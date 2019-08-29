@@ -48,30 +48,21 @@ const library = {};
     });
   };
   const transform_outer_object = (object, absolute_position) => {
-    const defining_element = absolute_position.defining_element(object);
+    const result = transform_outer_object_relative(object, absolute_position);
     const transformation_animated = transformation_matrix(
       object,
       object.parentElement
     );
-    const coordinate = coordinate_relative(
-      coordinate_transform(
-        absolute_position.coordinate(defining_element),
-        transformation_matrix(
-          defining_element,
-          object.parentElement
-        )
-      ),
+    result.coordinate = coordinate_relative(
+      result.coordinate,
       {
         "x": transformation_animated.e,
         "y": transformation_animated.f
       }
     );
-    return ({
-      "parent": object.parentElement,
-      "coordinate": coordinate
-    });
+    return result;
   };
-  const transform_outer_object2 = (object, absolute_position) => {
+  const transform_outer_object_relative = (object, absolute_position) => {
     const defining_element = absolute_position.defining_element(object);
     const coordinate =
       coordinate_transform(
@@ -114,12 +105,12 @@ const library = {};
       });
       return timeline;
     };
-  const timeline_along_path = // preserves options argument owing to Object.assign
+  const timeline_along_path_svgtransform =
     (function_name, object, duration, path, options, object_absolute_position, svg) => {
       const timeline = new TimelineMax();
       const transformation_generator = svg.contentDocument.querySelector("svg");
       object.forEach(object_current => {
-        const interim_result_object = transform_outer_object2(object_current, object_absolute_position);
+        let interim_result_object;
         const path_distance_current = {"distance": 0};
         path_distance.set(object, path_distance_current);
         timeline[function_name](
@@ -142,6 +133,9 @@ const library = {};
                 const transform = transformation_generator.createSVGTransform();
                 transform.setTranslate(translate.x, translate.y);
                 object_current.transform.baseVal.insertItemBefore(transform, 0);
+              },
+              "onStart": () => {
+                interim_result_object = transform_outer_object_relative(object_current, object_absolute_position);
               }
             },
             options
@@ -155,5 +149,5 @@ const library = {};
   // export
   library.svg_element = svg_element;
   library.timeline_align_position = timeline_align_position;
-  library.timeline_along_path = timeline_along_path;
+  library.timeline_along_path_svgtransform = timeline_along_path_svgtransform;
 }
