@@ -1,9 +1,9 @@
 // export
 let
-  // player_to_absolute_position,
-  // ball_to_absolute_position,
-  // player_along_path,
-  // ball_along_path,
+  object_to_object,
+  along_path,
+  object_to_move_start,
+  object_to_move_destination,
   timeline,
   animation_supplementary,
   svg_main,
@@ -15,27 +15,74 @@ let
 {
   // player and ball positioning
   // Es gibt kein allgemeines Konzept von absoluter Position fuer svg-Elemente.
-  // Die Funktin library.timeline_absolute_position erlaubt absolute Positionierung,
-  // wenn man ihr als letztes Argument eine Definition von absoluter Position uebergibt.
-  player_to_absolute_position = (element, duration, value) =>
-    library.timeline_absolute_position("to", element, duration, value, player_absolute_position);
-  const player_absolute_position = player => ({
-    "x": player.querySelector("circle").cx.baseVal.value,
-    "y": player.querySelector("circle").cy.baseVal.value
-  });
-  ball_to_absolute_position = (element, duration, value) =>
-    library.timeline_absolute_position("to", element, duration, value, ball_absolute_position);
-  const ball_absolute_position = ball => ({
-    "x": 0.02542068*ball.querySelector("circle").cx.baseVal.value,
-    "y": 0.02542067*ball.querySelector("circle").cy.baseVal.value + 10
-  });
-  // const player_from_absolute_position =
-  //   (element, duration, value) =>
-  //   library.timeline_absolute_position("from", element, duration, value, player_absolute_position);
-  player_along_path = (element, duration, path, value) =>
-    library.timeline_along_path("to", element, duration, path, value, player_absolute_position);
-  ball_along_path = (element, duration, path, value) =>
-    library.timeline_along_path("to", element, duration, path, value, ball_absolute_position);
+  // Die Funktionen library.timeline_align_position, library.timeline_along_path
+  // erlauben absolute Positionierung, wenn man ihr als letzte Argumente eine
+  // Definitionen von absoluter Position uebergibt.
+  const absolute_position = { // applicable to player and ball
+    "defining_element": object => object.querySelector("circle"),
+    "coordinate": defining_element => ({
+      "x": defining_element.cx.baseVal.value,
+      "y": defining_element.cy.baseVal.value
+    })
+  };
+  object_to_object = (object, duration, object_target, options) => // object can be player or ball
+    library.timeline_align_position(
+      "to",
+      object,
+      duration,
+      object_target,
+      options,
+      absolute_position,
+      absolute_position
+    );
+  // const object_to_object = (object, duration, object_target, options) => // object can be player or ball
+  //   library.timeline_align_position(
+  //     "from",
+  //     object,
+  //     duration,
+  //     object_target,
+  //     options,
+  //     absolute_position,
+  //     absolute_position
+  //   );
+  along_path = (object, duration, path, options) => // object can be player or ball
+    library.timeline_along_path(
+      "to",
+      object,
+      duration,
+      path,
+      options,
+      absolute_position
+    );
+  const move_start = {
+    "defining_element": move => move,
+    "coordinate": defining_element => defining_element.getPointAtLength(0)
+  };
+  const move_destination = {
+    "defining_element": move => move,
+    "coordinate": defining_element =>
+      defining_element.getPointAtLength(defining_element.getTotalLength())
+  };
+  object_to_move_start = (object, duration, move, options) => // object can be player or ball
+    library.timeline_align_position(
+      "to",
+      object,
+      duration,
+      move,
+      options,
+      absolute_position,
+      move_start
+    );
+  object_to_move_destination = (object, duration, move, options) => // object can be player or ball
+    library.timeline_align_position(
+      "to",
+      object,
+      duration,
+      move,
+      options,
+      absolute_position,
+      move_destination
+    );
 
   // initialize animations
   timeline = new TimelineMax({
