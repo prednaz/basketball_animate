@@ -71,6 +71,21 @@ const library = {};
       "coordinate": coordinate
     });
   };
+  const transform_outer_object2 = (object, absolute_position) => {
+    const defining_element = absolute_position.defining_element(object);
+    const coordinate =
+      coordinate_transform(
+        absolute_position.coordinate(defining_element),
+        transformation_matrix(
+          defining_element,
+          object.parentElement
+        )
+      );
+    return ({
+      "parent": object.parentElement,
+      "coordinate": coordinate
+    });
+  };
   const timeline_align_position =
     (
       function_name,
@@ -99,49 +114,13 @@ const library = {};
       });
       return timeline;
     };
-  const coordinate_2d = unstructured => {
-    const x1 = unstructured.filter((element, index) => index > 0 && index%2 === 1);
-    const x2 = unstructured.filter((element, index) => index > 0 && index%2 === 0);
-    return x1.map((value, index) => ({"x": value, "y": x2[index]}));
-  };
-  const bezier = path =>
-    Array.prototype.concat.apply(
-      [],
-      Snap.path.toCubic(path.getAttribute("d")).map(coordinate_2d)
-    );
   const timeline_along_path = // preserves options argument owing to Object.assign
-    (function_name, object, duration, path, options, object_absolute_position) => {
+    (function_name, object, duration, path, options, object_absolute_position, svg) => {
       const timeline = new TimelineMax();
-      object.forEach(object_current => {
-        const options_current = Object.assign({}, options);
-        const interim_result_object = transform_outer_object(object_current, object_absolute_position);
-        options_current.bezier = {
-          "type": "cubic",
-          "values": bezier(path[0]).map(coordinate =>
-            transform_inner(
-              interim_result_object,
-              {
-                "defining_element": path[0],
-                "defining_element_coordinate": coordinate
-              }
-            )
-          )
-        };
-        timeline[function_name](
-          object_current,
-          duration,
-          options_current,
-          0
-        );
-      });
-      return timeline;
-    };
-  const timeline_along_path2 =
-    (function_name, object, duration, path, options, object_absolute_position) => {
-      const timeline = new TimelineMax();
+      const transformation_generator = svg.contentDocument.querySelector("svg");
       object.forEach(object_current => {
         // const options_current = Object.assign({}, options);
-        const interim_result_object = transform_outer_object(object_current, object_absolute_position);
+        const interim_result_object = transform_outer_object2(object_current, object_absolute_position);
         const path_distance_current = {"distance": 0};
         path_distance.set(object, path_distance_current);
         timeline[function_name](
@@ -151,7 +130,7 @@ const library = {};
             {
               "distance": path[0].getTotalLength(),
               "onUpdate": () => {
-                transform_inner(
+                const translate = transform_inner(
                   interim_result_object,
                   {
                     "defining_element": path[0],
@@ -159,6 +138,9 @@ const library = {};
                       path[0].getPointAtLength(path_distance_current.distance)
                   }
                 );
+                const transform = transformation_generator.createSVGTransform();
+                transform.setTranslate(translate.x, translate.y);
+                object_current.transform.baseVal.appendItem(transform);
               }
             },
             options
