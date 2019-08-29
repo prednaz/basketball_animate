@@ -99,7 +99,7 @@ const library = {};
       });
       return timeline;
     };
-  const timeline_along_path = // preserves options argument owing to Object.assign
+  const timeline_along_path =
     (function_name, object, duration, path, options, object_absolute_position) => {
       const timeline = new TimelineMax();
       object.forEach(object_current => {
