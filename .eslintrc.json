@@ -50,6 +50,5 @@
     "TimelineMax": "readonly",
     "TweenMax": "readonly",
     "$": "readonly",
-    "Snap": "readonly"
   }
 }
