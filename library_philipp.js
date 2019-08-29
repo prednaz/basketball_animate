@@ -1,8 +1,5 @@
 const library = {};
 {
-  const path_distance = new Map();
-  const transformation_matrix = (start, destination) =>
-    destination.getScreenCTM().inverse().multiply(start.getScreenCTM());
   const svg_element = (html_dom, svg_selector) =>
     Array.prototype.concat.apply(
       [],
@@ -11,6 +8,8 @@ const library = {};
           Array.from(html_dom_current.contentDocument.querySelectorAll(svg_selector))
       )
     );
+  const transformation_matrix = (start, destination) =>
+    destination.getScreenCTM().inverse().multiply(start.getScreenCTM());
   const coordinate_relative = (coordinate, origin) => { // caveat: modifies coordinate argument
     if ("x" in coordinate)
       coordinate.x -= origin.x;
@@ -47,21 +46,6 @@ const library = {};
       "defining_element_coordinate": defining_element_coordinate
     });
   };
-  const transform_outer_object = (object, absolute_position) => {
-    const result = transform_outer_object_relative(object, absolute_position);
-    const transformation_animated = transformation_matrix(
-      object,
-      object.parentElement
-    );
-    result.coordinate = coordinate_relative(
-      result.coordinate,
-      {
-        "x": transformation_animated.e,
-        "y": transformation_animated.f
-      }
-    );
-    return result;
-  };
   const transform_outer_object_relative = (object, absolute_position) => {
     const defining_element = absolute_position.defining_element(object);
     const coordinate =
@@ -77,46 +61,21 @@ const library = {};
       "coordinate": coordinate
     });
   };
-  const timeline_along_path_svgtransform =
-    (function_name, object, duration, path, options, object_absolute_position, svg) => {
-      const timeline = new TimelineMax();
-      const transformation_generator = svg.contentDocument.querySelector("svg");
-      object.forEach(object_current => {
-        let interim_result_object;
-        const path_distance_current = {"distance": 0};
-        path_distance.set(object, path_distance_current);
-        timeline[function_name](
-          path_distance_current,
-          duration,
-          Object.assign(
-            {
-              "distance": path[0].getTotalLength(),
-              "onUpdate": () => {
-                const translate = transform_inner(
-                  interim_result_object,
-                  {
-                    "defining_element": path[0],
-                    "defining_element_coordinate":
-                      path[0].getPointAtLength(path_distance_current.distance)
-                  }
-                );
-                interim_result_object.coordinate.x += translate.x;
-                interim_result_object.coordinate.y += translate.y;
-                const transform = transformation_generator.createSVGTransform();
-                transform.setTranslate(translate.x, translate.y);
-                object_current.transform.baseVal.insertItemBefore(transform, 0);
-              },
-              "onStart": () => {
-                interim_result_object = transform_outer_object_relative(object_current, object_absolute_position);
-              }
-            },
-            options
-          ),
-          0
-        );
-      });
-      return timeline;
-    };
+  const transform_outer_object = (object, absolute_position) => {
+    const result = transform_outer_object_relative(object, absolute_position);
+    const transformation_animated = transformation_matrix(
+      object,
+      object.parentElement
+    );
+    result.coordinate = coordinate_relative(
+      result.coordinate,
+      {
+        "x": transformation_animated.e,
+        "y": transformation_animated.f
+      }
+    );
+    return result;
+  };
   const timeline_align_position =
     (
       function_name,
@@ -145,6 +104,47 @@ const library = {};
       });
       return timeline;
     };
+  const path_distance = new Map();
+  const timeline_along_path_svgtransform =
+      (function_name, object, duration, path, options, object_absolute_position, svg) => {
+        const timeline = new TimelineMax();
+        const transformation_generator = svg.contentDocument.querySelector("svg");
+        object.forEach(object_current => {
+          let interim_result_object;
+          const path_distance_current = {"distance": 0};
+          path_distance.set(object, path_distance_current);
+          timeline[function_name](
+            path_distance_current,
+            duration,
+            Object.assign(
+              {
+                "distance": path[0].getTotalLength(),
+                "onUpdate": () => {
+                  const translate = transform_inner(
+                    interim_result_object,
+                    {
+                      "defining_element": path[0],
+                      "defining_element_coordinate":
+                        path[0].getPointAtLength(path_distance_current.distance)
+                    }
+                  );
+                  interim_result_object.coordinate.x += translate.x;
+                  interim_result_object.coordinate.y += translate.y;
+                  const transform = transformation_generator.createSVGTransform();
+                  transform.setTranslate(translate.x, translate.y);
+                  object_current.transform.baseVal.insertItemBefore(transform, 0);
+                },
+                "onStart": () => {
+                  interim_result_object = transform_outer_object_relative(object_current, object_absolute_position);
+                }
+              },
+              options
+            ),
+            0
+          );
+        });
+        return timeline;
+      };
   const timeline_along_path_tweenmax =
     (function_name, object, duration, path, options, object_absolute_position) => {
       const timeline = new TimelineMax();
