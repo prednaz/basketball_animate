@@ -33,10 +33,10 @@
     ]
   },
   "globals": {
-    "player_to_absolute_position": "readonly",
-    "ball_to_absolute_position": "readonly",
-    "player_along_path": "readonly",
-    "ball_along_path": "readonly",
+    "object_to_object": "readonly",
+    "along_path": "readonly",
+    "object_to_move_start": "readonly",
+    "object_to_move_destination": "readonly",
     "timeline": "readonly",
     "animation_supplementary": "readonly",
     "svg_main": "readonly",
