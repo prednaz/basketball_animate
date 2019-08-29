@@ -15,7 +15,7 @@ let
 {
   // player and ball positioning
   // Es gibt kein allgemeines Konzept von absoluter Position fuer svg-Elemente.
-  // Die Funktionen library.timeline_align_position, library.timeline_along_path
+  // Die Funktionen library.timeline_align_position, library.timeline_along_path_tweenmax
   // erlauben absolute Positionierung, wenn man ihr als letzte Argumente eine
   // Definitionen von absoluter Position uebergibt.
   const absolute_position = { // applicable to player and ball
@@ -46,7 +46,7 @@ let
   //     absolute_position
   //   );
   along_path = (object, duration, path, options) => // object can be player or ball
-    library.timeline_along_path(
+    library.timeline_along_path_tweenmax(
       "to",
       object,
       duration,

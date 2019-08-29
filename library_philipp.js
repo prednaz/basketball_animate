@@ -99,7 +99,7 @@ const library = {};
       });
       return timeline;
     };
-  const timeline_along_path =
+  const timeline_along_path_tweenmax =
     (function_name, object, duration, path, options, object_absolute_position) => {
       const timeline = new TimelineMax();
       object.forEach(object_current => {
@@ -135,5 +135,5 @@ const library = {};
   // export
   library.svg_element = svg_element;
   library.timeline_align_position = timeline_align_position;
-  library.timeline_along_path = timeline_along_path;
+  library.timeline_along_path_tweenmax = timeline_along_path_tweenmax;
 }
