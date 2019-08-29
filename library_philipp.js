@@ -145,9 +145,42 @@ const library = {};
       });
       return timeline;
     };
+  const timeline_along_path_tweenmax =
+    (function_name, object, duration, path, options, object_absolute_position) => {
+      const timeline = new TimelineMax();
+      object.forEach(object_current => {
+        const interim_result_object = transform_outer_object(object_current, object_absolute_position);
+        const path_distance_current = {"distance": 0};
+        path_distance.set(object, path_distance_current);
+        timeline[function_name](
+          path_distance_current,
+          duration,
+          Object.assign(
+            {
+              "distance": path[0].getTotalLength(),
+              "onUpdate": () => {
+                const translate = transform_inner(
+                  interim_result_object,
+                  {
+                    "defining_element": path[0],
+                    "defining_element_coordinate":
+                      path[0].getPointAtLength(path_distance_current.distance)
+                  }
+                );
+                TweenMax.set(object_current, {"x": translate.x, "y": translate.y});
+              }
+            },
+            options
+          ),
+          0
+        );
+      });
+      return timeline;
+    };
 
   // export
   library.svg_element = svg_element;
   library.timeline_align_position = timeline_align_position;
   library.timeline_along_path_svgtransform = timeline_along_path_svgtransform;
+  library.timeline_along_path_tweenmax = timeline_along_path_tweenmax;
 }
