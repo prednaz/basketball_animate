@@ -106,47 +106,49 @@ const library = {};
     };
   const path_distance = new Map();
   const timeline_along_path_svgtransform =
-      (function_name, object, duration, path, options, object_absolute_position, svg) => {
-        const timeline = new TimelineMax();
-        const transformation_generator = svg.contentDocument.querySelector("svg");
-        object.forEach(object_current => {
-          let interim_result_object;
-          const path_distance_current = {"distance": 0};
-          path_distance.set(object, path_distance_current);
-          timeline[function_name](
-            path_distance_current,
-            duration,
-            Object.assign(
-              {
-                "distance": path[0].getTotalLength(),
-                "onUpdate": () => {
-                  const translate = transform_inner(
-                    interim_result_object,
-                    {
-                      "defining_element": path[0],
-                      "defining_element_coordinate":
-                        path[0].getPointAtLength(path_distance_current.distance)
-                    }
-                  );
-                  interim_result_object.coordinate.x += translate.x;
-                  interim_result_object.coordinate.y += translate.y;
-                  const transform = transformation_generator.createSVGTransform();
-                  transform.setTranslate(translate.x, translate.y);
-                  object_current.transform.baseVal.insertItemBefore(transform, 0);
-                },
-                "onStart": () => {
-                  interim_result_object = transform_outer_object_relative(object_current, object_absolute_position);
-                }
+    (function_name, object, duration, path, options, object_absolute_position, svg) => {
+      const path_first = path[0];
+      const timeline = new TimelineMax();
+      const transformation_generator = svg.contentDocument.querySelector("svg");
+      object.forEach(object_current => {
+        let interim_result_object;
+        const path_distance_current = {"distance": 0};
+        path_distance.set(object, path_distance_current);
+        timeline[function_name](
+          path_distance_current,
+          duration,
+          Object.assign(
+            {
+              "distance": path_first.getTotalLength(),
+              "onUpdate": () => {
+                const translate = transform_inner(
+                  interim_result_object,
+                  {
+                    "defining_element": path_first,
+                    "defining_element_coordinate":
+                      path_first.getPointAtLength(path_distance_current.distance)
+                  }
+                );
+                interim_result_object.coordinate.x += translate.x;
+                interim_result_object.coordinate.y += translate.y;
+                const transform = transformation_generator.createSVGTransform();
+                transform.setTranslate(translate.x, translate.y);
+                object_current.transform.baseVal.insertItemBefore(transform, 0);
               },
-              options
-            ),
-            0
-          );
-        });
-        return timeline;
-      };
+              "onStart": () => {
+                interim_result_object = transform_outer_object_relative(object_current, object_absolute_position);
+              }
+            },
+            options
+          ),
+          0
+        );
+      });
+      return timeline;
+    };
   const timeline_along_path_tweenmax =
     (function_name, object, duration, path, options, object_absolute_position) => {
+      const path_first = path[0];
       const timeline = new TimelineMax();
       object.forEach(object_current => {
         const interim_result_object = transform_outer_object(object_current, object_absolute_position);
@@ -157,14 +159,14 @@ const library = {};
           duration,
           Object.assign(
             {
-              "distance": path[0].getTotalLength(),
+              "distance": path_first.getTotalLength(),
               "onUpdate": () => {
                 const translate = transform_inner(
                   interim_result_object,
                   {
-                    "defining_element": path[0],
+                    "defining_element": path_first,
                     "defining_element_coordinate":
-                      path[0].getPointAtLength(path_distance_current.distance)
+                      path_first.getPointAtLength(path_distance_current.distance)
                   }
                 );
                 TweenMax.set(object_current, {"x": translate.x, "y": translate.y});
