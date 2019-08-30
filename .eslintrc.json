@@ -49,6 +49,7 @@
     "Power1": "readonly",
     "TimelineMax": "readonly",
     "TweenMax": "readonly",
-    "$": "readonly"
+    "$": "readonly",
+    "Snap": "readonly"
   }
 }

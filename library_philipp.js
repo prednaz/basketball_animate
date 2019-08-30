@@ -104,7 +104,43 @@ const library = {};
       });
       return timeline;
     };
-  const path_distance = new Map();
+  const coordinate_2d = unstructured => {
+    const x1 = unstructured.filter((element, index) => index > 0 && index%2 === 1);
+    const x2 = unstructured.filter((element, index) => index > 0 && index%2 === 0);
+    return x1.map((value, index) => ({"x": value, "y": x2[index]}));
+  };
+  const bezier = path =>
+    Array.prototype.concat.apply(
+      [],
+      Snap.path.toCubic(path.getAttribute("d")).map(coordinate_2d)
+    );
+  const timeline_along_path_gsap_bezier = // preserves options argument owing to Object.assign
+    (function_name, object, duration, path, options, object_absolute_position) => {
+      const timeline = new TimelineMax();
+      object.forEach(object_current => {
+        const options_current = Object.assign({}, options);
+        const interim_result_object = transform_outer_object(object_current, object_absolute_position);
+        options_current.bezier = {
+          "type": "cubic",
+          "values": bezier(path[0]).map(coordinate =>
+            transform_inner(
+              interim_result_object,
+              {
+                "defining_element": path[0],
+                "defining_element_coordinate": coordinate
+              }
+            )
+          )
+        };
+        timeline[function_name](
+          object_current,
+          duration,
+          options_current,
+          0
+        );
+      });
+      return timeline;
+    };
   const timeline_along_path_svgtransform =
     (function_name, object, duration, path, options, object_absolute_position, svg) => {
       const path_first = path[0];
@@ -113,7 +149,6 @@ const library = {};
       object.forEach(object_current => {
         let interim_result_object;
         const path_distance_current = {"distance": 0};
-        path_distance.set(object, path_distance_current);
         timeline[function_name](
           path_distance_current,
           duration,
@@ -153,7 +188,6 @@ const library = {};
       object.forEach(object_current => {
         const interim_result_object = transform_outer_object(object_current, object_absolute_position);
         const path_distance_current = {"distance": 0};
-        path_distance.set(object, path_distance_current);
         timeline[function_name](
           path_distance_current,
           duration,
@@ -183,6 +217,7 @@ const library = {};
   // export
   library.svg_element = svg_element;
   library.timeline_align_position = timeline_align_position;
+  library.timeline_along_path_gsap_bezier = timeline_along_path_gsap_bezier;
   library.timeline_along_path_svgtransform = timeline_along_path_svgtransform;
   library.timeline_along_path_tweenmax = timeline_along_path_tweenmax;
 }
