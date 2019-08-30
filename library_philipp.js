@@ -183,4 +183,8 @@ const library = {};
   library.timeline_align_position = timeline_align_position;
   library.timeline_along_path_svgtransform = timeline_along_path_svgtransform;
   library.timeline_along_path_tweenmax = timeline_along_path_tweenmax;
+  library.transformation_matrix = transformation_matrix;
+  library.transform_outer_object = transform_outer_object;
+  library.transform_inner = transform_inner;
+  library.transform_outer_target = transform_outer_target;
 }

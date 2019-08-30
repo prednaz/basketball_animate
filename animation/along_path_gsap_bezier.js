@@ -1,3 +1,9 @@
+// requires manually importing Snap and exporting additional library functions as follows
+// library.transformation_matrix = transformation_matrix;
+// library.transform_outer_object = transform_outer_object;
+// library.transform_inner = transform_inner;
+// library.transform_outer_target = transform_outer_target;
+
 const library2 = {};
 {
   const timeline_align_position_static_start =
@@ -12,13 +18,17 @@ const library2 = {};
       const interim_result_target = library.transform_outer_target(target[0], target_absolute_position);
       const timeline = new TimelineMax();
       object.forEach(object_current => {
+        const transformation_animated = library.transformation_matrix(
+          object_current,
+          object_current.parentElement
+        );
         const interim_result_object = library.transform_outer_object(object_current, object_absolute_position);
         timeline.fromTo(
           object_current,
           duration,
           {
-            "x": interim_result_object.transformation_animated.e,
-            "y": interim_result_object.transformation_animated.f
+            "x": transformation_animated.e,
+            "y": transformation_animated.f
           },
           Object.assign(
             library.transform_inner(
@@ -42,7 +52,7 @@ const library2 = {};
       [],
       Snap.path.toCubic(path.getAttribute("d")).map(coordinate_2d)
     );
-  const timeline_along_path = // preserves options argument owing to Object.assign
+  const timeline_along_path_gsap_bezier = // preserves options argument owing to Object.assign
     (function_name, object, duration, path, options, object_absolute_position) => {
       const timeline = new TimelineMax();
       object.forEach(object_current => {
@@ -71,7 +81,7 @@ const library2 = {};
     };
   // export
   library2.timeline_align_position_static_start = timeline_align_position_static_start;
-  library2.timeline_along_path = timeline_along_path;
+  library2.timeline_along_path_gsap_bezier = timeline_along_path_gsap_bezier;
 }
 
 const absolute_position = { // applicable to player and ball
@@ -81,19 +91,28 @@ const absolute_position = { // applicable to player and ball
     "y": defining_element.cy.baseVal.value
   })
 };
+along_path = (object, duration, path, options) => // object can be player or ball
+  library2.timeline_along_path_gsap_bezier(
+    "to",
+    object,
+    duration,
+    path,
+    options,
+    absolute_position
+  );
 
 music_set("animation/september.wav");
 svg_set("animation/along_path_gsap_bezier.svg");
 
 svg_main.addEventListener("load", () => {
-  timeline.add(library.ball_along_path(
+  timeline.add(along_path(
     svg("#ball1"),
     5,
     svg("#move1"),
     {ease: Power0.easeNone}
   ));
   timeline.seek(2);
-  const pass = library.timeline_align_position_static_start(
+  const pass = library2.timeline_align_position_static_start(
   // const pass = library.timeline_align_position("to", // surprisingly gives the third animation the chance to set the worng start position
     svg("#ball2"),
     2,
@@ -103,11 +122,12 @@ svg_main.addEventListener("load", () => {
     absolute_position
   );
   timeline.seek(0);
-  timeline.add(ball_along_path(
+  timeline.add(along_path(
     svg("#ball2"),
     5,
     svg("#move1"),
     {ease: Power0.easeNone}
   ), 0); // setting this positive suprsingly causes pass to be overwritten regardless of its overwrite setting
   timeline.add(pass, 0);
+  // additionally scrolling backwards through the gui does not work
 });
