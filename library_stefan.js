@@ -1,7 +1,7 @@
 // export
 let
-  object_to_object,
-  along_path,
+  pass,
+  player_along_path,
   object_to_move_start,
   object_to_move_destination,
   timeline,
@@ -13,6 +13,12 @@ let
   svg_set;
 
 {
+  svg_main = document.querySelector("#main_svg");
+  let ball, player_possession;
+  svg_main.addEventListener("load", () => {
+    ball = svg("#ball")[0];
+    player_possession = svg("#player1")[0];
+  });
   // player and ball positioning
   // Es gibt kein allgemeines Konzept von absoluter Position fuer svg-Elemente.
   // Die Funktionen library.timeline_align_position, timeline_along_path_gsap_bezier
@@ -26,16 +32,31 @@ let
       "y": defining_element.cy.baseVal.value
     })
   };
-  object_to_object = (object, duration, object_target, options) => // object can be player or ball
-    library.timeline_align_position(
-      "to",
-      object,
+  pass = (player, duration, options, timeline, receive_time) => {
+    timeline.seek(receive_time - duration);
+    const interim_result_object = library.transform_outer_object(ball, absolute_position);
+    timeline.seek(receive_time);
+    const animation = TweenMax.to(
+      ball,
       duration,
-      object_target,
-      options,
-      absolute_position,
-      absolute_position
+      Object.assign(
+        Object.assign(
+          {
+            "onStart": () => {player_possession = null;},
+            "onComplete": () => {player_possession = player[0];},
+            "overwrite": "none"
+          },
+          library.transform_inner(
+            interim_result_object,
+            library.transform_outer_target(player[0], absolute_position),
+          )
+        ),
+        options
+      )
     );
+    timeline.seek(0);
+    return animation;
+  };
   // const object_to_object = (object, duration, object_target, options) => // object can be player or ball
   //   library.timeline_align_position(
   //     "from",
@@ -46,15 +67,29 @@ let
   //     absolute_position,
   //     absolute_position
   //   );
-  along_path = (object, duration, path, options) => // object can be player or ball
-    library.timeline_along_path_gsap_bezier(
+  // using TweenMax.set
+  player_along_path = (player, duration, path, options) => {
+    const player_first = player[0];
+    const interim_result_object = library.transform_outer_object(ball, absolute_position);
+    const interim_result_target = library.transform_outer_target(player_first, absolute_position);
+    return library.tween_along_path_gsap_bezier(
       "to",
-      object,
+      player_first,
       duration,
       path,
-      options,
+      Object.assign(
+        {"onUpdate": () => {
+          if (player_first === player_possession)
+            TweenMax.set(ball, library.transform_inner(
+              interim_result_object,
+              interim_result_target
+            ));
+        }},
+        options
+      ),
       absolute_position,
     );
+  };
   const move_start = {
     "defining_element": move => move,
     "coordinate": defining_element => defining_element.getPointAtLength(0)
@@ -99,7 +134,6 @@ let
     }
   });
   animation_supplementary = new TimelineMax({"paused": true});
-  svg_main = document.querySelector("#main_svg");
   clock = period => {
     animation_supplementary.to(svg("#hand_clock"), period, {
       "rotation": "360_cw",

@@ -141,6 +141,28 @@ const library = {};
       });
       return timeline;
     };
+  const tween_along_path_gsap_bezier = // preserves options argument owing to Object.assign
+    (function_name, object, duration, path, options, object_absolute_position) => {
+      options = Object.assign({}, options);
+      const interim_result_object = transform_outer_object(object, object_absolute_position);
+      options.bezier = {
+        "type": "cubic",
+        "values": bezier(path[0]).map(coordinate =>
+          transform_inner(
+            interim_result_object,
+            {
+              "defining_element": path[0],
+              "defining_element_coordinate": coordinate
+            }
+          )
+        )
+      };
+      return TweenMax[function_name](
+        object,
+        duration,
+        options
+      );
+    };
   const timeline_along_path_svgtransform =
     (function_name, object, duration, path, options, object_absolute_position, svg) => {
       const path_first = path[0];
@@ -220,4 +242,8 @@ const library = {};
   library.timeline_along_path_gsap_bezier = timeline_along_path_gsap_bezier;
   library.timeline_along_path_svgtransform = timeline_along_path_svgtransform;
   library.timeline_along_path_tweenmax = timeline_along_path_tweenmax;
+  library.tween_along_path_gsap_bezier = tween_along_path_gsap_bezier;
+  library.transform_inner = transform_inner;
+  library.transform_outer_target = transform_outer_target;
+  library.transform_outer_object = transform_outer_object;
 }
