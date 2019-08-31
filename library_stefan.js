@@ -47,6 +47,7 @@ let
       interim_result_object,
       library.transform_outer_target(player[0], absolute_position),
     );
+    timeline.seek(0);
     timeline.to(
       ball,
       end_time - start_time,
@@ -61,7 +62,6 @@ let
       ),
       start_time
     );
-    timeline.seek(0);
   };
   // const object_to_object = (object, duration, object_target, options) => // object can be player or ball
   //   library.timeline_align_position(
@@ -84,7 +84,6 @@ let
       duration,
       path,
       {
-        "onStart": () => {console.log("s");},
         "ease": Power1.easeInOut,
         "onUpdate": () => {
           if (player_first === player_possession)
