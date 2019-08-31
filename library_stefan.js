@@ -39,7 +39,7 @@ let
       "y": defining_element.cy.baseVal.value
     })
   };
-  pass = (player, start_time, end_time, timeline) => {
+  pass = (player, start_time, end_time) => {
     timeline.seek(start_time);
     const interim_result_object = library.transform_outer_object(ball, absolute_position);
     timeline.seek(end_time);
@@ -48,13 +48,22 @@ let
       library.transform_outer_target(player[0], absolute_position),
     );
     timeline.seek(0);
+    let player_possession_backup_start;
+    let reversed_start = false;
+    timeline.addCallback(() => {
+      if (!reversed_start) {
+        player_possession_backup_start = player_possession;
+        player_possession = null;
+      }
+      else
+        player_possession = player_possession_backup_start;
+      reversed_start = !reversed_start;
+    }, start_time);
     timeline.to(
       ball,
       end_time - start_time,
       Object.assign(
         {
-          "onStart": () => {player_possession = null;},
-          "onComplete": () => {player_possession = player[0];},
           "ease": Power1.easeInOut,
           "overwrite": "none"
         },
@@ -62,6 +71,14 @@ let
       ),
       start_time
     );
+    let reversed_complete = false;
+    timeline.addCallback(() => {
+      if (!reversed_complete)
+        player_possession = player[0];
+      else
+        player_possession = null;
+      reversed_complete = !reversed_complete;
+    }, end_time);
   };
   // const object_to_object = (object, duration, object_target, options) => // object can be player or ball
   //   library.timeline_align_position(

@@ -65,7 +65,6 @@ svg_main.addEventListener("load", () => {
   //     {ease: Power1.easeInOut}
   //   ), time(1,1)
   // );
-  //
   // timeline.add(
   //   ball_along_path(
   //     svg("#ball"),
@@ -78,20 +77,9 @@ svg_main.addEventListener("load", () => {
   pass(
     svg("#player5"),
     time(1,4),
-    time(2,1),
-    timeline
+    time(2,1)
   );
 
-  //
-  // timeline.add(
-  //   ball_along_path(
-  //     svg("#ball"),
-  //     0.5,
-  //     svg("#ball2"),
-  //     {ease: Power1.easeInOut}
-  //   ), time(1,4)
-  // );
-  //
   // timeline.add(
   //   ball_along_path(
   //     svg("#ball"),
@@ -100,7 +88,13 @@ svg_main.addEventListener("load", () => {
   //     {ease: Power1.easeInOut}
   //   ), time(2,2)
   // );
-  //
+
+  // pass(
+  //   svg("#player2"),
+  //   time(2,2),
+  //   time(2,3)
+  // );
+
   // timeline.add(
   //   ball_along_path(
   //     svg("#ball"),

@@ -16,6 +16,10 @@ svg_main.addEventListener("load", () => {
     svg("#player2"),
     1,
     2,
-    timeline,
+  );
+  pass(
+    svg("#player1"),
+    3,
+    4
   );
 });
