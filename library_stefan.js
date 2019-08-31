@@ -1,5 +1,6 @@
 // export
 let
+  time_generator,
   pass,
   player_along_path,
   object_to_move_start,
@@ -13,6 +14,12 @@ let
   svg_set;
 
 {
+  time_generator = bpm => {
+    const bar_duration = (60 * 4 / bpm);
+    const beat_duration = (60 / bpm);
+    const offset = (60 * 3 / bpm);
+    return ((bar, beat) => bar * bar_duration + beat * beat_duration + offset);
+  };
   svg_main = document.querySelector("#main_svg");
   let ball, player_possession;
   svg_main.addEventListener("load", () => {
@@ -32,30 +39,29 @@ let
       "y": defining_element.cy.baseVal.value
     })
   };
-  pass = (player, duration, options, timeline, receive_time) => {
-    timeline.seek(receive_time - duration);
+  pass = (player, start_time, end_time, timeline) => {
+    timeline.seek(start_time);
     const interim_result_object = library.transform_outer_object(ball, absolute_position);
-    timeline.seek(receive_time);
-    const animation = TweenMax.to(
+    timeline.seek(end_time);
+    const translation = library.transform_inner(
+      interim_result_object,
+      library.transform_outer_target(player[0], absolute_position),
+    );
+    timeline.to(
       ball,
-      duration,
+      end_time - start_time,
       Object.assign(
-        Object.assign(
-          {
-            "onStart": () => {player_possession = null;},
-            "onComplete": () => {player_possession = player[0];},
-            "overwrite": "none"
-          },
-          library.transform_inner(
-            interim_result_object,
-            library.transform_outer_target(player[0], absolute_position),
-          )
-        ),
-        options
-      )
+        {
+          "onStart": () => {player_possession = null;},
+          "onComplete": () => {player_possession = player[0];},
+          "ease": Power1.easeInOut,
+          "overwrite": "none"
+        },
+        translation
+      ),
+      start_time
     );
     timeline.seek(0);
-    return animation;
   };
   // const object_to_object = (object, duration, object_target, options) => // object can be player or ball
   //   library.timeline_align_position(
@@ -77,16 +83,17 @@ let
       player_first,
       duration,
       path,
-      Object.assign(
-        {"onUpdate": () => {
+      {
+        "onStart": () => {console.log("s");},
+        "ease": Power1.easeInOut,
+        "onUpdate": () => {
           if (player_first === player_possession)
             TweenMax.set(ball, library.transform_inner(
               interim_result_object,
               interim_result_target
             ));
-        }},
-        options
-      ),
+        }
+      },
       absolute_position,
     );
   };
@@ -134,8 +141,8 @@ let
     }
   });
   animation_supplementary = new TimelineMax({"paused": true});
-  clock = period => {
-    animation_supplementary.to(svg("#hand_clock"), period, {
+  clock = bpm => {
+    animation_supplementary.to(svg("#hand_clock"), 60 * 16 / bpm, {
       "rotation": "360_cw",
       "transformOrigin": "50% 0%",
       "ease": Power0.easeNone,
