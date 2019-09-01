@@ -1,13 +1,5 @@
 const library = {};
 {
-  const svg_element = (html_dom, svg_selector) =>
-    Array.prototype.concat.apply(
-      [],
-      html_dom.map(
-        html_dom_current =>
-          Array.from(html_dom_current.contentDocument.querySelectorAll(svg_selector))
-      )
-    );
   const transformation_matrix = (start, destination) =>
     destination.getScreenCTM().inverse().multiply(start.getScreenCTM());
   const coordinate_relative = (coordinate, origin) => { // caveat: modifies coordinate argument
@@ -27,7 +19,7 @@ const library = {};
       + transformation.d * coordinate.y
       + transformation.f
   });
-  const transform_inner = (interim_result_object, interim_result_target) =>
+  const translation = (interim_result_object, interim_result_target) =>
     coordinate_relative(
       coordinate_transform(
         interim_result_target.defining_element_coordinate,
@@ -38,7 +30,7 @@ const library = {};
       ),
       interim_result_object.coordinate
     );
-  const transform_outer_target = (target, absolute_position) => {
+  const translation_interim_result_target = (target, absolute_position) => {
     const defining_element = absolute_position.defining_element(target);
     const defining_element_coordinate = absolute_position.coordinate(defining_element);
     return ({
@@ -46,7 +38,7 @@ const library = {};
       "defining_element_coordinate": defining_element_coordinate
     });
   };
-  const transform_outer_object_relative = (object, absolute_position) => {
+  const translation_interim_result_object_relative = (object, absolute_position) => {
     const defining_element = absolute_position.defining_element(object);
     const coordinate =
       coordinate_transform(
@@ -61,8 +53,8 @@ const library = {};
       "coordinate": coordinate
     });
   };
-  const transform_outer_object = (object, absolute_position) => {
-    const result = transform_outer_object_relative(object, absolute_position);
+  const translation_interim_result_object = (object, absolute_position) => {
+    const result = translation_interim_result_object_relative(object, absolute_position);
     const transformation_animated = transformation_matrix(
       object,
       object.parentElement
@@ -86,15 +78,15 @@ const library = {};
       object_absolute_position,
       target_absolute_position
     ) => {
-      const interim_result_target = transform_outer_target(target[0], target_absolute_position);
+      const interim_result_target = translation_interim_result_target(target[0], target_absolute_position);
       const timeline = new TimelineMax();
       object.forEach(object_current => {
         timeline[function_name](
           object_current,
           duration,
           Object.assign(
-            transform_inner(
-              transform_outer_object(object_current, object_absolute_position),
+            translation(
+              translation_interim_result_object(object_current, object_absolute_position),
               interim_result_target
             ),
             options
@@ -119,11 +111,11 @@ const library = {};
       const timeline = new TimelineMax();
       object.forEach(object_current => {
         const options_current = Object.assign({}, options);
-        const interim_result_object = transform_outer_object(object_current, object_absolute_position);
+        const interim_result_object = translation_interim_result_object(object_current, object_absolute_position);
         options_current.bezier = {
           "type": "cubic",
           "values": bezier(path[0]).map(coordinate =>
-            transform_inner(
+            translation(
               interim_result_object,
               {
                 "defining_element": path[0],
@@ -144,11 +136,11 @@ const library = {};
   const tween_along_path_gsap_bezier = // preserves options argument owing to Object.assign
     (function_name, object, duration, path, options, object_absolute_position) => {
       options = Object.assign({}, options);
-      const interim_result_object = transform_outer_object(object, object_absolute_position);
+      const interim_result_object = translation_interim_result_object(object, object_absolute_position);
       options.bezier = {
         "type": "cubic",
         "values": bezier(path[0]).map(coordinate =>
-          transform_inner(
+          translation(
             interim_result_object,
             {
               "defining_element": path[0],
@@ -178,7 +170,7 @@ const library = {};
             {
               "distance": path_first.getTotalLength(),
               "onUpdate": () => {
-                const translate = transform_inner(
+                const translate = translation(
                   interim_result_object,
                   {
                     "defining_element": path_first,
@@ -193,7 +185,7 @@ const library = {};
                 object_current.transform.baseVal.insertItemBefore(transform, 0);
               },
               "onStart": () => {
-                interim_result_object = transform_outer_object_relative(object_current, object_absolute_position);
+                interim_result_object = translation_interim_result_object_relative(object_current, object_absolute_position);
               }
             },
             options
@@ -208,7 +200,7 @@ const library = {};
       const path_first = path[0];
       const timeline = new TimelineMax();
       object.forEach(object_current => {
-        const interim_result_object = transform_outer_object(object_current, object_absolute_position);
+        const interim_result_object = translation_interim_result_object(object_current, object_absolute_position);
         const path_distance_current = {"distance": 0};
         timeline[function_name](
           path_distance_current,
@@ -217,7 +209,7 @@ const library = {};
             {
               "distance": path_first.getTotalLength(),
               "onUpdate": () => {
-                const translate = transform_inner(
+                const translate = translation(
                   interim_result_object,
                   {
                     "defining_element": path_first,
@@ -235,15 +227,23 @@ const library = {};
       });
       return timeline;
     };
+  const svg_element = (html_dom, svg_selector) =>
+    Array.prototype.concat.apply(
+      [],
+      html_dom.map(
+        html_dom_current =>
+          Array.from(html_dom_current.contentDocument.querySelectorAll(svg_selector))
+      )
+    );
 
   // export
-  library.svg_element = svg_element;
   library.timeline_align_position = timeline_align_position;
   library.timeline_along_path_gsap_bezier = timeline_along_path_gsap_bezier;
   library.timeline_along_path_svgtransform = timeline_along_path_svgtransform;
   library.timeline_along_path_tweenmax = timeline_along_path_tweenmax;
   library.tween_along_path_gsap_bezier = tween_along_path_gsap_bezier;
-  library.transform_inner = transform_inner;
-  library.transform_outer_target = transform_outer_target;
-  library.transform_outer_object = transform_outer_object;
+  library.translation = translation;
+  library.translation_interim_result_target = translation_interim_result_target;
+  library.translation_interim_result_object = translation_interim_result_object;
+  library.svg_element = svg_element;
 }

@@ -1,8 +1,8 @@
 // requires manually importing Snap and exporting additional library functions as follows
 // library.transformation_matrix = transformation_matrix;
-// library.transform_outer_object = transform_outer_object;
-// library.transform_inner = transform_inner;
-// library.transform_outer_target = transform_outer_target;
+// library.translation_interim_result_object = translation_interim_result_object;
+// library.translation = translation;
+// library.translation_interim_result_target = translation_interim_result_target;
 
 const library2 = {};
 {
@@ -15,14 +15,14 @@ const library2 = {};
       object_absolute_position,
       target_absolute_position
     ) => {
-      const interim_result_target = library.transform_outer_target(target[0], target_absolute_position);
+      const interim_result_target = library.translation_interim_result_target(target[0], target_absolute_position);
       const timeline = new TimelineMax();
       object.forEach(object_current => {
         const transformation_animated = library.transformation_matrix(
           object_current,
           object_current.parentElement
         );
-        const interim_result_object = library.transform_outer_object(object_current, object_absolute_position);
+        const interim_result_object = library.translation_interim_result_object(object_current, object_absolute_position);
         timeline.fromTo(
           object_current,
           duration,
@@ -31,7 +31,7 @@ const library2 = {};
             "y": transformation_animated.f
           },
           Object.assign(
-            library.transform_inner(
+            library.translation(
               interim_result_object,
               interim_result_target
             ),
@@ -57,11 +57,11 @@ const library2 = {};
       const timeline = new TimelineMax();
       object.forEach(object_current => {
         const options_current = Object.assign({}, options);
-        const interim_result_object = library.transform_outer_object(object_current, object_absolute_position);
+        const interim_result_object = library.translation_interim_result_object(object_current, object_absolute_position);
         options_current.bezier = {
           "type": "cubic",
           "values": bezier(path[0]).map(coordinate =>
-            library.transform_inner(
+            library.translation(
               interim_result_object,
               {
                 "defining_element": path[0],

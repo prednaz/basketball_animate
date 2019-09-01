@@ -2,12 +2,12 @@ music_set("animation/september.wav");
 svg_set("animation/test.svg");
 
 svg_main.addEventListener("load", () => {
-  timeline.add(player_along_path(
+  timeline.add(player_move(
     svg("#player1"),
     5,
     svg("#move1"),
   ));
-  timeline.add(player_along_path(
+  timeline.add(player_move(
     svg("#player2"),
     5,
     svg("#move2"),
