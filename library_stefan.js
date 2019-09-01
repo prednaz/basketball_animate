@@ -40,28 +40,31 @@ let
     })
   };
   pass = (player, start_time, end_time) => {
-    timeline.seek(start_time);
+    timeline.seek(start_time, false);
     const interim_result_object = library.transform_outer_object(ball, absolute_position);
-    timeline.seek(end_time);
+    const start_coordinate = library.transform_inner(
+      interim_result_object,
+      library.transform_outer_target(player_possession, absolute_position)
+    );
+    const player_possession_previous = player_possession;
+    timeline.seek(end_time, false);
     const translation = library.transform_inner(
       interim_result_object,
       library.transform_outer_target(player[0], absolute_position),
     );
-    timeline.seek(0);
-    let player_possession_backup_start;
+    timeline.seek(0, false);
     let reversed_start = false;
     timeline.addCallback(() => {
-      if (!reversed_start) {
-        player_possession_backup_start = player_possession;
+      if (!reversed_start)
         player_possession = null;
-      }
       else
-        player_possession = player_possession_backup_start;
+        player_possession = player_possession_previous;
       reversed_start = !reversed_start;
-    }, start_time);
-    timeline.to(
+    }, start_time-.016);
+    timeline.fromTo(
       ball,
       end_time - start_time,
+      start_coordinate,
       Object.assign(
         {
           "ease": Power1.easeInOut,
