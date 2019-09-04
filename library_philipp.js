@@ -235,15 +235,65 @@ const library = {};
           Array.from(html_dom_current.contentDocument.querySelectorAll(svg_selector))
       )
     );
+  const marker_style_pattern = /url\("(.+)"\)/;
+  const number_pattern = /[\d.]+/g;
+  // can only be used with paths of which the stroke-dasharray is specified in pixels
+  const path_shorten = (path, distance_start, distance_end) => {
+    if (distance_end === undefined)
+      distance_end = distance_start;
+    path.forEach(path_current => {
+      const svg_root = path_current.closest("svg");
+      [
+        {"property": "marker-start", "distance": distance_start},
+        {"property": "marker-end", "distance": distance_end}
+      ].forEach(marker => {
+        const marker_style_match =
+          marker_style_pattern.exec(path_current.style[marker.property]);
+        if (marker_style_match !== null)
+          TweenMax.set(
+            svg_root.querySelector(marker_style_match[1]).querySelector("path"),
+            {x:"-=" + (
+              marker.distance/Number.parseFloat(path_current.style["stroke-width"])
+            )}
+          );
+      });
+      const length_remaining = path_current.getTotalLength() - distance_start - distance_end;
+      let number_match = path_current.style["stroke-dasharray"].match(number_pattern);
+      let dash_length_new = [];
+      if (number_match !== null) {
+        const dash_length = number_match.map(Number.parseFloat);
+        const sum = dash_length.reduce((x,y) => x+y);
+        const dash_repeat_count = Math.trunc(length_remaining / sum);
+        let i;
+        for (i = 0; i < dash_repeat_count; ++i)
+          dash_length_new = dash_length_new.concat(dash_length);
+        let sum_new = i * sum;
+        for (const dash_length_current of dash_length) {
+          if (sum_new + dash_length_current > length_remaining)
+            break;
+          dash_length_new.push(dash_length_current);
+          sum_new += dash_length_current;
+        }
+        if (dash_length_new.length % 2 === 0)
+          dash_length_new.push(length_remaining - sum_new);
+        dash_length_new.push(sum + distance_end);
+      }
+      else
+        dash_length_new = [length_remaining, length_remaining];
+      dash_length_new[dash_length_new.length - 1] +=
+        Math.max(distance_start, distance_end);
+      path_current.style["stroke-dasharray"] = dash_length_new.join();
+      path_current.style["stroke-dashoffset"] = -distance_start;
+    });
+  };
 
   // export
-  library.timeline_align_position = timeline_align_position;
-  library.timeline_along_path_gsap_bezier = timeline_along_path_gsap_bezier;
-  library.timeline_along_path_svgtransform = timeline_along_path_svgtransform;
-  library.timeline_along_path_tweenmax = timeline_along_path_tweenmax;
-  library.tween_along_path_gsap_bezier = tween_along_path_gsap_bezier;
-  library.translation = translation;
   library.translation_interim_result_target = translation_interim_result_target;
   library.translation_interim_result_object = translation_interim_result_object;
+  library.translation = translation;
+  library.timeline_align_position = timeline_align_position;
+  library.timeline_along_path_gsap_bezier = timeline_along_path_gsap_bezier;
+  library.tween_along_path_gsap_bezier = tween_along_path_gsap_bezier;
   library.svg_element = svg_element;
+  library.path_shorten = path_shorten;
 }
