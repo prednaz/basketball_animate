@@ -2,3 +2,4 @@
 !.gitignore
 !.eslintrc.json
 /resources/
+/resource/

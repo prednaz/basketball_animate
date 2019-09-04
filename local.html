@@ -2,7 +2,7 @@
 <html>
 <head>
   <meta charset="utf-8"/>
-  <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
+  <link rel="stylesheet" href="resource/jquery_ui.css">
   <link href="style.css" rel="stylesheet">
 </head>
 <body>
@@ -21,9 +21,9 @@
   <object id="main_svg" type="image/svg+xml"></object>
   <audio id="music" preload="auto"></audio>
 
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-  <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/2.1.3/TweenMax.min.js"></script>
+  <script src="resource/jquery.js"></script>
+  <script src="resource/jquery_ui.js"></script>
+  <script src="resource/tweenmax.js"></script>
   <script src="snap.svg-min.js"></script>
   <script src="library_philipp.js"></script>
   <script src="library_stefan.js"></script>
@@ -35,5 +35,6 @@
         document.querySelector("#animation").src = "animation/" + animation + ".js";
     }
   </script>
+  <script src="user_interface.js"></script>
 </body>
 </html>
