@@ -79,19 +79,6 @@ let
       "y": ball_absolute_position.coordinate(defining_element).y + 300
     })
   };
-  ball_to_player = (player, duration, options) => {
-    TweenMax.to(
-      ball,
-      duration,
-      Object.assign(
-        library.translation(
-          library.translation_interim_result_object(ball, ball_dribbled_absolute_position),
-          library.translation_interim_result_target(player_svg(player)[0], player_absolute_position)
-        ),
-        options
-      )
-    );
-  };
   player_move = (player, duration, move) => {
     // The selector function svg always returns arrays.
     const player_first = player_svg(player)[0];
