@@ -96,22 +96,22 @@ let
             ));
         }
       },
-      absolute_position,
+      player_absolute_position,
     );
   };
-  pass = (player, start_time, end_time) => {
+  const ball_throw = (start_time, end_time, receiver, options_generate) => {
     timeline.seek(start_time, false);
-    const translation_interim_result_ball = library.translation_interim_result_object(ball, absolute_position);
+    const translation_interim_result_ball =
+      library.translation_interim_result_object(ball, ball_absolute_position);
     const start_coordinate = library.translation(
       translation_interim_result_ball,
-      library.translation_interim_result_target(player_possession, absolute_position)
+      library.translation_interim_result_target(player_possession, player_absolute_position)
     );
     const player_possession_previous = player_possession;
-
-    timeline.seek(end_time, false);
-    const translation = library.translation(
+    const options = options_generate(
       translation_interim_result_ball,
-      library.translation_interim_result_target(player[0], absolute_position),
+      player_possession_previous,
+      start_coordinate
     );
     timeline.seek(0, false);
 
@@ -155,6 +155,30 @@ let
   //     absolute_position
   //   );
   // using TweenMax.set
+  pass = (receiver, start_time, end_time) => {
+    ball_throw(start_time, end_time, receiver[0], translation_interim_result_ball => {
+      timeline.seek(end_time, false);
+      return Object.assign({"ease": Power1.easeInOut}, library.translation(
+        translation_interim_result_ball,
+        library.translation_interim_result_target(receiver[0], player_absolute_position),
+      ));
+    }, ball);
+  };
+  const basket_absolute_position = {
+    "defining_element": basket => basket,
+    "coordinate": defining_element => ({
+      "x": defining_element.cx.baseVal.value,
+      "y": defining_element.cy.baseVal.value
+    })
+  };
+  shoot = (start_time, end_time) => {
+    ball_throw(start_time, end_time, null, translation_interim_result_ball => {
+      return Object.assign({"ease": Power1.easeInOut}, library.translation(
+        translation_interim_result_ball,
+        library.translation_interim_result_target(basket, basket_absolute_position),
+      ));
+    }, ball);
+  };
 
   // initialize animations
   timeline = new TimelineMax({
