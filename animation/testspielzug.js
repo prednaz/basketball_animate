@@ -28,3 +28,4 @@ svg_main.addEventListener("load", () => {
   pass(4, time(3,2), time(3,3));
   shoot(time(4,4), time(5, 1));
 });
+// test
