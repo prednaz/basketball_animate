@@ -75,8 +75,8 @@ let
   const ball_dribbled_absolute_position = {
     "defining_element": ball_absolute_position.defining_element,
     "coordinate": defining_element => ({
-      "x": ball_absolute_position.coordinate(defining_element).x - 10,
-      "y": ball_absolute_position.coordinate(defining_element).y + 10
+      "x": ball_absolute_position.coordinate(defining_element).x - 300,
+      "y": ball_absolute_position.coordinate(defining_element).y + 300
     })
   };
   ball_to_player = (player, duration, options) => {
@@ -128,7 +128,7 @@ let
         translation_interim_result_ball,
         library.translation_interim_result_target(receiver_svg, player_absolute_position),
       ));
-    }, ball);
+    }, ball_dribbled_absolute_position);
   };
   const basket_absolute_position = {
     "defining_element": basket => basket,
@@ -143,52 +143,53 @@ let
         translation_interim_result_ball,
         library.translation_interim_result_target(basket, basket_absolute_position),
       ));
-    }, ball);
+    }, ball_absolute_position);
   };
-  const ball_throw = (start_time, end_time, receiver, options_generate) => {
-    timeline.seek(start_time, false);
-    const translation_interim_result_ball =
-      library.translation_interim_result_object(ball, ball_absolute_position);
-    const start_coordinate = library.translation(
-      translation_interim_result_ball,
-      library.translation_interim_result_target(player_possession, player_absolute_position)
-    );
-    const player_possession_previous = player_possession;
-    const options = options_generate(
-      translation_interim_result_ball,
-      player_possession_previous,
-      start_coordinate
-    );
-    timeline.seek(0, false);
+  const ball_throw =
+    (start_time, end_time, receiver, options_generate, ball_absolute_position) => {
+      timeline.seek(start_time, false);
+      const translation_interim_result_ball =
+        library.translation_interim_result_object(ball, ball_absolute_position);
+      const start_coordinate = library.translation(
+        translation_interim_result_ball,
+        library.translation_interim_result_target(player_possession, player_absolute_position)
+      );
+      const player_possession_previous = player_possession;
+      const options = options_generate(
+        translation_interim_result_ball,
+        player_possession_previous,
+        start_coordinate
+      );
+      timeline.seek(0, false);
 
-    let reversed_start = false;
-    timeline.addCallback(() => {
-      if (!reversed_start)
-        player_possession = null;
-      else
-        player_possession = player_possession_previous;
-      reversed_start = !reversed_start;
-    }, start_time-.016); // trying to make sure that the ball is detached
-    // from all players early enough before the next animation
-    // while staying just below the frame period of 1/60 s
+      let reversed_start = false;
+      timeline.addCallback(() => {
+        if (!reversed_start)
+          player_possession = null;
+        else
+          player_possession = player_possession_previous;
+        reversed_start = !reversed_start;
+      }, start_time-.016); // trying to make sure that the ball is detached
+      // from all players early enough before the next animation
+      // while staying just below the frame period of 1/60 s
 
-    timeline.fromTo(
-      ball,
-      end_time - start_time,
-      start_coordinate,
-      options,
-      start_time
-    );
+      timeline.fromTo(
+        ball,
+        end_time - start_time,
+        start_coordinate,
+        options,
+        start_time
+      );
 
-    let reversed_complete = false;
-    timeline.addCallback(() => {
-      if (!reversed_complete)
-        player_possession = receiver;
-      else
-        player_possession = null;
-      reversed_complete = !reversed_complete;
-    }, end_time);
-  };
+      let reversed_complete = false;
+      timeline.addCallback(() => {
+        if (!reversed_complete)
+          player_possession = receiver;
+        else
+          player_possession = null;
+        reversed_complete = !reversed_complete;
+      }, end_time);
+    };
 
   // initialize animations
   timeline = new TimelineMax({
