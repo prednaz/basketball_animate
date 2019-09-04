@@ -19,17 +19,6 @@ const library = {};
       + transformation.d * coordinate.y
       + transformation.f
   });
-  const translation = (interim_result_object, interim_result_target) =>
-    coordinate_relative(
-      coordinate_transform(
-        interim_result_target.defining_element_coordinate,
-        transformation_matrix(
-          interim_result_target.defining_element,
-          interim_result_object.parent
-        )
-      ),
-      interim_result_object.coordinate
-    );
   const translation_interim_result_target = (target, absolute_position) => {
     const defining_element = absolute_position.defining_element(target);
     const defining_element_coordinate = absolute_position.coordinate(defining_element);
@@ -68,6 +57,17 @@ const library = {};
     );
     return result;
   };
+  const translation = (interim_result_object, interim_result_target) =>
+    coordinate_relative(
+      coordinate_transform(
+        interim_result_target.defining_element_coordinate,
+        transformation_matrix(
+          interim_result_target.defining_element,
+          interim_result_object.parent
+        )
+      ),
+      interim_result_object.coordinate
+    );
   const timeline_align_position =
     (
       function_name,
@@ -154,78 +154,6 @@ const library = {};
         duration,
         options
       );
-    };
-  const timeline_along_path_svgtransform =
-    (function_name, object, duration, path, options, object_absolute_position, svg) => {
-      const path_first = path[0];
-      const timeline = new TimelineMax();
-      const transformation_generator = svg.contentDocument.querySelector("svg");
-      object.forEach(object_current => {
-        let interim_result_object;
-        const path_distance_current = {"distance": 0};
-        timeline[function_name](
-          path_distance_current,
-          duration,
-          Object.assign(
-            {
-              "distance": path_first.getTotalLength(),
-              "onUpdate": () => {
-                const translate = translation(
-                  interim_result_object,
-                  {
-                    "defining_element": path_first,
-                    "defining_element_coordinate":
-                      path_first.getPointAtLength(path_distance_current.distance)
-                  }
-                );
-                interim_result_object.coordinate.x += translate.x;
-                interim_result_object.coordinate.y += translate.y;
-                const transform = transformation_generator.createSVGTransform();
-                transform.setTranslate(translate.x, translate.y);
-                object_current.transform.baseVal.insertItemBefore(transform, 0);
-              },
-              "onStart": () => {
-                interim_result_object = translation_interim_result_object_relative(object_current, object_absolute_position);
-              }
-            },
-            options
-          ),
-          0
-        );
-      });
-      return timeline;
-    };
-  const timeline_along_path_tweenmax =
-    (function_name, object, duration, path, options, object_absolute_position) => {
-      const path_first = path[0];
-      const timeline = new TimelineMax();
-      object.forEach(object_current => {
-        const interim_result_object = translation_interim_result_object(object_current, object_absolute_position);
-        const path_distance_current = {"distance": 0};
-        timeline[function_name](
-          path_distance_current,
-          duration,
-          Object.assign(
-            {
-              "distance": path_first.getTotalLength(),
-              "onUpdate": () => {
-                const translate = translation(
-                  interim_result_object,
-                  {
-                    "defining_element": path_first,
-                    "defining_element_coordinate":
-                      path_first.getPointAtLength(path_distance_current.distance)
-                  }
-                );
-                TweenMax.set(object_current, {"x": translate.x, "y": translate.y});
-              }
-            },
-            options
-          ),
-          0
-        );
-      });
-      return timeline;
     };
   const svg_element = (html_dom, svg_selector) =>
     Array.prototype.concat.apply(
