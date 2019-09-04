@@ -3,7 +3,11 @@ svg_set("animation/testspielzug.svg");
 bpm_set(120);
 
 svg_main.addEventListener("load", () => {
+<<<<<<< HEAD
   path_shorten(svg("svg > path"), 42, 5);
+=======
+  path_shorten(svg("svg > path"), 1337, 5);
+>>>>>>> f2b29046334294cfbff411b365725d4b534feb1c
   clock();
 
   //player1
