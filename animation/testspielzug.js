@@ -9,48 +9,48 @@ svg_main.addEventListener("load", () => {
   //player1
   timeline.add(player_move(
     svg("#player1"),
-    1.5,
+    time(3),
     svg("#move1"),
   ), time(1,1));
   timeline.add(player_move(
     svg("#player1"),
-    5,
+    time(10),
     svg("#move2"),
   ), time(2,1));
 
   //player3
   timeline.add(player_move(
     svg("#player3"),
-    1.5,
+    time(3),
     svg("#move7"),
   ), time(1,1));
   timeline.add(player_move(
     svg("#player3"),
-    6.5,
+    time(13),
     svg("#move8"),
   ), time(1,4));
 
   //player4
   timeline.add(player_move(
     svg("#player4"),
-    1.5,
+    time(3),
     svg("#move5"),
   ), time(1,1));
   timeline.add(player_move(
     svg("#player4"),
-    4.5,
+    time(9),
     svg("#move6"),
   ), time(2,3));
 
   //player5
   timeline.add(player_move(
     svg("#player5"),
-    2,
+    time(4),
     svg("#move3"),
   ), time(1,1));
   timeline.add(player_move(
     svg("#player5"),
-    1.5,
+    time(3),
     svg("#move4"),
   ), time(2,3));
 

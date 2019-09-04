@@ -215,10 +215,14 @@ let
 
   // convert music time unit to seconds
   time = (bar, beat) => {
-    const bar_duration = (60 * 4 / bpm);
     const beat_duration = (60 / bpm);
-    const offset = (60 * 8 / bpm);
-    return (bar-1) * bar_duration + (beat-1) * beat_duration + offset;
+    if (beat !== undefined) {
+      const bar_duration = (60 * 4 / bpm);
+      const offset = (60 * 8 / bpm);
+      return (bar-1) * bar_duration + (beat-1) * beat_duration + offset;
+    }
+    else
+      return bar * beat_duration;
   };
 
   // choose media
