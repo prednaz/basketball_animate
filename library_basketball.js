@@ -26,6 +26,8 @@ let
     basket = svg("#basket")[0];
     player_possession = svg("#player1")[0];
   });
+  const player_svg = player => svg("#player" + player);
+  const move_svg = move => svg("#move" + move);
 
   // positioning
   // Es gibt kein allgemeines Konzept von absoluter Position fuer svg-Elemente.
@@ -47,9 +49,9 @@ let
   player_to_move_start = (player, duration, move, options) =>
     library.timeline_align_position(
       "to",
-      player,
+      player_svg(player),
       duration,
-      move,
+      move_svg(move),
       options,
       player_absolute_position,
       move_start_absolute_position
@@ -62,9 +64,9 @@ let
   player_to_move_destination = (player, duration, move, options) =>
     library.timeline_align_position(
       "to",
-      player,
+      player_svg(player),
       duration,
-      move,
+      move_svg(move),
       options,
       player_absolute_position,
       move_destination_absolute_position
@@ -84,15 +86,15 @@ let
       Object.assign(
         library.translation(
           library.translation_interim_result_object(ball, ball_dribbled_absolute_position),
-          library.translation_interim_result_target(player[0], player_absolute_position)
+          library.translation_interim_result_target(player_svg(player)[0], player_absolute_position)
         ),
         options
       )
     );
   };
-  player_move = (player, duration, path) => {
+  player_move = (player, duration, move) => {
     // The selector function svg always returns arrays.
-    const player_first = player[0];
+    const player_first = player_svg(player)[0];
     // Interim results are calculated up front for performance.
     // The have to be calculated during the animation
     // if object and target change internally too.
@@ -104,7 +106,7 @@ let
       "to",
       player_first,
       duration,
-      path,
+      move_svg(move),
       {
         "ease": Power1.easeInOut,
         "onUpdate": () => {
@@ -119,11 +121,12 @@ let
     );
   };
   pass = (receiver, start_time, end_time) => {
-    ball_throw(start_time, end_time, receiver[0], translation_interim_result_ball => {
+    const receiver_svg = player_svg(receiver)[0];
+    ball_throw(start_time, end_time, receiver_svg, translation_interim_result_ball => {
       timeline.seek(end_time, false);
       return Object.assign({"ease": Power1.easeInOut}, library.translation(
         translation_interim_result_ball,
-        library.translation_interim_result_target(receiver[0], player_absolute_position),
+        library.translation_interim_result_target(receiver_svg, player_absolute_position),
       ));
     }, ball);
   };
