@@ -7,7 +7,9 @@ let
   ball_to_player,
   player_move,
   pass,
+  pass_timeline,
   shoot,
+  shoot_timeline,
   timeline,
   animation_supplementary,
   clock,
@@ -20,11 +22,10 @@ let
 {
   // initialize
   svg_main = document.querySelector("#main_svg");
-  let ball, basket, player_possession, bpm;
+  let ball, basket, player_possession = null, bpm;
   svg_main.addEventListener("load", () => {
     ball = svg("#ball")[0];
     basket = svg("#basket")[0];
-    player_possession = svg("#player1")[0];
   });
   const player_svg = player => svg("#player" + player);
   const move_svg = move => svg("#move" + move);
@@ -107,16 +108,18 @@ let
       player_absolute_position,
     );
   };
-  pass = (receiver, start_time, end_time) => {
+  pass = (receiver, start_time, end_time, automatically_add = true) => {
     const receiver_svg = player_svg(receiver)[0];
-    ball_throw(start_time, end_time, receiver_svg, translation_interim_result_ball => {
+    return ball_throw(start_time, end_time, receiver_svg, translation_interim_result_ball => {
       timeline.seek(end_time, false);
       return Object.assign({"ease": Power1.easeInOut}, library.translation(
         translation_interim_result_ball,
         library.translation_interim_result_target(receiver_svg, player_absolute_position),
       ));
-    }, ball_dribbled_absolute_position);
+    }, ball_dribbled_absolute_position, automatically_add);
   };
+  pass_timeline = (receiver, start_time, end_time) =>
+    pass(receiver, start_time, end_time, false);
   const basket_absolute_position = {
     "defining_element": basket => basket,
     "coordinate": defining_element => ({
@@ -124,23 +127,27 @@ let
       "y": defining_element.cy.baseVal.value
     })
   };
-  shoot = (start_time, end_time) => {
-    ball_throw(start_time, end_time, null, translation_interim_result_ball => {
+  shoot = (start_time, end_time, automatically_add = true) => {
+    return ball_throw(start_time, end_time, null, translation_interim_result_ball => {
       return Object.assign({"ease": Power1.easeInOut}, library.translation(
         translation_interim_result_ball,
         library.translation_interim_result_target(basket, basket_absolute_position),
       ));
-    }, ball_absolute_position);
+    }, ball_absolute_position, automatically_add);
   };
+  shoot_timeline = (start_time, end_time) =>
+    shoot(start_time, end_time, false);
   const ball_throw =
-    (start_time, end_time, receiver, options_generate, ball_absolute_position) => {
+    (start_time, end_time, receiver, options_generate, ball_absolute_position, automatically_add) => {
       timeline.seek(start_time, false);
       const translation_interim_result_ball =
         library.translation_interim_result_object(ball, ball_absolute_position);
-      const start_coordinate = library.translation(
-        translation_interim_result_ball,
-        library.translation_interim_result_target(player_possession, player_absolute_position)
-      );
+      let start_coordinate = null;
+      if (player_possession !== null)
+        start_coordinate = library.translation(
+          translation_interim_result_ball,
+          library.translation_interim_result_target(player_possession, player_absolute_position)
+        );
       const player_possession_previous = player_possession;
       const options = options_generate(
         translation_interim_result_ball,
@@ -149,33 +156,59 @@ let
       );
       timeline.seek(0, false);
 
+      let timeline_target = timeline;
+      if (!automatically_add) {
+        timeline_target = new TimelineMax();
+        end_time -= start_time;
+        start_time = 0;
+      }
+
       let reversed_start = false;
-      timeline.addCallback(() => {
+      timeline_target.addCallback(() => {
         if (!reversed_start)
           player_possession = null;
         else
           player_possession = player_possession_previous;
         reversed_start = !reversed_start;
-      }, start_time-.016); // trying to make sure that the ball is detached
-      // from all players early enough before the next animation
-      // while staying just below the frame period of 1/60 s
+      }, start_time);
 
-      timeline.fromTo(
-        ball,
-        end_time - start_time,
-        start_coordinate,
-        options,
-        start_time
-      );
+      // trying to make sure that the ball is detached
+      // from all players clear before the next animation
+      // while staying just below the frame period of 1/60 s
+      start_time += .016;
+
+      if (start_coordinate !== null)
+        timeline_target.fromTo( // fromTo is a workaround for a suspected GSAP bug
+          ball,
+          end_time - start_time,
+          start_coordinate,
+          options,
+          start_time
+        );
+      else
+        timeline_target.to(
+          ball,
+          end_time - start_time,
+          options,
+          start_time
+        );
 
       let reversed_complete = false;
-      timeline.addCallback(() => {
+      timeline_target.addCallback(() => {
         if (!reversed_complete)
           player_possession = receiver;
         else
           player_possession = null;
         reversed_complete = !reversed_complete;
       }, end_time);
+
+      // workaround for GSAP bug https://github.com/greensock/GreenSock-JS/issues/312
+      timeline_target.to([], .016, {});
+
+      if (!automatically_add)
+        return timeline_target;
+      else
+        return null;
     };
 
   // initialize animations

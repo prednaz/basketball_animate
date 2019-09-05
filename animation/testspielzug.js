@@ -23,8 +23,9 @@ svg_main.addEventListener("load", () => {
   timeline.add(player_move(5, time(3), 4), time(2,3));
 
   //ball
-  pass(5, time(1,4), time(2,1));
-  pass(2, time(2,2), time(2,3));
-  pass(4, time(3,2), time(3,3));
-  shoot(time(4,4), time(5, 1));
+  pass_timeline(1, 0, 0);
+  timeline.add(pass_timeline(5, time(1,3), time(1,4)),time(1,3));
+  timeline.add(pass_timeline(2, time(2,2), time(2,3)),time(2,2));
+  timeline.add(pass_timeline(4, time(3,2), time(3,3)),time(3,2));
+  timeline.add(shoot_timeline(time(4,4), time(5, 1)),time(4,4));
 });

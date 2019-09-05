@@ -1,0 +1,52 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8"/>
+  <style type="text/css">
+    div {
+      width:10px;
+      height:10px;
+      background:red
+    }
+  </style>
+</head>
+<body>
+  <div id="object1"></div>
+  <div id="object2"></div>
+  <div id="object2"></div>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/2.1.3/TweenMax.min.js"></script>
+  <script>
+    let log = "";
+    const timeline1 = new TimelineMax();
+    timeline1.to("#object1", 1, {x:"+=100"});
+    timeline1
+      .addCallback(() => {log += "without sub timeline\n"});
+    timeline1.to("#object1", 1, {x:"+=100"});
+    timeline1.seek(2, false);
+    timeline1.seek(0, false);
+
+    const timeline2 = new TimelineMax();
+    timeline2.to("#object2", 1, {x:"+=100"});
+    const timeline_child1 = new TimelineMax();
+    timeline_child1
+      .addCallback(() => {log += "as non-last element of sub timeline\n";})
+      .to([], .016, {});
+    timeline2.add(timeline_child1);
+    timeline2.to("#object2", 1, {x:"+=100"});
+    timeline2.seek(2, false);
+    timeline2.seek(0, false);
+
+    const timeline3 = new TimelineMax();
+    timeline3.to("#object3", 1, {x:"+=100"});
+    const timeline_child2 = new TimelineMax();
+    timeline_child2
+      .addCallback(() => {log += "bug case\n"});
+    timeline3.add(timeline_child2);
+    timeline3.to("#object3", 1, {x:"+=100"});
+    timeline3.seek(2, false);
+    timeline3.seek(0, false);
+
+    alert(log);
+  </script>
+</body>
+</html>
