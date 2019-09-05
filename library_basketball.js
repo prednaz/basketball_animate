@@ -1,16 +1,17 @@
 // export
 let
   svg_main,
-  time,
+  initialize,
   player_to_move_start,
   player_to_move_destination,
-  ball_to_player,
   player_move,
   pass,
   shoot,
   timeline,
   animation_supplementary,
   clock,
+  time,
+  player_possession_set,
   svg,
   music_set,
   svg_set,
@@ -20,14 +21,59 @@ let
 {
   // initialize
   svg_main = document.querySelector("#main_svg");
-  let ball, basket, player_possession, bpm;
+  let ball, basket;
   svg_main.addEventListener("load", () => {
     ball = svg("#ball")[0];
     basket = svg("#basket")[0];
-    player_possession = svg("#player1")[0];
   });
   const player_svg = player => svg("#player" + player);
   const move_svg = move => svg("#move" + move);
+
+  initialize = (player, options = {}) => {
+    const translation_interim_result_center =
+      library.translation_interim_result_target(svg("#center")[0], center_absolute_position);
+    const translation_interim_result_ball =
+      library.translation_interim_result_object(ball, ball_dribbled_absolute_position);
+    let delay = 1;
+    if ("delay" in options)
+      delay = options.delay;
+    let stagger = .0625;
+    if ("stagger" in options)
+      stagger = options.stagger;
+    player.map(player_svg).forEach(player_current => {
+      const player_first = player_current[0];
+      const onUpdate = {};
+      if (player_first === player_possession) {
+        const translation_interim_result_player_target =
+          library.translation_interim_result_target(player_first, player_absolute_position);
+        onUpdate.onUpdate = () => {
+          TweenMax.set(ball, library.translation(
+            translation_interim_result_ball,
+            translation_interim_result_player_target
+          ));
+        };
+      }
+      const options_combined = library.merge_callback_options(onUpdate, options);
+      Object.assign(options_combined, library.translation(
+        library.translation_interim_result_object(player_first, player_absolute_position),
+        translation_interim_result_center
+      ));
+      Object.assign(options_combined, {"delay": delay});
+      TweenMax.from(
+        player_current,
+        .5,
+        options_combined
+      );
+      delay += stagger;
+    });
+    TweenMax.set(
+      ball,
+      library.translation(
+        translation_interim_result_ball,
+        library.translation_interim_result_target(player_possession, player_absolute_position)
+      )
+    );
+  };
 
   // positioning
   // Es gibt kein allgemeines Konzept von absoluter Position fuer svg-Elemente.
@@ -107,6 +153,14 @@ let
       player_absolute_position,
     );
   };
+  const center_absolute_position = {
+    "defining_element": center => center,
+    "coordinate": defining_element => {
+      const start = defining_element.getPointAtLength(0);
+      const end = defining_element.getPointAtLength(defining_element.getTotalLength());
+      return {"x": (start.x+end.x) / 2, "y": (start.y+end.y) / 2};
+    }
+  };
   pass = (receiver, start_time, end_time) => {
     const receiver_svg = player_svg(receiver)[0];
     ball_throw(start_time, end_time, receiver_svg, translation_interim_result_ball => {
@@ -160,7 +214,7 @@ let
       // from all players early enough before the next animation
       // while staying just below the frame period of 1/60 s
 
-      timeline.fromTo(
+      timeline.fromTo( // fromTo is a workaround for a suspected GSAP bug
         ball,
         end_time - start_time,
         start_coordinate,
@@ -201,9 +255,6 @@ let
     }, 0);
   };
 
-  // svg selector
-  svg = svg_selector => library.svg_element([svg_main], svg_selector);
-
   // convert music time unit to seconds
   time = (bar, beat) => {
     const beat_duration = (60 / bpm);
@@ -216,6 +267,13 @@ let
       return bar * beat_duration;
   };
 
+  // player in possesion of the ball
+  let player_possession;
+  player_possession_set = player => {player_possession = player_svg(player)[0];};
+
+  // svg selector
+  svg = svg_selector => library.svg_element([svg_main], svg_selector);
+
   // choose media
   const music_dom = document.querySelector("#music");
   music_set = music_path => {
@@ -223,6 +281,7 @@ let
     music_dom.load();
   };
   svg_set = svg_path => {svg_main.data = svg_path;};
+  let bpm;
   bpm_set = bpm_new => {bpm = bpm_new;};
 
   // can only be used with paths of which the stroke-dasharray is specified in pixels
