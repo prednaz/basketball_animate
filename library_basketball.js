@@ -11,6 +11,7 @@ let
   animation_supplementary,
   clock,
   time,
+  time_duration,
   player_possession_set,
   svg,
   music_set,
@@ -271,16 +272,8 @@ let
   };
 
   // convert music time unit to seconds
-  time = (bar, beat) => {
-    const beat_duration = (60 / bpm);
-    if (beat !== undefined) {
-      const bar_duration = (60 * 4 / bpm);
-      const offset = (60 * 8 / bpm);
-      return (bar-1) * bar_duration + (beat-1) * beat_duration + offset;
-    }
-    else
-      return bar * beat_duration;
-  };
+  time = (bar, beat) => time_duration(bar, beat) + 60 * 3 / bpm;
+  time_duration = (bar, beat) => (bar * 4 + beat) * 60 / bpm;
 
   // player in possesion of the ball
   let player_possession;
