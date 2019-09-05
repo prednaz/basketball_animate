@@ -4,6 +4,7 @@ let
   initialize,
   player_to_move_start,
   player_to_move_destination,
+  player_move_tween,
   player_move,
   pass,
   shoot,
@@ -130,7 +131,7 @@ let
     })
   };
   const player_move_defalts = {"ease": Power1.easeInOut};
-  player_move = (player, duration, move, options = {}) => {
+  player_move_tween = (player, move, duration, options = {}) => {
     // The selector function svg always returns arrays.
     const player_first = player_svg(player)[0];
     // Interim results are calculated up front for performance.
@@ -160,6 +161,9 @@ let
       options_combined,
       player_absolute_position,
     );
+  };
+  player_move = (player, move, start_time, end_time, options) => {
+    timeline.add(player_move_tween(player, move, end_time - start_time, options), start_time);
   };
   const center_absolute_position = {
     "defining_element": center => center,
@@ -263,8 +267,8 @@ let
     }
   });
   animation_supplementary = new TimelineMax({"paused": true});
-  clock = () => {
-    animation_supplementary.to(svg("#hand_clock"), 60 * 16 / bpm, {
+  clock = (beat = 2 * beats_per_bar) => {
+    animation_supplementary.to(svg("#hand_clock"), beat * 2 * 60 / bpm, {
       "rotation": "360_cw",
       "transformOrigin": "50% 0%",
       "ease": Power0.easeNone,
