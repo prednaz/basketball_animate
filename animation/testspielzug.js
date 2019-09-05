@@ -4,7 +4,9 @@ bpm_set(120);
 beats_per_bar_set(4);
 
 svg_main.addEventListener("load", () => {
-  path_shorten(svg("svg > path"), 42, 5);
+  path_shorten(svg("#ball2,#ball3,#ball4,#move1,#move2,#move3,#move6"), 5);
+  path_shorten(svg("#move4"), 3, 0);
+  path_shorten(svg("#move8,#move9"), 0, 10);
   clock();
 
   //player1
