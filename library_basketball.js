@@ -201,7 +201,6 @@ let
         player_possession_previous,
         start_coordinate
       );
-      timeline.seek(0, false);
 
       let reversed_start = false;
       timeline.addCallback(() => {
@@ -230,6 +229,8 @@ let
           player_possession = null;
         reversed_complete = !reversed_complete;
       }, end_time);
+      
+      timeline.seek(0, false);
     };
 
   // initialize animations
