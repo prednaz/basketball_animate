@@ -29,17 +29,17 @@ let
   const player_svg = player => svg("#player" + player);
   const move_svg = move => svg("#move" + move);
 
+  const initialize_defaults = {};
+  const initialize_timing_defaults = {"delay": 1, "stagger": .0625, "duration": .5};
   initialize = (player, options = {}) => {
     const translation_interim_result_center =
       library.translation_interim_result_target(svg("#center")[0], center_absolute_position);
     const translation_interim_result_ball =
       library.translation_interim_result_object(ball, ball_dribbled_absolute_position);
-    let delay = 1;
-    if ("delay" in options)
-      delay = options.delay;
-    let stagger = .0625;
-    if ("stagger" in options)
-      stagger = options.stagger;
+
+    const initialize_timing_defaults_combined =
+      Object.assign({}, initialize_timing_defaults);
+    Object.assign(initialize_timing_defaults_combined, options);
     player.map(player_svg).forEach(player_current => {
       const player_first = player_current[0];
       const onUpdate = {};
@@ -53,18 +53,20 @@ let
           ));
         };
       }
-      const options_combined = library.merge_callback_options(onUpdate, options);
-      Object.assign(options_combined, library.translation(
+      const options_combined = library.translation(
         library.translation_interim_result_object(player_first, player_absolute_position),
         translation_interim_result_center
-      ));
-      Object.assign(options_combined, {"delay": delay});
+      );
+      Object.assign(options_combined, initialize_defaults);
+      Object.assign(options_combined, options);
+      Object.assign(options_combined, {"delay": initialize_timing_defaults_combined.delay});
+      library.merge_callback_options(options_combined, onUpdate);
       TweenMax.from(
         player_current,
-        .5,
+        initialize_timing_defaults_combined.duration,
         options_combined
       );
-      delay += stagger;
+      initialize_timing_defaults_combined.delay += initialize_timing_defaults_combined.stagger;
     });
     TweenMax.set(
       ball,
@@ -138,21 +140,22 @@ let
       library.translation_interim_result_target(player_first, player_absolute_position);
     const options_combined = Object.assign({}, player_move_defalts);
     Object.assign(options_combined, options);
+    library.merge_callback_options(
+      options_combined,
+      {"onUpdate": () => {
+        if (player_first === player_possession)
+          TweenMax.set(ball, library.translation(
+            translation_interim_result_ball,
+            translation_interim_result_player
+          ));
+      }}
+    );
     return library.tween_along_path_gsap_bezier(
       "to",
       player_first,
       duration,
       move_svg(move),
-      library.merge_callback_options(
-        {"onUpdate": () => {
-          if (player_first === player_possession)
-            TweenMax.set(ball, library.translation(
-              translation_interim_result_ball,
-              translation_interim_result_player
-            ));
-        }},
-        options_combined
-      ),
+      options_combined,
       player_absolute_position,
     );
   };

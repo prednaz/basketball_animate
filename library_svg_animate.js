@@ -186,18 +186,19 @@ const library = {};
       path_current.style["stroke-dashoffset"] = -distance_start;
     });
   };
-  const merge_callback_options = (callback, options) => {
-    const result = Object.assign({}, options);
+  const merge_callback_options = (options, callback) => { // caveat: modifies options argument
     for (const callback_current in callback) {
       if (!(callback_current in options))
-        result[callback_current] = callback[callback_current];
-      else
-        result[callback_current] = (...arguments) => {
+        options[callback_current] = callback[callback_current];
+      else {
+        const callback_current_options = options[callback_current];
+        options[callback_current] = (...arguments) => {
           callback[callback_current]();
-          options[callback_current].apply(window, arguments);
+          callback_current_options.apply(window, arguments);
         };
+      }
     }
-    return result;
+    return options;
   };
 
   // export
