@@ -17,6 +17,7 @@ let
   music_set,
   svg_set,
   bpm_set,
+  beats_per_bar_set,
   path_shorten;
 
 {
@@ -272,8 +273,8 @@ let
   };
 
   // convert music time unit to seconds
-  time = (bar, beat) => time_duration(bar, beat) + 60 * 3 / bpm;
-  time_duration = (bar, beat) => (bar * 4 + beat) * 60 / bpm;
+  time = (bar, beat) => time_duration(bar, beat) + 60 * (beats_per_bar-1) / bpm;
+  time_duration = (bar, beat) => (bar * beats_per_bar + beat) * 60 / bpm;
 
   // player in possesion of the ball
   let player_possession;
@@ -291,6 +292,8 @@ let
   svg_set = svg_path => {svg_main.data = svg_path;};
   let bpm;
   bpm_set = bpm_new => {bpm = bpm_new;};
+  let beats_per_bar;
+  beats_per_bar_set = beats_per_bar_new => {beats_per_bar = beats_per_bar_new;};
 
   // can only be used with paths of which the stroke-dasharray is specified in pixels
   path_shorten = (path, distance_start, distance_end) => {

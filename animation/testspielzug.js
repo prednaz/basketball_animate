@@ -1,6 +1,7 @@
 music_set("animation/september.wav");
 svg_set("animation/testspielzug.svg");
 bpm_set(120);
+beats_per_bar_set(4);
 
 svg_main.addEventListener("load", () => {
   path_shorten(svg("svg > path"), 42, 5);

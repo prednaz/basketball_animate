@@ -49,6 +49,7 @@
     "music_set": "readonly",
     "svg_set": "readonly",
     "bpm_set": "readonly",
+    "beats_per_bar_set": "readonly",
     "path_shorten": "readonly",
     "play_button": "readonly",
     "play_button_label": "readonly",
