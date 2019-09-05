@@ -15,7 +15,8 @@ let
     "pause": "Pause",
     "restart": "Restart"
   };
-  play_button = $("#play").button({"label": play_button_label.play});
+  play_button = $("#play").button({"label": play_button_label.play, "disabled": true});
+  $(music_dom).on("canplaythrough", () => {play_button.button("enable");});
   const position_display_precise = $("#position_display_precise");
   play_button.on("click", () => {
     if (timeline.totalProgress() !== 1) {
