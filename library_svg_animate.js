@@ -106,36 +106,8 @@ const library = {};
       [],
       Snap.path.toCubic(path.getAttribute("d")).map(coordinate_2d)
     );
-  const timeline_along_path_gsap_bezier = // preserves options argument owing to Object.assign
+  const tween_along_path_gsap_bezier = // caveat: modifies options argument
     (function_name, object, duration, path, options, object_absolute_position) => {
-      const timeline = new TimelineMax();
-      object.forEach(object_current => {
-        const options_current = Object.assign({}, options);
-        const interim_result_object = translation_interim_result_object(object_current, object_absolute_position);
-        options_current.bezier = {
-          "type": "cubic",
-          "values": bezier(path[0]).map(coordinate =>
-            translation(
-              interim_result_object,
-              {
-                "defining_element": path[0],
-                "defining_element_coordinate": coordinate
-              }
-            )
-          )
-        };
-        timeline[function_name](
-          object_current,
-          duration,
-          options_current,
-          0
-        );
-      });
-      return timeline;
-    };
-  const tween_along_path_gsap_bezier = // preserves options argument owing to Object.assign
-    (function_name, object, duration, path, options, object_absolute_position) => {
-      options = Object.assign({}, options);
       const interim_result_object = translation_interim_result_object(object, object_absolute_position);
       options.bezier = {
         "type": "cubic",
