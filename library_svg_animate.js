@@ -214,6 +214,19 @@ const library = {};
       path_current.style["stroke-dashoffset"] = -distance_start;
     });
   };
+  const merge_callback_options = (callback, options) => {
+    const result = Object.assign({}, options);
+    for (const callback_current in callback) {
+      if (!(callback_current in options))
+        result[callback_current] = callback[callback_current];
+      else
+        result[callback_current] = (...arguments) => {
+          callback[callback_current]();
+          options[callback_current].apply(window, arguments);
+        };
+    }
+    return result;
+  };
 
   // export
   library.translation_interim_result_target = translation_interim_result_target;
@@ -224,4 +237,5 @@ const library = {};
   library.tween_along_path_gsap_bezier = tween_along_path_gsap_bezier;
   library.svg_element = svg_element;
   library.path_shorten = path_shorten;
+  library.merge_callback_options = merge_callback_options;
 }
