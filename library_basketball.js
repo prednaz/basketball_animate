@@ -125,7 +125,8 @@ let
       "y": ball_absolute_position.coordinate(defining_element).y + 300
     })
   };
-  player_move = (player, duration, move) => {
+  const player_move_defalts = {"ease": Power1.easeInOut};
+  player_move = (player, duration, move, options = {}) => {
     // The selector function svg always returns arrays.
     const player_first = player_svg(player)[0];
     // Interim results are calculated up front for performance.
@@ -135,21 +136,23 @@ let
       library.translation_interim_result_object(ball, ball_dribbled_absolute_position);
     const translation_interim_result_player =
       library.translation_interim_result_target(player_first, player_absolute_position);
+    const options_combined = Object.assign({}, player_move_defalts);
+    Object.assign(options_combined, options);
     return library.tween_along_path_gsap_bezier(
       "to",
       player_first,
       duration,
       move_svg(move),
-      {
-        "ease": Power1.easeInOut,
-        "onUpdate": () => {
+      library.merge_callback_options(
+        {"onUpdate": () => {
           if (player_first === player_possession)
             TweenMax.set(ball, library.translation(
               translation_interim_result_ball,
               translation_interim_result_player
             ));
-        }
-      },
+        }},
+        options_combined
+      ),
       player_absolute_position,
     );
   };
@@ -161,14 +164,18 @@ let
       return {"x": (start.x+end.x) / 2, "y": (start.y+end.y) / 2};
     }
   };
-  pass = (receiver, start_time, end_time) => {
+  const pass_defalts = {"ease": Power1.easeInOut};
+  pass = (receiver, start_time, end_time, options = {}) => {
     const receiver_svg = player_svg(receiver)[0];
     ball_throw(start_time, end_time, receiver_svg, translation_interim_result_ball => {
       timeline.seek(end_time, false);
-      return Object.assign({"ease": Power1.easeInOut}, library.translation(
+      const options_combined = library.translation(
         translation_interim_result_ball,
         library.translation_interim_result_target(receiver_svg, player_absolute_position),
-      ));
+      );
+      Object.assign(options_combined, pass_defalts);
+      Object.assign(options_combined, options);
+      return options_combined;
     }, ball_dribbled_absolute_position);
   };
   const basket_absolute_position = {
@@ -178,12 +185,16 @@ let
       "y": defining_element.cy.baseVal.value
     })
   };
-  shoot = (start_time, end_time) => {
+  const shoot_defaults = {"ease": Power1.easeInOut};
+  shoot = (start_time, end_time, options = {}) => {
     ball_throw(start_time, end_time, null, translation_interim_result_ball => {
-      return Object.assign({"ease": Power1.easeInOut}, library.translation(
+      const options_combined = library.translation(
         translation_interim_result_ball,
         library.translation_interim_result_target(basket, basket_absolute_position),
-      ));
+      );
+      Object.assign(options_combined, shoot_defaults);
+      Object.assign(options_combined, options);
+      return options_combined;
     }, ball_absolute_position);
   };
   const ball_throw =
@@ -229,7 +240,7 @@ let
           player_possession = null;
         reversed_complete = !reversed_complete;
       }, end_time);
-      
+
       timeline.seek(0, false);
     };
 
