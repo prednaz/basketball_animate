@@ -289,11 +289,11 @@ let
 
   // choose media
   const music_dom = document.querySelector("#music");
-  music_set = music_path => {
-    music_dom.src = music_path;
+  music_set = path => {
+    music_dom.src = path;
     music_dom.load();
   };
-  svg_set = svg_path => {svg_main.data = svg_path;};
+  svg_set = path => {svg_main.data = path;};
   let bpm;
   bpm_set = bpm_new => {bpm = bpm_new;};
   let beats_per_bar;
