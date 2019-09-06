@@ -11,7 +11,7 @@ svg_main.addEventListener("load", () => {
 
   //player1
   player_move(1, 1, time(1,1), time(1,4));
-  timeline.add(player_move_tween(1, 2, time_duration(2,2)), time(2,1));
+  timeline.add(player_move_tween(1, 2, time(4,3) - time(2,1)), time(2,1));
 
   //player3
   timeline.add(player_move_tween(3, 7, time_duration(0,3)), time(1,1));
