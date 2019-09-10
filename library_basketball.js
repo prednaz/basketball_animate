@@ -130,7 +130,7 @@ let
       "y": ball_absolute_position.coordinate(defining_element).y + 300
     })
   };
-  const player_move_defalts = {"ease": Power1.easeInOut};
+  const player_move_defaults = {"ease": Power1.easeInOut};
   player_move_tween = (player, move, duration, options = {}) => {
     // The selector function svg always returns arrays.
     const player_first = player_svg(player)[0];
@@ -141,7 +141,7 @@ let
       library.translation_interim_result_object(ball, ball_dribbled_absolute_position);
     const translation_interim_result_player =
       library.translation_interim_result_target(player_first, player_absolute_position);
-    const options_combined = Object.assign({}, player_move_defalts);
+    const options_combined = Object.assign({}, player_move_defaults);
     Object.assign(options_combined, options);
     library.merge_callback_options(
       options_combined,
@@ -173,7 +173,7 @@ let
       return {"x": (start.x+end.x) / 2, "y": (start.y+end.y) / 2};
     }
   };
-  const pass_defalts = {"ease": Power1.easeInOut};
+  const pass_defaults = {"ease": Power1.easeInOut};
   pass = (receiver, start_time, end_time, options = {}) => {
     const receiver_svg = player_svg(receiver)[0];
     ball_throw(start_time, end_time, receiver_svg, translation_interim_result_ball => {
@@ -182,7 +182,7 @@ let
         translation_interim_result_ball,
         library.translation_interim_result_target(receiver_svg, player_absolute_position),
       );
-      Object.assign(options_combined, pass_defalts);
+      Object.assign(options_combined, pass_defaults);
       Object.assign(options_combined, options);
       return options_combined;
     }, ball_dribbled_absolute_position);
