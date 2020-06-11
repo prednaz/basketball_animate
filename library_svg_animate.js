@@ -19,6 +19,7 @@ const library = {};
       + transformation.d * coordinate.y
       + transformation.f
   });
+  // invariant
   const translation_interim_result_target = (target, absolute_position) => {
     const defining_element = absolute_position.defining_element(target);
     const defining_element_coordinate = absolute_position.coordinate(defining_element);
@@ -42,11 +43,12 @@ const library = {};
       "coordinate": coordinate
     });
   };
-  const translation_interim_result_object = (object, absolute_position) => {
+  // inv in struct x 2, position, parent
+  const translation_interim_result_object = (object, absolute_position) => { // relative not supported by GSAP?
     const result = translation_interim_result_object_relative(object, absolute_position);
     const transformation_animated = transformation_matrix(
       object,
-      object.parentElement
+      object.parentElement //
     );
     result.coordinate = coordinate_relative(
       result.coordinate,
@@ -57,6 +59,7 @@ const library = {};
     );
     return result;
   };
+  // inv
   const translation = (interim_result_object, interim_result_target) =>
     coordinate_relative(
       coordinate_transform(

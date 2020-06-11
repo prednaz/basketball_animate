@@ -82,11 +82,11 @@ let
 
   // positioning
   // Es gibt kein allgemeines Konzept von absoluter Position fuer svg-Elemente.
-  // Die Funktionen library.timeline_align_position, timeline_along_path_gsap_bezier
+  // Die Funktionen library.timeline_align_position,
   // library.timeline_along_path_gsap_bezier, library.timeline_along_path_tweenmax
   // erlauben absolute Positionierung, wenn man ihr als letzte Argumente eine
   // Definitionen von absoluter Position uebergibt.
-  const player_absolute_position = {
+  const player_absolute_position = { //
     "defining_element": player => player.querySelector("circle"),
     "coordinate": defining_element => ({
       "x": defining_element.cx.baseVal.value,
@@ -135,7 +135,7 @@ let
     // The selector function svg always returns arrays.
     const player_first = player_svg(player)[0];
     // Interim results are calculated up front for performance.
-    // The have to be calculated during the animation
+    // The have to be calculated during the animation //
     // if object and target change internally too.
     const translation_interim_result_ball =
       library.translation_interim_result_object(ball, ball_dribbled_absolute_position);
@@ -176,7 +176,7 @@ let
   const pass_defaults = {"ease": Power1.easeInOut};
   pass = (receiver, start_time, end_time, options = {}) => {
     const receiver_svg = player_svg(receiver)[0];
-    ball_throw(start_time, end_time, receiver_svg, translation_interim_result_ball => {
+    ball_throw(start_time, end_time, receiver_svg, () => {
       timeline.seek(end_time, false);
       const options_combined = library.translation(
         translation_interim_result_ball,
@@ -213,7 +213,7 @@ let
         library.translation_interim_result_object(ball, ball_absolute_position);
       const start_coordinate = library.translation(
         translation_interim_result_ball,
-        library.translation_interim_result_target(player_possession, player_absolute_position)
+        library.translation_interim_result_target(player_possession, player_absolute_position) //
       );
       const player_possession_previous = player_possession;
       const options = options_generate(
