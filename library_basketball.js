@@ -44,7 +44,7 @@ let
       Object.assign({}, initialize_timing_defaults);
     Object.assign(initialize_timing_defaults_combined, options);
     player.map(player_svg).forEach(player_current => {
-      const player_first = player_current[0];
+      const player_first = player_current[0]; // to-do. This functin should receive a single css selector, selecting all playsers.
       const onUpdate = {};
       if (player_first === player_possession) {
         const translation_interim_result_player_target =
@@ -62,7 +62,7 @@ let
       );
       Object.assign(options_combined, initialize_defaults);
       Object.assign(options_combined, options);
-      Object.assign(options_combined, {"delay": initialize_timing_defaults_combined.delay});
+      options_combined.delay = initialize_timing_defaults_combined.delay;
       library.merge_callback_options(options_combined, onUpdate);
       TweenMax.from(
         player_current,
@@ -82,10 +82,8 @@ let
 
   // positioning
   // Es gibt kein allgemeines Konzept von absoluter Position fuer svg-Elemente.
-  // Die Funktionen library.timeline_align_position, timeline_along_path_gsap_bezier
-  // library.timeline_along_path_gsap_bezier, library.timeline_along_path_tweenmax
-  // erlauben absolute Positionierung, wenn man ihr als letzte Argumente eine
-  // Definitionen von absoluter Position uebergibt.
+  // Die Funktionen library.tween_along_path erlaubt absolute Positionierung,
+  // wenn man ihr als letzte Argumente eine Definitionen von absoluter Position uebergibt.
   const player_absolute_position = {
     "defining_element": player => player.querySelector("circle"),
     "coordinate": defining_element => ({
@@ -135,8 +133,8 @@ let
     // The selector function svg always returns arrays.
     const player_first = player_svg(player)[0];
     // Interim results are calculated up front for performance.
-    // The have to be calculated during the animation
-    // if object and target change internally too.
+    // The ball's interim result has to be recalculated
+    // throughout the animation if the ball changes internally too.
     const translation_interim_result_ball =
       library.translation_interim_result_object(ball, ball_dribbled_absolute_position);
     const translation_interim_result_player =
@@ -223,7 +221,7 @@ let
       );
 
       let reversed_start = false;
-      timeline.addCallback(() => {
+      timeline.addCallback(() => { // to-do. try onStart, onComplete instead
         if (!reversed_start)
           player_possession = null;
         else
