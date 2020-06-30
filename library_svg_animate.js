@@ -1,7 +1,9 @@
 const library = {};
 {
+  const transformation_matrix_from = start => start.getScreenCTM();
+  const transformation_matrix_to = destination => destination.getScreenCTM().inverse();
   const transformation_matrix = (start, destination) =>
-    destination.getScreenCTM().inverse().multiply(start.getScreenCTM());
+    transformation_matrix_to(destination).multiply(transformation_matrix_from(start));
   const coordinate_relative = (coordinate, origin) => { // caveat: modifies coordinate argument
     if ("x" in coordinate)
       coordinate.x -= origin.x;
@@ -27,43 +29,41 @@ const library = {};
       "defining_element_coordinate": defining_element_coordinate
     });
   };
-  const translation_interim_result_object_relative = (object, absolute_position) => {
-    const defining_element = absolute_position.defining_element(object);
-    const coordinate =
-      coordinate_transform(
-        absolute_position.coordinate(defining_element),
-        transformation_matrix(
-          defining_element,
-          object.parentElement
-        )
-      );
-    return ({
-      "parent": object.parentElement,
-      "coordinate": coordinate
-    });
-  };
+
+  // returns a pure value owning all of its data.
+  // invariant under under translation of object relative to its parent element,
+  // that is the return value is not invalidate by translating the object relative to its parent element.
   const translation_interim_result_object = (object, absolute_position) => {
-    const result = translation_interim_result_object_relative(object, absolute_position);
+    const defining_element = absolute_position.defining_element(object);
     const transformation_animated = transformation_matrix(
       object,
       object.parentElement
     );
-    result.coordinate = coordinate_relative(
-      result.coordinate,
-      {
-        "x": transformation_animated.e,
-        "y": transformation_animated.f
-      }
-    );
-    return result;
+    return ({
+      coordinate:
+        coordinate_relative(
+          coordinate_transform(
+            absolute_position.coordinate(defining_element),
+            transformation_matrix(
+              defining_element,
+              object.parentElement
+            )
+          ),
+          {
+            "x": transformation_animated.e,
+            "y": transformation_animated.f
+          }
+        ),
+      transformation_matrix_to: transformation_matrix_to(object.parentElement)
+    });
   };
-  const translation = (interim_result_object, interim_result_target) =>
+  const translation =
+    (interim_result_object, interim_result_target) =>
     coordinate_relative(
       coordinate_transform(
         interim_result_target.defining_element_coordinate,
-        transformation_matrix(
-          interim_result_target.defining_element,
-          interim_result_object.parent
+        interim_result_object.transformation_matrix_to.multiply(
+          transformation_matrix_from(interim_result_target.defining_element)
         )
       ),
       interim_result_object.coordinate

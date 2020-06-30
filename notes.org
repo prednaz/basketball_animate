@@ -1,0 +1,9 @@
+* "#player1" instead of 1. or even {player: 1,...}
+* more declerative by using lists
+* get rid of implicit state of player_possession at compile time
+* translation does not take an interim_result_target anymore
+but the library_basketball contains a wrapper function which does and
+translation_interim_result_target is moved there too.
+* newlines
+* new library versions
+gsap workaround might not be needed anymore
