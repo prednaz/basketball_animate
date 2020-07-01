@@ -7,3 +7,7 @@ translation_interim_result_target is moved there too.
 * newlines
 * new library versions
 gsap workaround might not be needed anymore
+
+* experiment with getRelativePosition for example by replacing it with convertCoordinates in the example
+
+refer css selectors

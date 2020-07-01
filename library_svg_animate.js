@@ -45,7 +45,7 @@ const library = {};
           coordinate_transform(
             absolute_position.coordinate(defining_element),
             transformation_matrix(
-              defining_element,
+              defining_element, //
               object.parentElement
             )
           ),

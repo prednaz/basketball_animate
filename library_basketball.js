@@ -44,7 +44,7 @@ let
       Object.assign({}, initialize_timing_defaults);
     Object.assign(initialize_timing_defaults_combined, options);
     player.map(player_svg).forEach(player_current => {
-      const player_first = player_current[0];
+      const player_first = player_current[0]; //
       const onUpdate = {};
       if (player_first === player_possession) {
         const translation_interim_result_player_target =
@@ -62,7 +62,7 @@ let
       );
       Object.assign(options_combined, initialize_defaults);
       Object.assign(options_combined, options);
-      Object.assign(options_combined, {"delay": initialize_timing_defaults_combined.delay});
+      Object.assign(options_combined, {"delay": initialize_timing_defaults_combined.delay}); //
       library.merge_callback_options(options_combined, onUpdate);
       TweenMax.from(
         player_current,
@@ -223,7 +223,7 @@ let
       );
 
       let reversed_start = false;
-      timeline.addCallback(() => {
+      timeline.addCallback(() => { // try onStart, onComplete instead
         if (!reversed_start)
           player_possession = null;
         else
