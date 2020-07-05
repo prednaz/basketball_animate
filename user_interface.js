@@ -5,11 +5,12 @@ let
   position_slider,
   position_display_slider;
 {
-  const music_dom = $("#music")[0];
-  const music_restart = () => {
-    music_dom.currentTime = 0;
-    music_dom.play();
-  };
+  const music_offset = .09;
+  music_dom = $("#music")[0];
+  // In addition to starting at the correct offset,
+  // this enables the browser to start playing the music with less delay
+  // because the cost of seeking is already payed.
+  music_dom.currentTime = 0 + music_offset;
   play_button_label = {
     "play": "Play",
     "pause": "Pause",
@@ -21,10 +22,7 @@ let
   play_button.on("click", () => {
     if (timeline.totalProgress() !== 1) {
       const paused = !timeline.paused();
-      if (!paused)
-        music_dom.play();
-      else
-        music_dom.pause();
+      music_dom[paused ? "pause" : "play"]();
       timeline.paused(paused);
       animation_supplementary.paused(paused);
       play_button.button(
@@ -36,10 +34,13 @@ let
         position_display_precise.text(timeline.totalTime() + "s");
     }
     else {
-      music_restart();
-      timeline.restart(false, false);
-      animation_supplementary.restart(false, false);
-      play_button.button("option", "label", play_button_label.pause);
+      $(music_dom).one("canplaythrough", () => setTimeout(() => {
+        music_dom.play();
+        timeline.restart(true, false);
+        animation_supplementary.restart(true, false);
+        play_button.button("option", "label", play_button_label.pause);
+      }, 500));
+      music_dom.currentTime = 0 + music_offset; // to-do. Do this on completion of the timeline and then remove the delay of the above code.
     }
   });
   position_display_slider = $("#position_display_slider");
@@ -48,11 +49,13 @@ let
     "max": 100,
     "step": .1,
     "stop": () => {
-      music_dom.currentTime = timeline.totalTime();
+      music_dom.currentTime = timeline.totalTime() + music_offset;
     },
     "slide": (event, ui) => {
-      timeline.totalProgress(ui.value/100, false).pause();
-      animation_supplementary.totalTime(timeline.totalTime(), false).pause();
+      timeline.pause();
+      timeline.totalProgress(ui.value/100, false);
+      animation_supplementary.pause();
+      animation_supplementary.totalTime(timeline.totalTime(), false);
       position_display_slider.text(timeline.totalTime().toFixed(1));
       position_display_precise.text(timeline.totalTime() + "s");
       music_dom.pause();
