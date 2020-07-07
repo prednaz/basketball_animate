@@ -31,10 +31,10 @@
   <script>
     {
       const animation = location.hash.slice(1);
-      if (animation.length !== 0 && !/\W/.test(animation))
+      if (animation.length !== 0 && !/\W/.test(animation)) {
         document.querySelector("#animation").src = "animation/" + animation + ".js";
+      }
     }
   </script>
-  <script src="user_interface.js"></script>
 </body>
 </html>

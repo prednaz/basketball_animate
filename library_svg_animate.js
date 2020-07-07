@@ -1,4 +1,4 @@
-const library = {}; // to-do. rename svg_animate
+let library; // to-do. rename svg_animate
 {
   const transformation_matrix_from = start => start.getScreenCTM();
   const transformation_matrix_to = destination => destination.getScreenCTM().inverse();
@@ -73,7 +73,7 @@ const library = {}; // to-do. rename svg_animate
       ),
       interim_result_object.coordinate
     );
-  const timeline_align_position =
+  const timeline_align_position = // to-do. rename align_position
     (
       function_name,
       object,
@@ -111,7 +111,7 @@ const library = {}; // to-do. rename svg_animate
       [],
       Snap.path.toCubic(path.getAttribute("d")).map(coordinate_2d)
     );
-  const tween_along_path_gsap_bezier = // caveat: modifies options argument // to-do. rename tween_along_path
+  const tween_along_path_gsap_bezier = // caveat: modifies options argument // to-do. rename along_path
     (function_name, object, duration, path, options, object_absolute_position) => {
       const interim_result_object = translation_interim_result_object(object, object_absolute_position);
       options.bezier = {
@@ -207,12 +207,14 @@ const library = {}; // to-do. rename svg_animate
   };
 
   // export
-  library.translation_interim_result_target = translation_interim_result_target;
-  library.translation_interim_result_object = translation_interim_result_object;
-  library.translation = translation;
-  library.timeline_align_position = timeline_align_position;
-  library.tween_along_path_gsap_bezier = tween_along_path_gsap_bezier;
-  library.svg_element = svg_element;
-  library.path_shorten = path_shorten;
-  library.merge_callback_options = merge_callback_options;
+  library = {
+    translation_interim_result_target,
+    translation_interim_result_object,
+    translation,
+    timeline_align_position,
+    tween_along_path_gsap_bezier,
+    svg_element,
+    path_shorten,
+    merge_callback_options
+  };
 }
