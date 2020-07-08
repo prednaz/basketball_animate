@@ -73,27 +73,6 @@ let svg_animate;
       ),
       interim_result_object.coordinate
     );
-  const timeline_align_position = // to-do. rename align_position
-    (
-      function_name,
-      object,
-      duration,
-      target,
-      options,
-      object_absolute_position,
-      target_absolute_position
-    ) =>
-    TweenMax[function_name](
-      object,
-      duration,
-      Object.assign(
-        translation(
-          translation_interim_result_object(object, object_absolute_position),
-          translation_interim_result_target(target, target_absolute_position)
-        ),
-        options
-      )
-    )
   const coordinate_2d = unstructured => {
     const x1 = unstructured.filter((element, index) => index > 0 && index%2 === 1);
     const x2 = unstructured.filter((element, index) => index > 0 && index%2 === 0);
@@ -204,7 +183,6 @@ let svg_animate;
     translation_interim_result_target,
     translation_interim_result_object,
     translation,
-    timeline_align_position,
     tween_along_path_gsap_bezier,
     svg_element,
     path_shorten,
