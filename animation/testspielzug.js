@@ -45,7 +45,7 @@ svg_main.addEventListener("load", () => {
 
   //ball
   pass("#player1", "#player5", time(1,3), time(1,4));
-  pass("#player5", "#player2", time(2,2), time(2,3)); // to-do. add explicit sender
+  pass("#player5", "#player2", time(2,2), time(2,3));
   pass("#player2", "#player4", time(3,2), time(3,3));
   shoot("#player4", time(4,4), time(5, 1));
   startup_animation("#player1, #player2, #player3, #player4, #player5");

@@ -83,16 +83,17 @@ let svg_animate;
       [],
       Snap.path.toCubic(path.getAttribute("d")).map(coordinate_2d)
     );
-  const tween_along_path_gsap_bezier = // caveat: modifies options argument // to-do. rename along_path
+  const along_path = // caveat: modifies options argument
     (function_name, object, duration, path, options, object_absolute_position) => {
-      const interim_result_object = translation_interim_result_object(object, object_absolute_position);
+      const interim_result_object =
+        translation_interim_result_object(object, object_absolute_position);
       options.bezier = {
         type: "cubic",
-        values: bezier(path[0]).map(coordinate =>
+        values: bezier(path).map(coordinate =>
           translation(
             interim_result_object,
             {
-              defining_element_parent: path[0].parentElement,
+              defining_element_parent: path.parentElement,
               defining_element_coordinate: coordinate
             }
           )
@@ -183,7 +184,7 @@ let svg_animate;
     translation_interim_result_target,
     translation_interim_result_object,
     translation,
-    tween_along_path_gsap_bezier,
+    along_path,
     svg_element,
     path_shorten,
     merge_callback_options

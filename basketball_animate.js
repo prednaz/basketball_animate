@@ -44,11 +44,11 @@ const basketball_animate = settings => {
           ));
       }}
     );
-    return svg_animate.tween_along_path_gsap_bezier(
+    return svg_animate.along_path(
       "to",
       player_first,
       duration,
-      svg(move), // to-do. Only pass the first element and adapt the tween_along_path_gsap_bezier
+      svg(move)[0],
       options_combined,
       player_absolute_position,
     );
