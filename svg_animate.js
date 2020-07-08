@@ -1,3 +1,5 @@
+gsap.registerPlugin(MotionPathPlugin);
+
 let svg_animate;
 {
   const transformation_matrix_from = start => start.getScreenCTM();
@@ -84,12 +86,12 @@ let svg_animate;
       Snap.path.toCubic(path.getAttribute("d")).map(coordinate_2d)
     );
   const along_path = // caveat: modifies options argument
-    (function_name, object, duration, path, options, object_absolute_position) => {
+    (function_name, object, path, options, object_absolute_position) => {
       const interim_result_object =
         translation_interim_result_object(object, object_absolute_position);
-      options.bezier = {
+      options.motionPath = {
         type: "cubic",
-        values: bezier(path).map(coordinate =>
+        path: bezier(path).map(coordinate =>
           translation(
             interim_result_object,
             {
@@ -99,9 +101,8 @@ let svg_animate;
           )
         )
       };
-      return TweenMax[function_name](
+      return gsap[function_name](
         object,
-        duration,
         options
       );
     };
@@ -128,7 +129,7 @@ let svg_animate;
         const marker_style_match =
           marker_style_pattern.exec(path_current.style[marker.property]);
         if (marker_style_match !== null)
-          TweenMax.set(
+          gsap.set(
             svg_root.querySelector(marker_style_match[1]).querySelector("path"),
             {x:"-=" + (
               marker.distance/Number.parseFloat(path_current.style["stroke-width"])

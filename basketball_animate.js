@@ -21,7 +21,7 @@ const basketball_animate = settings => {
       y: ball_absolute_position.coordinate(defining_element).y + 300
     })
   };
-  const player_move_defaults = {ease: Power1.easeInOut};
+  const player_move_defaults = {ease: "power1.inOut"};
   const player_move_tween = (player, move, duration, options = {}) => {
     // The selector function svg always returns arrays.
     const player_first = svg(player)[0];
@@ -34,11 +34,12 @@ const basketball_animate = settings => {
       svg_animate.translation_interim_result_target(player_first, player_absolute_position);
     const options_combined = Object.assign({}, player_move_defaults);
     Object.assign(options_combined, options);
+    options_combined.duration = duration;
     svg_animate.merge_callback_options(
       options_combined,
       {onUpdate: () => {
         if (player_first === player_possession)
-          TweenMax.set(ball, svg_animate.translation(
+          gsap.set(ball, svg_animate.translation(
             translation_interim_result_ball,
             translation_interim_result_player
           ));
@@ -47,7 +48,6 @@ const basketball_animate = settings => {
     return svg_animate.along_path(
       "to",
       player_first,
-      duration,
       svg(move)[0],
       options_combined,
       player_absolute_position,
@@ -64,7 +64,7 @@ const basketball_animate = settings => {
       return {x: (start.x+end.x) / 2, y: (start.y+end.y) / 2};
     }
   };
-  const pass_defaults = {ease: Power1.easeInOut};
+  const pass_defaults = {ease: "power1.inOut"};
   const pass = (player, receiver, start_time, end_time, options = {}) => {
     const receiver_svg = svg(receiver)[0];
     ball_throw(svg(player)[0], receiver_svg, start_time, end_time, translation_interim_result_ball => {
@@ -85,7 +85,7 @@ const basketball_animate = settings => {
       y: defining_element.cy.baseVal.value
     })
   };
-  const shoot_defaults = {ease: Power1.easeInOut};
+  const shoot_defaults = {ease: "power1.inOut"};
   const shoot = (player, start_time, end_time, options = {}) => {
     ball_throw(svg(player)[0], null, start_time, end_time, () => {
       const options_combined = svg_animate.translation(
@@ -110,9 +110,10 @@ const basketball_animate = settings => {
         translation_interim_result_ball,
         start_coordinate
       );
+      options.duration = end_time - start_time;
 
       let reversed_start = false;
-      timeline.addCallback(() => { // to-do. try onStart, onComplete instead
+      timeline.call(() => { // to-do. try onStart, onComplete instead
         if (!reversed_start)
           player_possession = null;
         else
@@ -124,14 +125,13 @@ const basketball_animate = settings => {
 
       timeline.fromTo( // fromTo is a workaround for a suspected GSAP bug
         ball,
-        end_time - start_time,
         start_coordinate,
         options,
         start_time
       );
 
       let reversed_complete = false;
-      timeline.addCallback(() => {
+      timeline.call(() => {
         if (!reversed_complete)
           player_possession = receiver;
         else
@@ -175,7 +175,7 @@ const basketball_animate = settings => {
         const translation_interim_result_player_target =
           svg_animate.translation_interim_result_target(player_current, player_absolute_position);
         onUpdate.onUpdate = () => {
-          TweenMax.set(ball, svg_animate.translation(
+          gsap.set(ball, svg_animate.translation(
             translation_interim_result_ball,
             translation_interim_result_player_target
           ));
@@ -187,16 +187,16 @@ const basketball_animate = settings => {
       );
       Object.assign(options_combined, startup_animation_defaults);
       Object.assign(options_combined, options);
+      options_combined.duration = startup_animation_timing_defaults_combined.duration;
       options_combined.delay = startup_animation_timing_defaults_combined.delay;
       svg_animate.merge_callback_options(options_combined, onUpdate);
-      TweenMax.from(
+      gsap.from(
         player_current,
-        startup_animation_timing_defaults_combined.duration,
         options_combined
       );
       startup_animation_timing_defaults_combined.delay += startup_animation_timing_defaults_combined.stagger;
     });
-    TweenMax.set(
+    gsap.set(
       ball,
       svg_animate.translation(
         translation_interim_result_ball,
@@ -218,7 +218,7 @@ const basketball_animate = settings => {
   music_dom.src = settings.music_source;
 
   // initialize GSAP timeline objects
-  const timeline = new TimelineMax({
+  const timeline = gsap.timeline({
     paused: true,
     onUpdate: () => {
       position_slider.slider("value", timeline.totalProgress() * 100);
@@ -233,15 +233,15 @@ const basketball_animate = settings => {
       music_dom.currentTime = 0 + settings.music_offset;
     }
   });
-  const timeline_supplementary = new TimelineMax({paused: true});
+  const timeline_supplementary = gsap.timeline({paused: true});
   svg_main.addEventListener("load", () => {
     timeline_supplementary.to(
       svg("#hand_clock"),
-      settings.clock_period * 60 / settings.beats_per_minute,
       {
+        duration: settings.clock_period * 60 / settings.beats_per_minute,
         rotation: "360_cw",
         transformOrigin: "50% 0%",
-        ease: Power0.easeNone,
+        ease: "none",
         repeat: -1
       },
       0
