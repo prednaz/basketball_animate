@@ -1,5 +1,6 @@
 "use strict";
 
+// imports
 const {
   svg_main,
   path_shorten,

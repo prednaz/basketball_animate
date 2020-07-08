@@ -1,4 +1,4 @@
-let library; // to-do. rename svg_animate
+let svg_animate;
 {
   const transformation_matrix_from = start => start.getScreenCTM();
   const transformation_matrix_to = destination => destination.getScreenCTM().inverse();
@@ -12,11 +12,11 @@ let library; // to-do. rename svg_animate
     return coordinate;
   };
   const coordinate_transform = (coordinate, transformation) => ({
-    "x":
+    x:
       transformation.a * coordinate.x
       + transformation.c * coordinate.y
       + transformation.e,
-    "y":
+    y:
       transformation.b * coordinate.x
       + transformation.d * coordinate.y
       + transformation.f
@@ -30,8 +30,8 @@ let library; // to-do. rename svg_animate
     const defining_element = absolute_position.defining_element(target);
     const defining_element_coordinate = absolute_position.coordinate(defining_element);
     return ({
-      "defining_element_parent": defining_element.parentElement,
-      "defining_element_coordinate": defining_element_coordinate
+      defining_element_parent: defining_element.parentElement,
+      defining_element_coordinate: defining_element_coordinate
     });
   };
 
@@ -55,8 +55,8 @@ let library; // to-do. rename svg_animate
             )
           ),
           {
-            "x": transformation_animated.e,
-            "y": transformation_animated.f
+            x: transformation_animated.e,
+            y: transformation_animated.f
           }
         ),
       transformation_matrix_to: transformation_matrix_to(object.parentElement)
@@ -104,7 +104,7 @@ let library; // to-do. rename svg_animate
   const coordinate_2d = unstructured => {
     const x1 = unstructured.filter((element, index) => index > 0 && index%2 === 1);
     const x2 = unstructured.filter((element, index) => index > 0 && index%2 === 0);
-    return x1.map((value, index) => ({"x": value, "y": x2[index]}));
+    return x1.map((value, index) => ({x: value, y: x2[index]}));
   };
   const bezier = path =>
     Array.prototype.concat.apply(
@@ -115,13 +115,13 @@ let library; // to-do. rename svg_animate
     (function_name, object, duration, path, options, object_absolute_position) => {
       const interim_result_object = translation_interim_result_object(object, object_absolute_position);
       options.bezier = {
-        "type": "cubic",
-        "values": bezier(path[0]).map(coordinate =>
+        type: "cubic",
+        values: bezier(path[0]).map(coordinate =>
           translation(
             interim_result_object,
             {
-              "defining_element_parent": path[0].parentElement,
-              "defining_element_coordinate": coordinate
+              defining_element_parent: path[0].parentElement,
+              defining_element_coordinate: coordinate
             }
           )
         )
@@ -149,8 +149,8 @@ let library; // to-do. rename svg_animate
     path.forEach(path_current => {
       const svg_root = path_current.closest("svg");
       [
-        {"property": "marker-start", "distance": distance_start},
-        {"property": "marker-end", "distance": distance_end}
+        {property: "marker-start", distance: distance_start},
+        {property: "marker-end", distance: distance_end}
       ].forEach(marker => {
         const marker_style_match =
           marker_style_pattern.exec(path_current.style[marker.property]);
@@ -207,7 +207,7 @@ let library; // to-do. rename svg_animate
   };
 
   // export
-  library = {
+  svg_animate = {
     translation_interim_result_target,
     translation_interim_result_object,
     translation,
