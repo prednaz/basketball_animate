@@ -20,9 +20,9 @@ const basketball_animate = settings => {
   const player_to_move_start = (player, duration, move, options) =>
     svg_animate.timeline_align_position(
       "to",
-      player_svg(player),
+      svg(player),
       duration,
-      move_svg(move),
+      svg(move),
       options,
       player_absolute_position,
       move_start_absolute_position
@@ -35,9 +35,9 @@ const basketball_animate = settings => {
   const player_to_move_destination = (player, duration, move, options) =>
     svg_animate.timeline_align_position(
       "to",
-      player_svg(player),
+      svg(player),
       duration,
-      move_svg(move),
+      svg(move),
       options,
       player_absolute_position,
       move_destination_absolute_position
@@ -53,7 +53,7 @@ const basketball_animate = settings => {
   const player_move_defaults = {ease: Power1.easeInOut};
   const player_move_tween = (player, move, duration, options = {}) => {
     // The selector function svg always returns arrays.
-    const player_first = player_svg(player)[0];
+    const player_first = svg(player)[0];
     // Interim results are calculated up front for performance.
     // The ball's interim result has to be recalculated
     // throughout the animation if the ball changes internally too.
@@ -77,7 +77,7 @@ const basketball_animate = settings => {
       "to",
       player_first,
       duration,
-      move_svg(move),
+      svg(move), // to-do. Only pass the first element and adapt the tween_along_path_gsap_bezier
       options_combined,
       player_absolute_position,
     );
@@ -95,7 +95,7 @@ const basketball_animate = settings => {
   };
   const pass_defaults = {ease: Power1.easeInOut};
   const pass = (receiver, start_time, end_time, options = {}) => {
-    const receiver_svg = player_svg(receiver)[0];
+    const receiver_svg = svg(receiver)[0];
     ball_throw(start_time, end_time, receiver_svg, translation_interim_result_ball => {
       timeline.seek(end_time, false);
       const options_combined = svg_animate.translation(
@@ -174,8 +174,6 @@ const basketball_animate = settings => {
     };
 
   const svg = svg_selector => svg_animate.svg_element([svg_main], svg_selector);
-  const player_svg = player => svg("#player" + player); // to-do. dispose of
-  const move_svg = move => svg("#move" + move); // to-do. dispose of
 
     // convert music time unit to seconds
   const time =
@@ -188,7 +186,7 @@ const basketball_animate = settings => {
   // can only be used with paths of which the stroke-dasharray is specified in pixels
   const path_shorten =
     (path, distance_start, distance_end) =>
-    {svg_animate.path_shorten(path, distance_start, distance_end);};
+    {svg_animate.path_shorten(svg(path), distance_start, distance_end);};
 
   const startup_animation_defaults = {};
   const startup_animation_timing_defaults = {delay: 1, stagger: .0625, duration: .5};
