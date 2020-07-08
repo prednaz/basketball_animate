@@ -94,9 +94,9 @@ const basketball_animate = settings => {
     }
   };
   const pass_defaults = {ease: Power1.easeInOut};
-  const pass = (receiver, start_time, end_time, options = {}) => {
+  const pass = (player, receiver, start_time, end_time, options = {}) => {
     const receiver_svg = svg(receiver)[0];
-    ball_throw(start_time, end_time, receiver_svg, translation_interim_result_ball => {
+    ball_throw(svg(player)[0], receiver_svg, start_time, end_time, translation_interim_result_ball => {
       timeline.seek(end_time, false);
       const options_combined = svg_animate.translation(
         translation_interim_result_ball,
@@ -105,7 +105,7 @@ const basketball_animate = settings => {
       Object.assign(options_combined, pass_defaults);
       Object.assign(options_combined, options);
       return options_combined;
-    }, ball_dribbled_absolute_position);
+    });
   };
   const basket_absolute_position = {
     defining_element: basket => basket,
@@ -115,30 +115,28 @@ const basketball_animate = settings => {
     })
   };
   const shoot_defaults = {ease: Power1.easeInOut};
-  const shoot = (start_time, end_time, options = {}) => {
-    ball_throw(start_time, end_time, null, translation_interim_result_ball => {
+  const shoot = (player, start_time, end_time, options = {}) => {
+    ball_throw(svg(player)[0], null, start_time, end_time, () => {
       const options_combined = svg_animate.translation(
-        translation_interim_result_ball,
+        svg_animate.translation_interim_result_object(ball, ball_absolute_position),
         svg_animate.translation_interim_result_target(basket, basket_absolute_position),
       );
       Object.assign(options_combined, shoot_defaults);
       Object.assign(options_combined, options);
       return options_combined;
-    }, ball_absolute_position);
+    });
   };
   const ball_throw =
-    (start_time, end_time, receiver, options_generate, ball_absolute_position) => {
+    (player, receiver, start_time, end_time, options_generate) => {
       timeline.seek(start_time, false);
       const translation_interim_result_ball =
-        svg_animate.translation_interim_result_object(ball, ball_absolute_position);
+        svg_animate.translation_interim_result_object(ball, ball_dribbled_absolute_position);
       const start_coordinate = svg_animate.translation(
         translation_interim_result_ball,
         svg_animate.translation_interim_result_target(player_possession, player_absolute_position)
       );
-      const player_possession_previous = player_possession;
       const options = options_generate(
         translation_interim_result_ball,
-        player_possession_previous,
         start_coordinate
       );
 
@@ -147,7 +145,7 @@ const basketball_animate = settings => {
         if (!reversed_start)
           player_possession = null;
         else
-          player_possession = player_possession_previous;
+          player_possession = player;
         reversed_start = !reversed_start;
       }, start_time-.016); // trying to make sure that the ball is detached
       // from all players early enough before the next animation
