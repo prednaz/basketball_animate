@@ -82,25 +82,18 @@ let svg_animate;
       options,
       object_absolute_position,
       target_absolute_position
-    ) => {
-      const interim_result_target = translation_interim_result_target(target[0], target_absolute_position);
-      const timeline = new TimelineMax();
-      object.forEach(object_current => {
-        timeline[function_name](
-          object_current,
-          duration,
-          Object.assign(
-            translation(
-              translation_interim_result_object(object_current, object_absolute_position),
-              interim_result_target
-            ),
-            options
-          ),
-          0
-        );
-      });
-      return timeline;
-    };
+    ) =>
+    TweenMax[function_name](
+      object,
+      duration,
+      Object.assign(
+        translation(
+          translation_interim_result_object(object, object_absolute_position),
+          translation_interim_result_target(target, target_absolute_position)
+        ),
+        options
+      )
+    )
   const coordinate_2d = unstructured => {
     const x1 = unstructured.filter((element, index) => index > 0 && index%2 === 1);
     const x2 = unstructured.filter((element, index) => index > 0 && index%2 === 0);

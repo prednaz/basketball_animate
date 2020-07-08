@@ -14,25 +14,33 @@ const basketball_animate = settings => {
     })
   };
   const move_start_absolute_position = {
-    defining_element: move => move,
-    coordinate: defining_element => defining_element.getPointAtLength(0)
+    defining_element: move => move, // to-do. move => {parentElement: move} more correct?
+    coordinate: defining_element => defining_element.getPointAtLength(0) // to-do. defining_element => defining_element.parentElement.getPointAtLength(0) more correct?
   };
-  const player_to_move_start = (player, duration, move, options) =>
-    svg_animate.timeline_align_position(
-      "to",
-      svg(player),
-      duration,
-      svg(move),
-      options,
-      player_absolute_position,
-      move_start_absolute_position
-    );
+  const player_to_move_start =
+    (player, move, duration, options) =>
+    {
+      const move_svg = svg(move)[0];
+      svg(player).forEach(player_current => {
+        timline.add(
+          svg_animate.timeline_align_position(
+            "to",
+            player_current,
+            duration,
+            move_svg,
+            options,
+            player_absolute_position,
+            move_start_absolute_position
+          )
+        );
+      });
+    };
   const move_destination_absolute_position = {
     defining_element: move => move,
     coordinate: defining_element =>
       defining_element.getPointAtLength(defining_element.getTotalLength())
   };
-  const player_to_move_destination = (player, duration, move, options) =>
+  const player_to_move_destination = (player, move, duration, options) =>
     svg_animate.timeline_align_position(
       "to",
       svg(player),
