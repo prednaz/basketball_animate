@@ -24,30 +24,11 @@ const basketball_animate = settings => {
   };
   const player_move_defaults = {ease: Power1.easeInOut};
   const player_move_tween = (player, move, duration, options = {}) => {
-    // The selector function svg always returns arrays.
-    const player_first = svg(player)[0];
-    // Interim results are calculated up front for performance.
-    // The ball's interim result has to be recalculated
-    // throughout the animation if the ball changes internally too.
-    const translation_interim_result_ball =
-      svg_animate.translation_interim_result_object(ball, ball_dribbled_absolute_position);
-    const translation_interim_result_player =
-      svg_animate.translation_interim_result_target(player_first, player_absolute_position);
     const options_combined = Object.assign({}, player_move_defaults);
     Object.assign(options_combined, options);
-    svg_animate.merge_callback_options(
-      options_combined,
-      {onUpdate: () => {
-        if (player_first === player_possession)
-          TweenMax.set(ball, svg_animate.translation(
-            translation_interim_result_ball,
-            translation_interim_result_player
-          ));
-      }}
-    );
     return svg_animate.along_path(
       "to",
-      player_first,
+      svg(player)[0],
       duration,
       svg(move)[0],
       options_combined,
@@ -220,6 +201,18 @@ const basketball_animate = settings => {
   const timeline = new TimelineMax({
     paused: true,
     onUpdate: () => {
+      // Interim results are calculated up front for performance.
+      // The ball's interim result has to be recalculated
+      // throughout the animation if the ball changes internally too.
+      const translation_interim_result_ball =
+        svg_animate.translation_interim_result_object(ball, ball_dribbled_absolute_position);
+      if (player_possession !== null) {
+        TweenMax.set(ball, svg_animate.translation(
+          translation_interim_result_ball,
+          svg_animate.translation_interim_result_target(player_possession, player_absolute_position)
+        ));
+      }
+
       position_slider.slider("value", timeline.totalProgress() * 100);
       position_display_slider.text(timeline.totalTime().toFixed(1));
     },
