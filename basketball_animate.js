@@ -125,12 +125,27 @@ const basketball_animate = settings => {
   const svg = svg_selector => svg_animate.svg_element([svg_main], svg_selector);
 
     // convert music time unit to seconds
-  const time =
-    (bar, beat) =>
-    time_duration(bar, beat) + 60 * (settings.beats_per_bar-1) / settings.beats_per_minute;
   const time_duration =
     (bar, beat) =>
     (bar * settings.beats_per_bar + beat) * 60 / settings.beats_per_minute;
+  const time =
+    (bar, beat) =>
+    time_duration(bar, beat) + 60 * (settings.beats_per_bar-1) / settings.beats_per_minute;
+  const bars_beats =
+    time => {
+      const beats_total =
+        Math.floor(time * settings.beats_per_minute / 60 - 2 * settings.beats_per_bar);
+      return (
+        beats_total >= 0
+          ?
+            (
+              (Math.trunc(beats_total / settings.beats_per_bar)+1).toString() +
+              ":" +
+              (beats_total % settings.beats_per_bar + 1).toString()
+            )
+          : beats_total
+      );
+    };
 
   // can only be used with paths of which the stroke-dasharray is specified in pixels
   const path_shorten =
@@ -214,7 +229,7 @@ const basketball_animate = settings => {
       }
 
       position_slider.slider("value", timeline.totalProgress() * 100);
-      position_display_slider.text(timeline.totalTime().toFixed(1));
+      position_display_slider.text(bars_beats(timeline.totalTime()));
     },
     onComplete: () => {
       timeline_supplementary.pause();
@@ -286,13 +301,13 @@ const basketball_animate = settings => {
       music_dom.currentTime = timeline.totalTime() + settings.music_offset;
     },
     slide: (event, ui) => {
+      music_dom.pause();
       timeline.pause();
       timeline.totalProgress(ui.value/100, false);
       timeline_supplementary.pause();
       timeline_supplementary.totalTime(timeline.totalTime(), false);
-      position_display_slider.text(timeline.totalTime().toFixed(1));
+      position_display_slider.text(bars_beats(timeline.totalTime()));
       position_display_precise.text(timeline.totalTime() + "s");
-      music_dom.pause();
       play_button.button("option", "label", play_button_label.play);
     }
   });
@@ -321,8 +336,9 @@ const basketball_animate = settings => {
     pass,
     shoot,
     timeline,
-    time,
     time_duration,
+    time,
+    bars_beats,
     path_shorten,
     startup_animation
   });
