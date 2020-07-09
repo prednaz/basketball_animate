@@ -1,6 +1,7 @@
 "use strict";
 
 const basketball_animate = settings => {
+  TweenLite.defaultOverwrite = "none";
   // positioning
   // Es gibt kein allgemeines Konzept von absoluter Position fuer svg-Elemente.
   // Die Funktionen svg_animate.tween_along_path, svg_animate.timeline_align_position
@@ -112,15 +113,13 @@ const basketball_animate = settings => {
       );
 
       let reversed_start = false;
-      timeline.addCallback(() => { // to-do. try onStart, onComplete instead
+      timeline.addCallback(() => { // onStart cannot be used because is not executed when seeking backwards
         if (!reversed_start)
           player_possession = null;
         else
           player_possession = player;
         reversed_start = !reversed_start;
-      }, start_time-.016); // trying to make sure that the ball is detached
-      // from all players early enough before the next animation
-      // while staying just below the frame period of 1/60 s
+      }, start_time);
 
       timeline.fromTo( // fromTo is a workaround for a suspected GSAP bug
         ball,
@@ -131,7 +130,7 @@ const basketball_animate = settings => {
       );
 
       let reversed_complete = false;
-      timeline.addCallback(() => {
+      timeline.addCallback(() => { // onComplete cannot be used because is not executed when seeking backwards
         if (!reversed_complete)
           player_possession = receiver;
         else
