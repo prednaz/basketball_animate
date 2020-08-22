@@ -56,3 +56,4 @@ svg_main.addEventListener("load", () => {
 // (https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Selectors).
 // It is recommended to use selector lists of ID selectors,
 // for example "#id1, #id2, #id3".
+// to start server: npx http-server
