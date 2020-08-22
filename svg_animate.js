@@ -170,9 +170,9 @@ let svg_animate;
         options[callback_current] = callback[callback_current];
       else {
         const callback_current_options = options[callback_current];
-        options[callback_current] = (...arguments) => {
+        options[callback_current] = (...parameter) => {
           callback[callback_current]();
-          callback_current_options.apply(window, arguments);
+          callback_current_options.apply(window, parameter);
         };
       }
     }

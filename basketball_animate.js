@@ -124,7 +124,7 @@ const basketball_animate = settings => {
 
   const svg = svg_selector => svg_animate.svg_element([svg_main], svg_selector);
 
-    // convert music time unit to seconds
+  // convert music time unit to seconds
   const time_duration =
     (bar, beat) =>
     (bar * settings.beats_per_bar + beat) * 60 / settings.beats_per_minute;
@@ -200,7 +200,7 @@ const basketball_animate = settings => {
     );
   };
 
-    // initialize dom references
+  // initialize dom references
   const svg_main = document.querySelector("#main_svg");
   const music_dom = document.querySelector("#music");
   let ball, basket, player_possession;

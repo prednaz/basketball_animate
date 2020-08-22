@@ -9,7 +9,7 @@
     },
     "rules": {
         "indent": [
-            "error",
+            "warn",
             2
         ],
         "linebreak-style": [
@@ -23,6 +23,21 @@
         "semi": [
             "error",
             "always"
+        ],
+        "no-unused-vars": [
+            "error",
+            {"vars": "local"}
         ]
+    },
+    "globals": {
+        "basketball_animate": "readonly",
+        "svg_animate": "readonly",
+        "TweenMax": "readonly",
+        "TimelineMax": "readonly",
+        "Power0": "readonly",
+        "Power1": "readonly",
+        "$": "readonly",
+        "Snap": "readonly",
+        "TweenLite": "readonly"
     }
 }
