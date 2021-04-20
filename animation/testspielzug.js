@@ -51,9 +51,3 @@ svg_main.addEventListener("load", () => {
   shoot("#player4", time(4,4), time(5, 1));
   startup_animation("#player1, #player2, #player3, #player4, #player5");
 });
-
-// SVG elements can be selected using any CSS selector
-// (https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Selectors).
-// It is recommended to use selector lists of ID selectors,
-// for example "#id1, #id2, #id3".
-// to start server: npx http-server
