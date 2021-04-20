@@ -30,19 +30,19 @@ svg_main.addEventListener("load", () => {
 
   //player1
   player_move("#player1", "#move1", time(1,1), time(1,4));
-  timeline.add(player_move_tween("#player1", "#move2", time(4,3) - time(2,1)), time(2,1));
+  player_move("#player1", "#move2", time(2,1), time(4,3));
 
   //player3
-  timeline.add(player_move_tween("#player3", "#move7", time_duration(0,3)), time(1,1));
-  timeline.add(player_move_tween("#player3", "#move8", time_duration(0,13)), time(1,4));
+  player_move("#player3", "#move7", time(1,1), time(1,4));
+  player_move("#player3", "#move8", time(1,4), time(1,17));
 
   //player4
-  timeline.add(player_move_tween("#player4", "#move5", time_duration(0,3)), time(1,1));
-  timeline.add(player_move_tween("#player4", "#move6", time_duration(0,9)), time(2,3));
+  player_move("#player4", "#move5", time(1,1), time(1,4));
+  player_move("#player4", "#move6", time(2,3), time(2,12));
 
   //player5
-  timeline.add(player_move_tween("#player5", "#move3", time_duration(0,4)), time(1,1));
-  timeline.add(player_move_tween("#player5", "#move4", time_duration(0,3)), time(2,3));
+  player_move("#player5", "#move3", time(1,1), time(2,1));
+  player_move("#player5", "#move4", time(2,3), time(3,2));
 
   //ball
   pass("#player1", "#player5", time(1,3), time(1,4));
