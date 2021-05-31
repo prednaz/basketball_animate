@@ -5,9 +5,7 @@ const basketball_animate = (settings, continuation) => {
   if (/[^\w,.]/.test(url_argument)) {
     throw "animation ids may only contain letters, numbers, and underscores";
   }
-  // loop
   const loop = url_argument.split(",").length >= 3;
-
   const svg_main = document.querySelector("#main_svg");
   svg_main.data = settings.svg_source;
   svg_main.addEventListener("load", () => {
