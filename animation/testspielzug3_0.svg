@@ -33,7 +33,7 @@
      inkscape:window-x="0"
      inkscape:window-y="25"
      inkscape:window-maximized="0"
-     inkscape:current-layer="players"
+     inkscape:current-layer="g2037"
      inkscape:document-rotation="0"
      units="mm"
      inkscape:document-units="cm" />
@@ -819,6 +819,324 @@
          result="composite2"
          id="feComposite2502" />
     </filter>
+    <marker
+       orient="auto"
+       refY="0"
+       refX="0"
+       id="marker8456-9"
+       style="overflow:visible">
+      <path
+         id="path8458-3"
+         d="M 0,5.65 V -5.65"
+         style="fill:none;fill-opacity:0.75;fill-rule:evenodd;stroke:#000000;stroke-width:1pt;stroke-opacity:1"
+         transform="scale(0.4)" />
+    </marker>
+    <marker
+       orient="auto"
+       refY="0"
+       refX="0"
+       id="marker7620-8"
+       style="overflow:visible">
+      <path
+         id="path7622-0"
+         d="M 0,5.65 V -5.65"
+         style="fill:none;fill-opacity:0.75;fill-rule:evenodd;stroke:#000000;stroke-width:1pt;stroke-opacity:1"
+         transform="scale(0.4)" />
+    </marker>
+    <marker
+       style="overflow:visible"
+       id="StopL-2"
+       refX="0"
+       refY="0"
+       orient="auto">
+      <path
+         transform="scale(0.8)"
+         style="fill:none;fill-opacity:0.75;fill-rule:evenodd;stroke:#000000;stroke-width:1pt;stroke-opacity:1"
+         d="M 0,5.65 V -5.65"
+         id="path5747-4" />
+    </marker>
+    <marker
+       style="overflow:visible"
+       id="marker5384-8"
+       refX="0"
+       refY="0"
+       orient="auto">
+      <path
+         transform="scale(0.4)"
+         style="fill:none;fill-opacity:0.75;fill-rule:evenodd;stroke:#000000;stroke-width:1pt;stroke-opacity:1"
+         d="M 0,5.65 V -5.65"
+         id="path5386-3" />
+    </marker>
+    <marker
+       style="overflow:visible"
+       id="marker33250-9"
+       refX="0"
+       refY="0"
+       orient="auto">
+      <path
+         transform="scale(-0.6)"
+         d="M 8.7185878,4.0337352 -2.2072895,0.01601326 8.7185884,-4.0017078 c -1.7454984,2.3720609 -1.7354408,5.6174519 -6e-7,8.035443 z"
+         style="fill:#000000;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:0.625;stroke-linejoin:round;stroke-opacity:1"
+         id="path33252-0" />
+    </marker>
+    <marker
+       orient="auto"
+       refY="0"
+       refX="0"
+       id="marker31575-5"
+       style="overflow:visible">
+      <path
+         id="path31577-2"
+         d="M 0,5.65 V -5.65"
+         style="fill:none;fill-opacity:0.75;fill-rule:evenodd;stroke:#000000;stroke-width:1pt;stroke-opacity:1"
+         transform="scale(0.8)" />
+    </marker>
+    <marker
+       style="overflow:visible"
+       id="marker27744-2"
+       refX="0"
+       refY="0"
+       orient="auto">
+      <path
+         transform="scale(-0.6)"
+         d="M 8.7185878,4.0337352 -2.2072895,0.01601326 8.7185884,-4.0017078 c -1.7454984,2.3720609 -1.7354408,5.6174519 -6e-7,8.035443 z"
+         style="fill:#000000;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:0.625;stroke-linejoin:round;stroke-opacity:1"
+         id="path27746-7" />
+    </marker>
+    <marker
+       style="overflow:visible"
+       id="Arrow2Mend-3"
+       refX="0"
+       refY="0"
+       orient="auto">
+      <path
+         transform="scale(-0.6)"
+         d="M 8.7185878,4.0337352 -2.2072895,0.01601326 8.7185884,-4.0017078 c -1.7454984,2.3720609 -1.7354408,5.6174519 -6e-7,8.035443 z"
+         style="fill-rule:evenodd;stroke-width:0.625;stroke-linejoin:round"
+         id="path7263-7" />
+    </marker>
+    <marker
+       orient="auto"
+       refY="0"
+       refX="0"
+       id="marker23432-9"
+       style="overflow:visible">
+      <path
+         id="path23434-0"
+         style="fill:#000000;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:0.625;stroke-linejoin:round;stroke-opacity:1"
+         d="M 8.7185878,4.0337352 -2.2072895,0.01601326 8.7185884,-4.0017078 c -1.7454984,2.3720609 -1.7354408,5.6174519 -6e-7,8.035443 z"
+         transform="scale(-0.6)" />
+    </marker>
+    <marker
+       style="overflow:visible"
+       id="Arrow2Send-2"
+       refX="0"
+       refY="0"
+       orient="auto">
+      <path
+         transform="matrix(-0.3,0,0,-0.3,0.69,0)"
+         d="M 8.7185878,4.0337352 -2.2072895,0.01601326 8.7185884,-4.0017078 c -1.7454984,2.3720609 -1.7354408,5.6174519 -6e-7,8.035443 z"
+         style="fill:#ff0000;fill-opacity:1;fill-rule:evenodd;stroke:#ff0000;stroke-width:0.625;stroke-linejoin:round;stroke-opacity:1"
+         id="path7269-3" />
+    </marker>
+    <marker
+       style="overflow:visible"
+       id="marker21498-9"
+       refX="0"
+       refY="0"
+       orient="auto">
+      <path
+         transform="matrix(-1.1,0,0,-1.1,-1.1,0)"
+         d="M 8.7185878,4.0337352 -2.2072895,0.01601326 8.7185884,-4.0017078 c -1.7454984,2.3720609 -1.7354408,5.6174519 -6e-7,8.035443 z"
+         style="fill:#ff0000;fill-opacity:1;fill-rule:evenodd;stroke:#ff0000;stroke-width:0.625;stroke-linejoin:round;stroke-opacity:1"
+         id="path21500-9" />
+    </marker>
+    <marker
+       style="overflow:visible"
+       id="marker20856-7"
+       refX="0"
+       refY="0"
+       orient="auto">
+      <path
+         transform="matrix(-1.1,0,0,-1.1,-1.1,0)"
+         d="M 8.7185878,4.0337352 -2.2072895,0.01601326 8.7185884,-4.0017078 c -1.7454984,2.3720609 -1.7354408,5.6174519 -6e-7,8.035443 z"
+         style="fill:#ff0000;fill-opacity:1;fill-rule:evenodd;stroke:#ff0000;stroke-width:0.625;stroke-linejoin:round;stroke-opacity:1"
+         id="path20858-0" />
+    </marker>
+    <marker
+       orient="auto"
+       refY="0"
+       refX="0"
+       id="marker16522-3"
+       style="overflow:visible">
+      <path
+         id="path16524-9"
+         d="M 0,5.65 V -5.65"
+         style="fill:none;fill-opacity:0.75;fill-rule:evenodd;stroke:#000000;stroke-width:1pt;stroke-opacity:0.371795"
+         transform="scale(0.8)" />
+    </marker>
+    <marker
+       orient="auto"
+       refY="0"
+       refX="0"
+       id="DistanceEnd-8"
+       style="overflow:visible">
+      <g
+         style="fill:#ff0000;fill-opacity:1;stroke:#ff0000;stroke-opacity:1"
+         id="g2301-6">
+        <path
+           id="path2316-5"
+           d="M 0,0 H -2"
+           style="fill:#ff0000;fill-opacity:1;stroke:#ff0000;stroke-width:1.15;stroke-linecap:square;stroke-opacity:1" />
+        <path
+           id="path2312-7"
+           d="m 0,0 -13,4 4,-4 -4,-4 z"
+           style="fill:#ff0000;fill-opacity:1;fill-rule:evenodd;stroke:#ff0000;stroke-opacity:1" />
+        <path
+           id="path2314-6"
+           d="M 0,-4 V 40"
+           style="fill:#ff0000;fill-opacity:1;stroke:#ff0000;stroke-width:1;stroke-linecap:square;stroke-opacity:1" />
+      </g>
+    </marker>
+    <marker
+       orient="auto"
+       refY="0"
+       refX="0"
+       id="DistanceStart-2"
+       style="overflow:visible">
+      <g
+         style="fill:#ff0000;fill-opacity:1;stroke:#ff0000;stroke-opacity:1"
+         id="g2300-7">
+        <path
+           id="path2306-0"
+           d="M 0,0 H 2"
+           style="fill:#ff0000;fill-opacity:1;stroke:#ff0000;stroke-width:1.15;stroke-linecap:square;stroke-opacity:1" />
+        <path
+           id="path2302-3"
+           d="M 0,0 13,4 9,0 13,-4 Z"
+           style="fill:#ff0000;fill-opacity:1;fill-rule:evenodd;stroke:#ff0000;stroke-opacity:1" />
+        <path
+           id="path2304-9"
+           d="M 0,-4 V 40"
+           style="fill:#ff0000;fill-opacity:1;stroke:#ff0000;stroke-width:1;stroke-linecap:square;stroke-opacity:1" />
+      </g>
+    </marker>
+    <marker
+       style="overflow:visible"
+       id="marker14566-9"
+       refX="0"
+       refY="0"
+       orient="auto">
+      <path
+         transform="matrix(-1.1,0,0,-1.1,-1.1,0)"
+         d="M 8.7185878,4.0337352 -2.2072895,0.01601326 8.7185884,-4.0017078 c -1.7454984,2.3720609 -1.7354408,5.6174519 -6e-7,8.035443 z"
+         style="fill:#ff0000;fill-opacity:1;fill-rule:evenodd;stroke:#ff0000;stroke-width:0.625;stroke-linejoin:round;stroke-opacity:1"
+         id="path14568-9" />
+    </marker>
+    <marker
+       style="overflow:visible"
+       id="marker13396-1"
+       refX="0"
+       refY="0"
+       orient="auto">
+      <path
+         transform="matrix(-1.1,0,0,-1.1,-1.1,0)"
+         d="M 8.7185878,4.0337352 -2.2072895,0.01601326 8.7185884,-4.0017078 c -1.7454984,2.3720609 -1.7354408,5.6174519 -6e-7,8.035443 z"
+         style="fill:#ff0000;fill-opacity:1;fill-rule:evenodd;stroke:#ff0000;stroke-width:0.625;stroke-linejoin:round;stroke-opacity:1"
+         id="path13398-7" />
+    </marker>
+    <marker
+       orient="auto"
+       refY="0"
+       refX="0"
+       id="marker11896-2"
+       style="overflow:visible">
+      <path
+         id="path11898-3"
+         style="fill:#ff0000;fill-opacity:1;fill-rule:evenodd;stroke:#ff0000;stroke-width:0.625;stroke-linejoin:round;stroke-opacity:1"
+         d="M 8.7185878,4.0337352 -2.2072895,0.01601326 8.7185884,-4.0017078 c -1.7454984,2.3720609 -1.7354408,5.6174519 -6e-7,8.035443 z"
+         transform="matrix(-1.1,0,0,-1.1,-1.1,0)" />
+    </marker>
+    <marker
+       orient="auto"
+       refY="0"
+       refX="0"
+       id="marker11242-6"
+       style="overflow:visible">
+      <path
+         id="path11244-5"
+         style="fill:#ff0000;fill-opacity:1;fill-rule:evenodd;stroke:#ff0000;stroke-width:0.625;stroke-linejoin:round;stroke-opacity:1"
+         d="M 8.7185878,4.0337352 -2.2072895,0.01601326 8.7185884,-4.0017078 c -1.7454984,2.3720609 -1.7354408,5.6174519 -6e-7,8.035443 z"
+         transform="matrix(-1.1,0,0,-1.1,-1.1,0)" />
+    </marker>
+    <marker
+       orient="auto"
+       refY="0"
+       refX="0"
+       id="marker10468-5"
+       style="overflow:visible">
+      <path
+         id="path10470-8"
+         style="fill:#ff0000;fill-opacity:1;fill-rule:evenodd;stroke:#ff0000;stroke-width:0.625;stroke-linejoin:round;stroke-opacity:1"
+         d="M 8.7185878,4.0337352 -2.2072895,0.01601326 8.7185884,-4.0017078 c -1.7454984,2.3720609 -1.7354408,5.6174519 -6e-7,8.035443 z"
+         transform="matrix(-1.1,0,0,-1.1,-1.1,0)" />
+    </marker>
+    <marker
+       style="overflow:visible"
+       id="marker7512-1"
+       refX="0"
+       refY="0"
+       orient="auto">
+      <path
+         transform="matrix(-0.8,0,0,-0.8,-10,0)"
+         style="fill:#ff0000;fill-opacity:1;fill-rule:evenodd;stroke:#ff0000;stroke-width:1pt;stroke-opacity:1"
+         d="M 0,0 5,-5 -12.5,0 5,5 Z"
+         id="path7514-4" />
+    </marker>
+    <marker
+       style="overflow:visible"
+       id="Arrow1Lend-7"
+       refX="0"
+       refY="0"
+       orient="auto">
+      <path
+         transform="matrix(-0.8,0,0,-0.8,-10,0)"
+         style="fill:#ff0000;fill-opacity:1;fill-rule:evenodd;stroke:#ff0000;stroke-width:1pt;stroke-opacity:1"
+         d="M 0,0 5,-5 -12.5,0 5,5 Z"
+         id="path7239-1" />
+    </marker>
+    <filter
+       style="color-interpolation-filters:sRGB;"
+       inkscape:label="Drop Shadow"
+       id="filter2178">
+      <feFlood
+         flood-opacity="0.6"
+         flood-color="rgb(0,0,0)"
+         result="flood"
+         id="feFlood2168" />
+      <feComposite
+         in="flood"
+         in2="SourceGraphic"
+         operator="in"
+         result="composite1"
+         id="feComposite2170" />
+      <feGaussianBlur
+         in="composite1"
+         stdDeviation="0.1"
+         result="blur"
+         id="feGaussianBlur2172" />
+      <feOffset
+         dx="0"
+         dy="0.2"
+         result="offset"
+         id="feOffset2174" />
+      <feComposite
+         in="SourceGraphic"
+         in2="offset"
+         operator="over"
+         result="composite2"
+         id="feComposite2176" />
+    </filter>
   </defs>
   <metadata
      id="metadata5">
@@ -1092,12 +1410,13 @@
          sodipodi:nodetypes="cc" />
     </g>
     <g
-       id="players"
-       transform="translate(0.10853316,0.27908526)">
+       id="g2046"
+       style="filter:url(#filter2178)">
       <g
-         id="player1">
+         id="player1"
+         transform="translate(0.10853316,0.27908526)">
         <circle
-           style="fill:#ce0000;stroke-width:0.0155055;stroke-linecap:round;stroke-linejoin:round;"
+           style="fill:#ce0000;stroke-width:0.0155055;stroke-linecap:round;stroke-linejoin:round"
            id="path1303"
            cx="3.5798573"
            cy="9.6710892"
@@ -1105,18 +1424,18 @@
         <g
            aria-label="1"
            id="text1339"
-           style="font-size:2.52461000000000002px;line-height:1.25;font-family:Arial;-inkscape-font-specification:Arial;stroke-width:0.0631154;fill:#ffffff;fill-opacity:1;">
+           style="font-size:2.52461px;line-height:1.25;font-family:Arial;-inkscape-font-specification:Arial;fill:#ffffff;fill-opacity:1;stroke-width:0.0631154">
           <path
              d="M 3.4825187,9.4335272 V 9.3774807 H 3.6347529 V 9.9833879 H 3.5287191 V 9.4335272 Z"
-             style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:0.75738399999999984px;font-family:'NBA Mavericks';-inkscape-font-specification:'NBA Mavericks';fill:#ffffff;fill-opacity:1;stroke-width:0.0631154;"
+             style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:0.757384px;font-family:'NBA Mavericks';-inkscape-font-specification:'NBA Mavericks';fill:#ffffff;fill-opacity:1;stroke-width:0.0631154"
              id="path2419" />
         </g>
       </g>
       <g
          id="player2"
-         transform="translate(1.3115288,0.03940215)">
+         transform="translate(1.420062,0.31848741)">
         <circle
-           style="fill:#ce0000;stroke-width:0.0155055;stroke-linecap:round;stroke-linejoin:round;"
+           style="fill:#ce0000;stroke-width:0.0155055;stroke-linecap:round;stroke-linejoin:round"
            id="circle2387"
            cx="3.5798573"
            cy="9.6710892"
@@ -1124,18 +1443,18 @@
         <g
            aria-label="2"
            id="text2391"
-           style="font-size:2.52461000000000002px;line-height:1.25;font-family:Arial;-inkscape-font-specification:Arial;stroke-width:0.0631154;fill:#ffffff;fill-opacity:1;">
+           style="font-size:2.52461px;line-height:1.25;font-family:Arial;-inkscape-font-specification:Arial;fill:#ffffff;fill-opacity:1;stroke-width:0.0631154">
           <path
              d="M 3.5443816,9.4843755 V 9.451808 q -0.00454,-0.03484 0.036355,-0.037869 h 0.023479 q 0.023479,-0.00151 0.027266,0.026508 v 0.1393587 q 0,0.024994 -0.031053,0.029538 -0.1083059,0.00151 -0.1522341,0.06665 -0.018177,0.027266 -0.021964,0.064378 V 9.9721308 H 3.7359998 V 9.8607953 h -0.104519 v 0.065135 H 3.5246896 v -0.183287 q 0,-0.079525 0.072709,-0.086342 h 0.074224 q 0.059076,0 0.064378,-0.064378 V 9.4343881 q 0,-0.065892 -0.093916,-0.068164 H 3.5193879 q -0.079525,0 -0.085584,0.08407 v 0.034082 z"
-             style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:0.75738399999999984px;font-family:'NBA Mavericks';-inkscape-font-specification:'NBA Mavericks';fill:#ffffff;fill-opacity:1;stroke-width:0.0631154;"
+             style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:0.757384px;font-family:'NBA Mavericks';-inkscape-font-specification:'NBA Mavericks';fill:#ffffff;fill-opacity:1;stroke-width:0.0631154"
              id="path2422" />
         </g>
       </g>
       <g
          id="player3"
-         transform="translate(18.659223,-7.654617)">
+         transform="translate(18.767756,-7.3755317)">
         <circle
-           style="fill:#ce0000;stroke-width:0.0155055;stroke-linecap:round;stroke-linejoin:round;"
+           style="fill:#ce0000;stroke-width:0.0155055;stroke-linecap:round;stroke-linejoin:round"
            id="circle2395"
            cx="3.5798573"
            cy="9.6710892"
@@ -1143,18 +1462,18 @@
         <g
            aria-label="3"
            id="text2399"
-           style="font-size:2.52461000000000002px;line-height:1.25;font-family:Arial;-inkscape-font-specification:Arial;stroke-width:0.0631154;fill:#ffffff;fill-opacity:1;">
+           style="font-size:2.52461px;line-height:1.25;font-family:Arial;-inkscape-font-specification:Arial;fill:#ffffff;fill-opacity:1;stroke-width:0.0631154">
           <path
              d="M 3.4487453,9.4722573 V 9.3662236 h 0.2029789 q 0.085584,0 0.093158,0.079525 v 0.1295127 q 0,0.041656 -0.059833,0.061348 0.054532,0.023479 0.059076,0.074981 v 0.1295126 q 0,0.074981 -0.082555,0.1105781 -0.034082,0.015148 -0.082555,0.020449 h -0.13027 V 9.8607953 h 0.1052763 v 0.065892 q 0.079525,-0.01136 0.085584,-0.094673 V 9.696443 Q 3.636576,9.669935 3.59795,9.669177 H 3.51388 V 9.610858 H 3.600222 Q 3.635819,9.615398 3.638849,9.570717 V 9.4457489 Q 3.641879,9.4169679 3.611583,9.4131809 H 3.553264 v 0.059076 z"
-             style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:0.75738399999999984px;font-family:'NBA Mavericks';-inkscape-font-specification:'NBA Mavericks';fill:#ffffff;fill-opacity:1;stroke-width:0.0631154;"
+             style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:0.757384px;font-family:'NBA Mavericks';-inkscape-font-specification:'NBA Mavericks';fill:#ffffff;fill-opacity:1;stroke-width:0.0631154"
              id="path2425" />
         </g>
       </g>
       <g
          id="player4"
-         transform="translate(-1.2527507,4.0690132)">
+         transform="translate(-1.1442175,4.3480985)">
         <circle
-           style="fill:#ce0000;stroke-width:0.0155055;stroke-linecap:round;stroke-linejoin:round;"
+           style="fill:#ce0000;stroke-width:0.0155055;stroke-linecap:round;stroke-linejoin:round"
            id="circle2403"
            cx="3.5798573"
            cy="9.6710892"
@@ -1162,18 +1481,18 @@
         <g
            aria-label="4"
            id="text2407"
-           style="font-size:2.52461000000000002px;line-height:1.25;font-family:Arial;-inkscape-font-specification:Arial;stroke-width:0.0631154;fill:#ffffff;fill-opacity:1;">
+           style="font-size:2.52461px;line-height:1.25;font-family:Arial;-inkscape-font-specification:Arial;fill:#ffffff;fill-opacity:1;stroke-width:0.0631154">
           <path
              d="m 3.6877332,9.399996 v 0.3143144 h 0.031053 v 0.078011 H 3.6900052 V 10.005903 H 3.5877585 V 9.7809602 H 3.4650623 q -0.059076,-0.00606 -0.061348,-0.091644 l 0.024994,-0.2870485 h 0.099975 L 3.505961,9.6741691 q -7.574e-4,0.00379 -0.00151,0.00757 0,0.034082 0.078768,0.037112 V 9.4870952 q 0.00833,-0.08104 0.104519,-0.087099 z"
-             style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:0.75738399999999984px;font-family:'NBA Mavericks';-inkscape-font-specification:'NBA Mavericks';fill:#ffffff;fill-opacity:1;stroke-width:0.0631154;"
+             style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:0.757384px;font-family:'NBA Mavericks';-inkscape-font-specification:'NBA Mavericks';fill:#ffffff;fill-opacity:1;stroke-width:0.0631154"
              id="path2428" />
         </g>
       </g>
       <g
          id="player5"
-         transform="translate(1.9813654,1.1370335)">
+         transform="translate(2.0898986,1.4161188)">
         <circle
-           style="fill:#ce0000;stroke-width:0.0155055;stroke-linecap:round;stroke-linejoin:round;"
+           style="fill:#ce0000;stroke-width:0.0155055;stroke-linecap:round;stroke-linejoin:round"
            id="circle2411"
            cx="3.5798573"
            cy="9.6710892"
@@ -1181,12 +1500,74 @@
         <g
            aria-label="5"
            id="text2415"
-           style="font-size:2.52461000000000002px;line-height:1.25;font-family:Arial;-inkscape-font-specification:Arial;stroke-width:0.0631154;fill:#ffffff;fill-opacity:1;">
+           style="font-size:2.52461px;line-height:1.25;font-family:Arial;-inkscape-font-specification:Arial;fill:#ffffff;fill-opacity:1;stroke-width:0.0631154">
           <path
              d="m 3.4431164,9.3782381 v 0.2340317 q 0,0.049987 0.0462,0.055289 h 0.1128502 q 0.035597,0 0.038627,0.038627 v 0.1476899 q 0,0.036354 -0.029538,0.059833 -0.026509,0.020449 -0.06362,0.023479 V 9.878869 h -0.104519 v 0.1045189 h 0.1378439 q 0.1022469,0 0.143903,-0.074981 0.016662,-0.031053 0.020449,-0.074224 V 9.7137592 q 0.00757,-0.079525 -0.1014894,-0.091643 h -0.070437 q -0.023479,0 -0.026508,-0.034082 V 9.4304976 h 0.092401 v 0.059076 H 3.7453126 V 9.3774807 Z"
-             style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:0.75738399999999984px;font-family:'NBA Mavericks';-inkscape-font-specification:'NBA Mavericks';fill:#ffffff;fill-opacity:1;stroke-width:0.0631154;"
+             style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:0.757384px;font-family:'NBA Mavericks';-inkscape-font-specification:'NBA Mavericks';fill:#ffffff;fill-opacity:1;stroke-width:0.0631154"
              id="path2431" />
         </g>
+      </g>
+      <g
+         transform="matrix(0.00160444,0,0,0.00160444,9.0545124,6.359584)"
+         id="ball">
+        <g
+           id="g28974">
+          <g
+             id="g28976">
+            <circle
+               style="fill:#ff9100"
+               cx="240"
+               cy="240"
+               r="240"
+               id="circle28978" />
+          </g>
+          <g
+             id="g28980" />
+          <g
+             id="g28984">
+            <path
+               style="fill:#74829c"
+               d="m 328.203,248 h 151.594 c 0.088,-2.662 0.203,-5.317 0.203,-8 0,-2.683 -0.115,-5.338 -0.203,-8 H 328.203 C 330.442,166.377 360.065,107.596 405.961,66.724 402.096,63.021 398.13,59.425 394.025,55.985 345.596,99.739 314.429,162.267 312.203,232 H 248.219 V 0.208 C 245.485,0.116 242.756,0 240,0 c -2.61,0 -5.192,0.114 -7.781,0.197 V 232 H 175.797 C 173.513,160.446 140.762,96.475 90.15,52.595 c -4.219,3.378 -8.343,6.868 -12.323,10.519 48.277,40.98 79.664,101.29 81.971,168.887 H 0.203 C 0.115,234.662 0,237.317 0,240 c 0,2.683 0.115,5.338 0.203,8 h 159.595 c -2.307,67.597 -33.693,127.906 -81.971,168.887 3.979,3.65 8.104,7.14 12.323,10.519 50.613,-43.88 83.363,-107.852 85.647,-179.405 h 56.422 v 231.803 c 2.589,0.082 5.171,0.196 7.781,0.196 2.756,0 5.485,-0.116 8.219,-0.208 V 248 h 63.984 c 2.226,69.733 33.393,132.261 81.822,176.015 4.104,-3.44 8.07,-7.036 11.936,-10.739 C 360.064,372.404 330.442,313.622 328.203,248 Z"
+               id="path28986" />
+          </g>
+          <g
+             id="g28988">
+            <g
+               id="g28990" />
+            <g
+               id="g28994" />
+          </g>
+        </g>
+        <g
+           id="g28998" />
+        <g
+           id="g29000" />
+        <g
+           id="g29002" />
+        <g
+           id="g29004" />
+        <g
+           id="g29006" />
+        <g
+           id="g29008" />
+        <g
+           id="g29010" />
+        <g
+           id="g29012" />
+        <g
+           id="g29014" />
+        <g
+           id="g29016" />
+        <g
+           id="g29018" />
+        <g
+           id="g29020" />
+        <g
+           id="g29022" />
+        <g
+           id="g29024" />
+        <g
+           id="g29026" />
       </g>
     </g>
   </g>
