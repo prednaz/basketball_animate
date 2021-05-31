@@ -346,6 +346,7 @@ const basketball_animate = (settings, continuation) => {
         throw "speed parameter must be a number";
       }
       speed_slider.slider("value", speed);
+      speed_slider.text(speed + "%");
     }
 
     // loop
