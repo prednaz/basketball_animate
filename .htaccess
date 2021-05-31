@@ -1,0 +1,4 @@
+AuthType Basic
+AuthName "Confidential"
+AuthUserfile /home/webpages/lima-city/rednaz/html/basketball_animate/.htpasswd
+Require valid-user
