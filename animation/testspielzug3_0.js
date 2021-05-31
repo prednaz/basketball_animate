@@ -40,7 +40,7 @@ svg_main.addEventListener("load", () => {
   player_move("#player3", "#path3_1", time(1,1), time(4,4));
 
   //player4
-  player_move("#player4", "#path4_1", time(4,1), time(4,4));
+  player_move("#player4", "#path4_1", time(3,4), time(4,2));
 
   //player5
   player_move("#player5", "#path5_1", time(1,1), time(1,3));
