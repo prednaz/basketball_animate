@@ -30,13 +30,15 @@
   <script id="animation"></script>
   <script>
     {
-      const animation = location.hash.slice(1);
-      if (animation.length !== 0 && !/\W/.test(animation)) {
-        document.querySelector("#animation").src = "animation/" + animation + ".js";
-      }
-      else {
+      const url_argument = location.hash.slice(1);
+      if (/[^\w,.]/.test(url_argument)) {
         throw "animation ids may only contain letters, numbers, and underscores";
       }
+      const animation = url_argument.split(",")[0] ?? null;
+      if (animation === null || animation.length === 0) {
+        throw "empty animation id";
+      }
+      document.querySelector("#animation").src = "animation/" + animation + ".js";
     }
   </script>
 </body>
