@@ -1162,6 +1162,19 @@
   <g
      id="g2037"
      transform="matrix(4.1920583,0,0,4.1920583,-4.8681753,-2.4012764)">
+    <path
+       style="fill:none;stroke:#0d0d0d;stroke-width:0.062022;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0.62022;stroke-opacity:1"
+       id="center"
+       sodipodi:type="arc"
+       sodipodi:cx="17.221483"
+       sodipodi:cy="14.054493"
+       sodipodi:rx="0.43217492"
+       sodipodi:ry="0.47654989"
+       sodipodi:start="3.1415927"
+       sodipodi:end="0"
+       sodipodi:arc-type="arc"
+       d="m 16.789308,14.054493 a 0.43217492,0.47654989 0 0 1 0.432175,-0.47655 0.43217492,0.47654989 0 0 1 0.432175,0.47655"
+       sodipodi:open="true" />
     <g
        id="clock"
        transform="matrix(0.18949753,0,0,0.18949753,1.8130783,4.5320055)"
@@ -1565,17 +1578,5 @@
            id="g29026" />
       </g>
     </g>
-    <path
-       style="fill:none;stroke:#0d0d0d;stroke-width:0.062022;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0.62022;stroke-opacity:1"
-       id="center"
-       sodipodi:type="arc"
-       sodipodi:cx="17.221483"
-       sodipodi:cy="14.054493"
-       sodipodi:rx="0.43217492"
-       sodipodi:ry="0.47654989"
-       sodipodi:start="3.1415927"
-       sodipodi:end="0"
-       sodipodi:arc-type="slice"
-       d="m 16.789308,14.054493 a 0.43217492,0.47654989 0 0 1 0.432175,-0.47655 0.43217492,0.47654989 0 0 1 0.432175,0.47655 h -0.432175 z" />
   </g>
 </svg>
