@@ -1162,6 +1162,12 @@
   <g
      id="g2037"
      transform="matrix(4.1920583,0,0,4.1920583,-4.8681753,-2.4012764)">
+    <circle
+       style="fill:none;stroke:#0d0d0d;stroke-width:0.062022;stroke-linecap:round;stroke-linejoin:round;stroke-dashoffset:9.82677"
+       id="basket"
+       cy="2.9222164"
+       cx="17.188089"
+       r="0.19083704" />
     <path
        style="fill:none;stroke:#0d0d0d;stroke-width:0.062022;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0.62022;stroke-opacity:1"
        id="center"
@@ -1571,11 +1577,5 @@
            id="g29026" />
       </g>
     </g>
-    <circle
-       style="fill:none;stroke:#0d0d0d;stroke-width:0.062022;stroke-linecap:round;stroke-linejoin:round;stroke-dashoffset:9.82677"
-       id="basket"
-       cy="2.9222164"
-       cx="17.188089"
-       r="0.19083704" />
   </g>
 </svg>
