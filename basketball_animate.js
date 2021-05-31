@@ -358,7 +358,6 @@ const basketball_animate = (settings, continuation) => {
         {
           timeline_supplementary.pause();
           music_dom.pause();
-          play_button.button("option", "label", play_button_label.restart);
           // This enables the browser to start playing the music with less delay
           // because the cost of seeking is already payed.
           $(music_dom).one("canplaythrough", () => {
