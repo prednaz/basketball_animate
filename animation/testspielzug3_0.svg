@@ -27,9 +27,9 @@
      inkscape:window-height="847"
      id="namedview957"
      showgrid="false"
-     inkscape:zoom="4.1024171"
-     inkscape:cx="229.27935"
-     inkscape:cy="205.54893"
+     inkscape:zoom="5.9223424"
+     inkscape:cx="77.403541"
+     inkscape:cy="174.84637"
      inkscape:window-x="0"
      inkscape:window-y="25"
      inkscape:window-maximized="0"
@@ -1221,6 +1221,26 @@
              y="5.3879495"
              style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:'NBA Mavericks';-inkscape-font-specification:'NBA Mavericks';fill:#ffffff;fill-opacity:1;stroke-width:0.0190615">2</tspan></text>
       </g>
+    </g>
+    <g
+       id="player6">
+      <circle
+         style="fill:#ce0000;stroke-width:0.0155055;stroke-linecap:round;stroke-linejoin:round"
+         id="path1303"
+         cx="3.4513321"
+         cy="9.7224989"
+         r="0.46993622" />
+      <text
+         xml:space="preserve"
+         style="font-size:2.52461px;line-height:1.25;font-family:Arial;-inkscape-font-specification:Arial;stroke-width:0.0631154"
+         x="3.4206009"
+         y="9.8580523"
+         id="text1339"><tspan
+           sodipodi:role="line"
+           id="tspan1337"
+           x="3.4206009"
+           y="9.8580523"
+           style="font-size:0.504923px;fill:#e1e1e1;fill-opacity:1;stroke-width:0.0631154">6</tspan></text>
     </g>
   </g>
 </svg>
