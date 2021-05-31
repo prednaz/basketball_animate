@@ -311,21 +311,38 @@ const basketball_animate = (settings, continuation) => {
         play_button.button("option", "label", play_button_label.play);
       }
     });
+    const speed_change =
+      (speed_new) =>
+      {
+        music_dom.playbackRate = speed_new / 100;
+        timeline.timeScale(speed_new / 100);
+        timeline_supplementary.timeScale(speed_new / 100);
+      };
     const speed_display = $("#speed_display");
-    $("#speed_slider").slider({
+    const speed_slider = $("#speed_slider").slider({
       min: 0,
       max: 300,
       step: 1,
       value: 100,
-      change: (event, ui) => {
-        music_dom.playbackRate = ui.value / 100;
-        timeline.timeScale(ui.value/100);
-        timeline_supplementary.timeScale(ui.value/100);
-      },
+      change: (event, ui) => {speed_change(ui.value)},
       slide: (event, ui) => {
         speed_display.text(ui.value + "%");
       }
     });
+
+    // speed from url
+    const url_argument = location.hash.slice(1);
+    if (/[^\w,.]/.test(url_argument)) {
+      throw "animation ids may only contain letters, numbers, and underscores";
+    }
+    const speed_text = url_argument.split(",")[1] ?? null;
+    if (speed_text !== null) {
+      const speed = Number.parseFloat(speed_text) ?? null;
+      if (speed === null) {
+        throw "speed parameter must be a number";
+      }
+      speed_slider.slider("value", speed);
+    }
   
     // export
     continuation({

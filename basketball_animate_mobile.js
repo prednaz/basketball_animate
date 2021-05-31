@@ -317,7 +317,40 @@ const basketball_animate = (settings, continuation) => {
             throw "position_slider.slider parameters error"
           }
       };
+      const speed_change =
+      (speed_new) =>
+      {
+        music_dom.playbackRate = speed_new / 100;
+        timeline.timeScale(speed_new / 100);
+        timeline_supplementary.timeScale(speed_new / 100);
+      };
     const speed_display = $("#speed_display");
+    const speed_slider =
+      {
+        slider:
+          (...parameters) =>
+          {
+            if (parameters.length === 2 && parameters[0] === "value") {
+              speed_change(parameters[1]);
+              return;
+            }
+            throw "speed_slider.slider parameters error";
+          }
+      };
+
+    // speed from url
+    const url_argument = location.hash.slice(1);
+    if (/[^\w,.]/.test(url_argument)) {
+      throw "animation ids may only contain letters, numbers, and underscores";
+    }
+    const speed_text = url_argument.split(",")[1] ?? null;
+    if (speed_text !== null) {
+      const speed = Number.parseFloat(speed_text) ?? null;
+      if (speed === null) {
+        throw "speed parameter must be a number";
+      }
+      speed_slider.slider("value", speed);
+    }
   
     // export
     continuation({
