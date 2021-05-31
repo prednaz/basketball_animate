@@ -1,6 +1,13 @@
 "use strict";
 
 const basketball_animate = (settings, continuation) => {
+  const url_argument = location.hash.slice(1);
+  if (/[^\w,.]/.test(url_argument)) {
+    throw "animation ids may only contain letters, numbers, and underscores";
+  }
+  // loop
+  const loop = url_argument.split(",").length >= 3;
+
   const svg_main = document.querySelector("#main_svg");
   svg_main.data = settings.svg_source;
   svg_main.addEventListener("load", () => {
@@ -230,6 +237,9 @@ const basketball_animate = (settings, continuation) => {
         position_display_slider.text(bars_beats(timeline.totalTime()));
       },
       onComplete: () => {
+        if (loop) {
+          return;
+        }
         timeline_supplementary.pause();
         music_dom.pause();
         play_button.button("option", "label", play_button_label.restart);
@@ -260,7 +270,7 @@ const basketball_animate = (settings, continuation) => {
     const play_button_click =
       () =>
       {
-        if (timeline.totalProgress() !== 1) {
+        if (timeline.totalProgress() !== 1 || loop) {
           const paused = !timeline.paused();
           music_dom[paused ? "pause" : "play"]();
           timeline.paused(paused);
@@ -331,10 +341,6 @@ const basketball_animate = (settings, continuation) => {
     });
 
     // speed from url
-    const url_argument = location.hash.slice(1);
-    if (/[^\w,.]/.test(url_argument)) {
-      throw "animation ids may only contain letters, numbers, and underscores";
-    }
     const speed_text = url_argument.split(",")[1] ?? null;
     if (speed_text !== null) {
       const speed = Number.parseFloat(speed_text) ?? null;
@@ -343,7 +349,28 @@ const basketball_animate = (settings, continuation) => {
       }
       speed_slider.slider("value", speed);
     }
-  
+
+    // loop
+    if (loop) {
+      music_dom.addEventListener(
+        "ended",
+        (event) =>
+        {
+          timeline_supplementary.pause();
+          music_dom.pause();
+          play_button.button("option", "label", play_button_label.restart);
+          // This enables the browser to start playing the music with less delay
+          // because the cost of seeking is already payed.
+          $(music_dom).one("canplaythrough", () => {
+            music_dom.play();
+            timeline.restart(true, false);
+            timeline_supplementary.restart(true, false);
+          });
+          music_dom.currentTime = 0 + settings.music_offset;
+        }
+      );
+    }
+
     // export
     continuation({
       svg,
