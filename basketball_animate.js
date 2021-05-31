@@ -263,6 +263,7 @@ const basketball_animate = settings => {
   };
   const play_button = $("#play").button({label: play_button_label.play, disabled: true});
   $(music_dom).one("canplaythrough", () => {
+    // `canplaythrough` is triggered again by seek command right below.
     $(music_dom).one("canplaythrough", () => {play_button.button("enable");});
     // In addition to starting at the correct offset,
     // this enables the browser to start playing the music with less delay

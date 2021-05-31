@@ -1,0 +1,33 @@
+html, body {
+  padding: 0;
+  margin: 0;
+}
+body {
+  /* cursor: pointer; */
+}
+#main_svg {
+  width: 100%;
+  height: calc(100vh - 147.44px);
+  object-fit: contain;
+}
+#control {
+  /* display: none; */
+}
+#play {
+  width: 6em;
+}
+.label_slider {
+  margin-top: 10px;
+}
+#position_display_precise {
+  display: inline-block;
+}
+#speed_display {
+  width: 4em;
+  text-align: center;
+}
+
+#position_display_slider {
+  width: 2em;
+  text-align: center;
+}
