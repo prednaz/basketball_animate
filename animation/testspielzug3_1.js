@@ -1,32 +1,29 @@
+
 "use strict";
 
-// imports
-const {
-  svg_main,
-  path_shorten,
-  player_move,
-  player_move_tween,
-  time_duration,
-  time,
-  bars_beats,
-  timeline,
-  pass,
-  shoot,
-  startup_animation
-} = basketball_animate({
-  svg_source: "animation/testspielzug3_1.svg",
-  music_source: "animation/rockyourbody.wav",
-  music_offset: 0.09,
-  beats_per_minute: 101,
-  beats_per_bar: 4,
-  clock_period: 16,
-  player_possession: "#player1"
-});
-
-svg_main.addEventListener("load", () => {
-  // path_shorten("#ball2,#ball3,#ball4,#move1,#move2,#move3,#move6", 5);
-  // path_shorten("#move4", 3, 0);
-  // path_shorten("#move8,#move9", 0, 10);
+basketball_animate(
+  {
+    svg_source: "animation/testspielzug3_0.svg",
+    music_source: "animation/rockyourbody.wav",
+    music_offset: 0.09,
+    beats_per_minute: 101,
+    beats_per_bar: 4,
+    clock_period: 16,
+    player_possession: "#player1"
+  },
+  ({
+    path_shorten,
+    player_move,
+    player_move_tween,
+    time_duration,
+    time,
+    bars_beats,
+    timeline,
+    pass,
+    shoot,
+    startup_animation
+  }) =>
+  {
 
   //player1
   player_move("#player1", "#path1_1", time(1,1), time(2,4));
