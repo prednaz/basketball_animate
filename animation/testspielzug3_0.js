@@ -15,9 +15,9 @@ const {
   startup_animation
 } = basketball_animate({
   svg_source: "animation/testspielzug3_0.svg",
-  music_source: "animation/september.wav",
+  music_source: "animation/rockyourbody.wav",
   music_offset: 0.09,
-  beats_per_minute: 120,
+  beats_per_minute: 101,
   beats_per_bar: 4,
   clock_period: 16,
   player_possession: "#player1"
