@@ -4,11 +4,11 @@ html, body {
 }
 #main_svg {
   width: 100%;
-  height: calc(100vh - 155px);
+  height: calc(100vh - 32px);
   object-fit: contain;
 }
 #control {
-  margin: 10px;
+  display: none;
 }
 #play {
   width: 6em;
