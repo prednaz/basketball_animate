@@ -29,22 +29,22 @@ svg_main.addEventListener("load", () => {
   // path_shorten("#move8,#move9", 0, 10);
 
   //player1
-  player_move("#player1", "#path1.1", time(1,1), time(2,4));
-  player_move("#player1", "#path1.2", time(3,1), time(4,1));
+  player_move("#player1", "#path1_1", time(1,1), time(2,4));
+  player_move("#player1", "#path1_2", time(3,1), time(4,1));
 
   //player2
-  player_move("#player2", "#path2.1", time(1,1), time(3,1));
+  player_move("#player2", "#path2_1", time(1,1), time(3,1));
   player_move("#player2", "#move4", time(3,4), time(4,4));
 
   //player3
-  player_move("#player3", "#path3.1", time(1,1), time(4,4));
+  player_move("#player3", "#path3_1", time(1,1), time(4,4));
 
   //player4
-  player_move("#player4", "#path4.1", time(4,1), time(4,4));
+  player_move("#player4", "#path4_1", time(4,1), time(4,4));
 
   //player5
-  player_move("#player5", "#path5.1", time(1,1), time(1,3));
-  player_move("#player5", "#path5.2", time(3,1), time(4,1));
+  player_move("#player5", "#path5_1", time(1,1), time(1,3));
+  player_move("#player5", "#path5_2", time(3,1), time(4,1));
 
 
   //ball
