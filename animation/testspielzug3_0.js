@@ -14,7 +14,7 @@ const {
   shoot,
   startup_animation
 } = basketball_animate({
-  svg_source: "animation/testspielzug3.0.svg",
+  svg_source: "animation/testspielzug3_0.svg",
   music_source: "animation/september.wav",
   music_offset: 0.09,
   beats_per_minute: 120,

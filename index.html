@@ -34,6 +34,9 @@
       if (animation.length !== 0 && !/\W/.test(animation)) {
         document.querySelector("#animation").src = "animation/" + animation + ".js";
       }
+      else {
+        throw "animation ids may only contain letters, numbers, and underscores";
+      }
     }
   </script>
 </body>
