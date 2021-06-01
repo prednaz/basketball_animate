@@ -130,6 +130,18 @@ const basketball_animate = (settings, continuation) => {
         timeline.seek(0, false);
       };
   
+    // hide, show
+    const hide =
+      (object, start_time) =>
+      {
+        timeline.set(svg(object), {visibility: "hidden"}, start_time);
+      };
+    const show =
+      (object, start_time) =>
+      {
+        timeline.set(svg(object), {visibility: "visible"}, start_time);
+      };
+
     const svg = svg_selector => svg_animate.svg_element([svg_main], svg_selector);
   
     // convert music time unit to seconds
@@ -377,6 +389,8 @@ const basketball_animate = (settings, continuation) => {
       player_move,
       pass,
       shoot,
+      hide,
+      show,
       timeline,
       time_duration,
       time,
