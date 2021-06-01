@@ -131,15 +131,22 @@ const basketball_animate = (settings, continuation) => {
       };
   
     // hide, show
+    // to-do. options argument
     const hide =
-      (object, start_time) =>
+      (object, start_time, end_time) =>
       {
-        timeline.set(svg(object), {visibility: "hidden"}, start_time);
+        if (end_time === undefined) {
+          end_time = start_time;
+        }
+        timeline.to(svg(object), end_time - start_time, {opacity: 0, ease: Power0.easeNone}, start_time);
       };
     const show =
-      (object, start_time) =>
+      (object, start_time, end_time) =>
       {
-        timeline.set(svg(object), {visibility: "visible"}, start_time);
+        if (end_time === undefined) {
+          end_time = start_time;
+        }
+        timeline.to(svg(object), end_time - start_time, {opacity: 1, ease: Power0.easeNone}, start_time);
       };
 
     const svg = svg_selector => svg_animate.svg_element([svg_main], svg_selector);

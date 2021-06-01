@@ -27,8 +27,8 @@ basketball_animate(
   }) =>
   {
     hide("#path4_1, #path2_2, #shot2", 0);
-    show("#path4_1, #path2_2, #shot2", time(3,3));
-    hide("#path3_1, #path5_1, #path5_2, #path1_1, #curly, #path2_1, #shot1", time(3,3));
+    show("#path4_1, #path2_2, #shot2", time(3,2.5), time(3,3.8));
+    hide("#path3_1, #path5_1, #path5_2, #path1_1, #curly, #path2_1, #shot1", time(3,2.5), time(3,3.8));
     
     //player1
     player_move("#player1", "#path1_1", time(1,1), time(3,2));
