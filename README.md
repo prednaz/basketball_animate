@@ -5,8 +5,15 @@
 1. Execute `npx http-server`.
 2. Navigate your web browser to http://localhost:8080/#testspielzug.
 
+## basketball_animate library
+
+- 
+
 ## Notes
 
+- [easing options](https://greensock.com/docs/v2/Easing/CustomEase).
+  [svg path commands](https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/d#path_commands)
+  might be relevent too.
 - SVG elements can be selected using any CSS selector
   (https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Selectors). It
   is recommended to use selector lists of ID selectors, for example
