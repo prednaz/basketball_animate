@@ -36,6 +36,10 @@
         "TimelineMax": "readonly",
         "Power0": "readonly",
         "Power1": "readonly",
+        "Power2": "readonly",
+        "Power3": "readonly",
+        "Power4": "readonly",
+        "CustomEase": "readonly",
         "$": "readonly",
         "Snap": "readonly",
         "TweenLite": "readonly"
