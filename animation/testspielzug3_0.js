@@ -26,27 +26,27 @@ basketball_animate(
   {
 
   //player1
-  player_move("#player1", "#path1_1", time(1,1), time(2,4));
+  player_move("#player1", "#path1_1", time(1,1), time(3,2));
   player_move("#player1", "#path1_2", time(3,1), time(4,1));
 
   //player2
-  player_move("#player2", "#path2_1", time(1,1), time(3,1));
+  player_move("#player2", "#path2_1", time(2,2), time(3,3));
   player_move("#player2", "#path2_2", time(3,4), time(4,4));
 
   //player3
-  player_move("#player3", "#path3_1", time(1,1), time(4,4));
+  player_move("#player3", "#path3_1", time(1,4), time(3,3));
 
   //player4
   player_move("#player4", "#path4_1", time(3,4), time(4,2));
 
   //player5
-  player_move("#player5", "#path5_1", time(1,1), time(1,3));
-  player_move("#player5", "#path5_2", time(3,1), time(4,1));
+  player_move("#player5", "#path5_1", time(2,1), time(2,3));
+  player_move("#player5", "#path5_2", time(2,4), time(3,2));
 
 
   //ball
   pass("#player1", "#player2", time(3,1), time(3,2));
-  pass("#player2", "#player1", time(3,3), time(3,4));
+  pass("#player2", "#player1", time(3,4), time(4,1));
   shoot("#player1", time(4,1), time(4, 3));
 
   startup_animation("#player1, #player2, #player3, #player4, #player5");
