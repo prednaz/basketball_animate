@@ -56,6 +56,11 @@ const basketball_animate = (settings, continuation) => {
     };
     const pass_defaults = {ease: Power1.easeInOut};
     const pass = (player, receiver, start_time, end_time, options = {}) => {
+      // ensure that players that have not moved before receiving a pass
+      // are at the right position when receiving the pass
+      timeline.seek(timeline.totalDuration(), true);
+      timeline.seek(0, true);
+
       const receiver_svg = svg(receiver)[0];
       ball_throw(svg(player)[0], receiver_svg, start_time, end_time, translation_interim_result_ball => {
         timeline.seek(end_time, false);
