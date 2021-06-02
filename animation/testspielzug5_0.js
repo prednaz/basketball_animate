@@ -26,9 +26,9 @@ basketball_animate(
     startup_animation
   }) =>
   {
-    hide("#path1_3, #path2_2, #path3_3, #path4_3, #path5_1, #path5_2, #shot4, #curly3", 0);
-    show("#path1_3, #path2_2, #path3_3, #path4_3, #path5_1, #path5_2, #shot4, #curly3", time(3,3), time(4,1));
-    hide("#path1_1, #path1_2, #path2_1, #path3_1, #path3_2, #path4_1, #path4_2, #shot1, #shot2, #shot3, #curly, #curly2", time(3,3), time(4,1));
+    hide("#path1_3, #path2_2, #path3_3, #path4_3, #path5_1, #path5_2, #path5_3, #shot4, #curly3", 0);
+    show("#path1_3, #path2_2, #path3_3, #path4_3, #path5_1, #path5_2, #path5_3, #shot4, #curly3", time(3,4.5), time(4,1));
+    hide("#path1_1, #path1_2, #path2_1, #path3_1, #path3_2, #path4_1, #path4_2, #shot1, #shot2, #shot3, #curly, #curly2", time(3,4.5), time(4,1));
     
     //player1
     player_move("#player1", "#path1_1", time(1,1), time(1,2.5));
@@ -52,7 +52,7 @@ basketball_animate(
     //player5
     player_move("#player5", "#path5_1", time(1,1), time(3,3));
     player_move("#player5", "#path5_2", time(3,4), time(4,1));
-    player_move("#player5", "#path5_3", time(4,1.5), time(4,4));
+    player_move("#player5", "#path5_3", time(4,1.5), time(4,3));
 
     //ball
     pass("#player1", "#player2", time(1,2.5), time(1,3));
