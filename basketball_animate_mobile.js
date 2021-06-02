@@ -328,6 +328,7 @@ const basketball_animate = (settings, continuation) => {
           }
       };
     $(music_dom).one("canplaythrough", () => {
+      timeline.to([], 0, {}, music_dom.duration);
       // `canplaythrough` is triggered again by seek command right below.
       $(music_dom).one("canplaythrough", () => {play_button.button("enable");});
       // In addition to starting at the correct offset,
