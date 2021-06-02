@@ -11,7 +11,8 @@
 
 ## Notes
 
-- [easing options](https://greensock.com/docs/v2/Easing/CustomEase).
+- [eases](https://greensock.com/docs/v2/Easing).
+  [custom eases](https://greensock.com/docs/v2/Easing/CustomEase).
   [svg path commands](https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/d#path_commands)
   might be relevent too.
 - SVG elements can be selected using any CSS selector

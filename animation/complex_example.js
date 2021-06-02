@@ -35,7 +35,10 @@ basketball_animate(
     player_move("#player1", "#path1_2", time(3,1), time(4,1));
 
     //player2
-    player_move("#player2", "#path2_1", time(2,2), time(3,3));
+    player_move(
+      "#player2", "#path2_1", time(2,2), time(3,3),
+      {ease: CustomEase.create("custom", "M0,0 C1,0 0.75,1 1,1 ")}
+    );
     player_move("#player2", "#path2_2", time(3,4), time(4,4));
 
     //player3
