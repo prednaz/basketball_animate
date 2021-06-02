@@ -3,7 +3,7 @@
 
 basketball_animate(
   {
-    svg_source: "animation/testspielzug4_0.svg",
+    svg_source: "animation/testspielzug5_0.svg",
     music_source: "animation/onedance.wav",
     music_offset: 0.09,
     beats_per_minute: 104,
@@ -53,7 +53,6 @@ basketball_animate(
     player_move("#player5", "#path5_1", time(1,1), time(3,3));
     player_move("#player5", "#path5_2", time(3,4), time(4,1));
     player_move("#player5", "#path5_3", time(4,1.5), time(4,4));
-
 
     //ball
     pass("#player1", "#player2", time(1,2.5), time(1,3));
