@@ -130,6 +130,25 @@ const basketball_animate = (settings, continuation) => {
         timeline.seek(0, false);
       };
   
+    // hide, show
+    // to-do. options argument
+    const hide =
+      (object, start_time, end_time) =>
+      {
+        if (end_time === undefined) {
+          end_time = start_time;
+        }
+        timeline.to(svg(object), end_time - start_time, {opacity: 0, ease: Power0.easeNone}, start_time);
+      };
+    const show =
+      (object, start_time, end_time) =>
+      {
+        if (end_time === undefined) {
+          end_time = start_time;
+        }
+        timeline.to(svg(object), end_time - start_time, {opacity: 1, ease: Power0.easeNone}, start_time);
+      };
+
     const svg = svg_selector => svg_animate.svg_element([svg_main], svg_selector);
   
     // convert music time unit to seconds
@@ -385,6 +404,8 @@ const basketball_animate = (settings, continuation) => {
       player_move,
       pass,
       shoot,
+      hide,
+      show,
       timeline,
       time_duration,
       time,
