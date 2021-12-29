@@ -7,7 +7,7 @@ html, body {
 }
 #main_svg {
   width: 100%;
-  height: calc(100vh - 155px - 25px);
+  height: calc(100vh - 155px - 20px);
   object-fit: contain;
 }
 #control {
@@ -39,5 +39,5 @@ html, body {
   align-items: start;
   justify-items: center;
   font-variant: small-caps;
-  height: 25px;
+  height: 20px;
 }
