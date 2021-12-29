@@ -3,6 +3,7 @@ html, body {
   margin: 0;
   background: black;
   color: white;
+  font-family: sans-serif;
 }
 #main_svg {
   width: 100%;
