@@ -2,10 +2,11 @@ html, body {
   padding: 0;
   margin: 0;
   background: black;
+  color: white;
 }
 #main_svg {
   width: 100%;
-  height: calc(100vh - 155px);
+  height: calc(100vh - 155px - 25px);
   object-fit: contain;
 }
 #control {
@@ -28,4 +29,14 @@ html, body {
 #position_display_slider {
   width: 2em;
   text-align: center;
+}
+
+#caption {
+  display: grid;
+  grid-template-rows: auto;
+  grid-template-columns: auto;
+  align-items: start;
+  justify-items: center;
+  font-variant: small-caps;
+  height: 25px;
 }
