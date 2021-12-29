@@ -5,11 +5,36 @@
    xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
    xmlns:svg="http://www.w3.org/2000/svg"
    xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
    id="svg8"
    version="1.1"
    viewBox="0 0 99.999998 60"
    height="60mm"
-   width="100mm">
+   width="100mm"
+   sodipodi:docname="GET 2 DROP.svg"
+   inkscape:version="1.0.2 (e86c8708, 2021-01-15)">
+  <sodipodi:namedview
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1"
+     objecttolerance="10"
+     gridtolerance="10"
+     guidetolerance="10"
+     inkscape:pageopacity="0"
+     inkscape:pageshadow="2"
+     inkscape:window-width="1445"
+     inkscape:window-height="859"
+     id="namedview1123"
+     showgrid="false"
+     inkscape:zoom="3.7168332"
+     inkscape:cx="251.58067"
+     inkscape:cy="78.706838"
+     inkscape:window-x="0"
+     inkscape:window-y="212"
+     inkscape:window-maximized="0"
+     inkscape:current-layer="g2046"
+     inkscape:document-rotation="0" />
   <defs
      id="defs2">
     <marker
@@ -1044,7 +1069,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title></dc:title>
+        <dc:title />
       </cc:Work>
     </rdf:RDF>
   </metadata>
@@ -1303,103 +1328,177 @@
     <g
        id="g2046">
       <g
-         transform="translate(0.10853316,0.27908526)"
-         id="player1">
+         style="font-size:2.52461px;line-height:1.25;font-family:Arial;-inkscape-font-specification:Arial;fill:#ffffff;fill-opacity:1;stroke-width:0.0631154"
+         id="text1339"
+         aria-label="1"
+         transform="translate(0.10853316,0.27908526)">
+        <path
+           id="path2419"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:0.757384px;font-family:'NBA Mavericks';-inkscape-font-specification:'NBA Mavericks';fill:#ffffff;fill-opacity:1;stroke-width:0.0631154"
+           d="M 3.4825187,9.4335272 V 9.3774807 H 3.6347529 V 9.9833879 H 3.5287191 V 9.4335272 Z" />
+      </g>
+      <text
+         xml:space="preserve"
+         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:2.52461px;line-height:1.25;font-family:'SF Pro';-inkscape-font-specification:'SF Pro Bold';stroke-width:0.0631154"
+         x="3.3473432"
+         y="12.097713"
+         id="text1862"><tspan
+           sodipodi:role="line"
+           id="tspan1860"
+           x="3.3473432"
+           y="12.097713"
+           style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-family:'SF Pro';-inkscape-font-specification:'SF Pro Bold';stroke-width:0.0631154" /></text>
+      <text
+         xml:space="preserve"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:2.52461px;line-height:1.25;font-family:'SF Pro';-inkscape-font-specification:'SF Pro';stroke-width:0.0631154"
+         x="3.1462257"
+         y="11.179568"
+         id="text1866"><tspan
+           sodipodi:role="line"
+           id="tspan1864"
+           x="3.1462257"
+           y="11.179568"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:'SF Pro';-inkscape-font-specification:'SF Pro';stroke-width:0.0631154" /></text>
+      <g
+         id="player1"
+         transform="translate(13.840381,-1.191391)">
+        <circle
+           cy="12.717281"
+           cx="3.4464726"
+           id="path1303-8"
+           style="fill:#002ef8;fill-opacity:1;stroke-width:0.0155055;stroke-linecap:round;stroke-linejoin:round"
+           r="0.46993622" />
+        <path
+           d="m 3.4171229,13.008562 h 0.1218735 v -0.582329 h -0.12147 l -0.1505258,0.10452 v 0.109767 l 0.1428583,-0.09927 h 0.00726 z"
+           style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:2.52461px;line-height:1.25;font-family:'SF Pro Text';-inkscape-font-specification:'SF Pro Text Bold';fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:0.020662;stroke-opacity:1"
+           id="path1916" />
+      </g>
+      <text
+         xml:space="preserve"
+         style="font-weight:bold;font-size:2.52461px;line-height:1.25;font-family:'SLIMEDUNK ITALIC CLEAN';-inkscape-font-specification:'SLIMEDUNK ITALIC CLEAN Bold';stroke-width:0.0631154"
+         x="2.2018487"
+         y="12.333808"
+         id="text1902"><tspan
+           sodipodi:role="line"
+           id="tspan1900"
+           x="2.2018487"
+           y="12.333808"
+           style="stroke-width:0.0631154" /></text>
+      <text
+         xml:space="preserve"
+         style="font-size:2.52461px;line-height:1.25;font-family:'SLIMEDUNK ITALIC CLEAN';-inkscape-font-specification:'SLIMEDUNK ITALIC CLEAN';stroke-width:0.0631154"
+         x="4.7551646"
+         y="12.701065"
+         id="text1906"><tspan
+           sodipodi:role="line"
+           id="tspan1904"
+           x="4.7551646"
+           y="12.701065"
+           style="stroke-width:0.0631154" /></text>
+      <text
+         xml:space="preserve"
+         style="font-size:2.52461px;line-height:1.25;font-family:'SLIMEDUNK ITALIC CLEAN';-inkscape-font-specification:'SLIMEDUNK ITALIC CLEAN';stroke-width:0.0631154"
+         x="4.3616743"
+         y="12.954648"
+         id="text1914"><tspan
+           sodipodi:role="line"
+           id="tspan1912"
+           x="4.3616743"
+           y="12.954648"
+           style="stroke-width:0.0631154" /></text>
+      <g
+         style="font-size:2.52461px;line-height:1.25;font-family:Arial;-inkscape-font-specification:Arial;fill:#ffffff;fill-opacity:1;stroke-width:0.0631154"
+         id="text2415"
+         aria-label="5"
+         transform="translate(2.0898986,1.4161188)">
+        <path
+           id="path2431"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:0.757384px;font-family:'NBA Mavericks';-inkscape-font-specification:'NBA Mavericks';fill:#ffffff;fill-opacity:1;stroke-width:0.0631154"
+           d="m 3.4431164,9.3782381 v 0.2340317 q 0,0.049987 0.0462,0.055289 h 0.1128502 q 0.035597,0 0.038627,0.038627 v 0.1476899 q 0,0.036354 -0.029538,0.059833 -0.026509,0.020449 -0.06362,0.023479 V 9.878869 h -0.104519 v 0.1045189 h 0.1378439 q 0.1022469,0 0.143903,-0.074981 0.016662,-0.031053 0.020449,-0.074224 V 9.7137592 q 0.00757,-0.079525 -0.1014894,-0.091643 h -0.070437 q -0.023479,0 -0.026508,-0.034082 V 9.4304976 h 0.092401 v 0.059076 H 3.7453126 V 9.3774807 Z" />
+      </g>
+      <g
+         id="player2"
+         transform="translate(18.488888,-9.9245209)">
         <circle
            r="0.46993622"
-           cy="9.6710892"
-           cx="3.5798573"
-           id="path1303"
-           style="fill:#00029e;stroke-width:0.0155055;stroke-linecap:round;stroke-linejoin:round;fill-opacity:1;" />
+           cy="12.747375"
+           cx="4.4497218"
+           id="circle2411-4"
+           style="fill:#002ef8;fill-opacity:1;stroke-width:0.0155055;stroke-linecap:round;stroke-linejoin:round" />
         <g
-           style="font-size:2.52461px;line-height:1.25;font-family:Arial;-inkscape-font-specification:Arial;fill:#ffffff;fill-opacity:1;stroke-width:0.0631154;"
-           id="text1339"
-           aria-label="1">
+           aria-label="2"
+           id="text1870-1"
+           style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:2.52461px;line-height:1.25;font-family:'SF Pro Text';-inkscape-font-specification:'SF Pro Text Bold';fill:#ffffff;fill-opacity:1;stroke-width:0.0631154"
+           transform="matrix(0.31803688,0,0,0.31803688,3.0124286,9.3754299)">
           <path
-             id="path2419"
-             style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:0.757384px;font-family:'NBA Mavericks';-inkscape-font-specification:'NBA Mavericks';fill:#ffffff;fill-opacity:1;stroke-width:0.0631154;"
-             d="M 3.4825187,9.4335272 V 9.3774807 H 3.6347529 V 9.9833879 H 3.5287191 V 9.4335272 Z" />
+             d="M 3.8940259,11.444735 H 5.1772872 V 11.145184 H 4.3932774 v -0.02835 L 4.7224136,10.809887 C 5.0466189,10.510336 5.1514001,10.342686 5.1514001,10.14052 v -0.0037 c 0,-0.3069473 -0.2564057,-0.5165097 -0.6225235,-0.5165097 -0.3895394,0 -0.6558069,0.2342168 -0.6558069,0.5756797 l 0.00123,0.0049 h 0.3439288 v -0.0062 c 0,-0.168883 0.1195739,-0.2847585 0.2933873,-0.2847585 0.1701154,0 0.2736638,0.1060135 0.2736638,0.2576385 v 0.0037 c 0,0.124505 -0.0678,0.214493 -0.3180417,0.457339 l -0.5732147,0.565818 z"
+             style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-family:'SF Pro Text';-inkscape-font-specification:'SF Pro Text Bold';fill:#ffffff;fill-opacity:1;stroke-width:0.0631154"
+             id="path2065" />
         </g>
       </g>
       <g
-         transform="translate(1.420062,0.31848741)"
-         id="player2">
+         id="player3"
+         transform="translate(5.8895917,-9.684912)">
         <circle
            r="0.46993622"
-           cy="9.6710892"
-           cx="3.5798573"
-           id="circle2387"
-           style="fill:#00029e;stroke-width:0.0155055;stroke-linecap:round;stroke-linejoin:round;fill-opacity:1;" />
+           cy="12.763694"
+           cx="5.4778681"
+           id="circle2411-4-4"
+           style="fill:#002ef8;fill-opacity:1;stroke-width:0.0155055;stroke-linecap:round;stroke-linejoin:round" />
         <g
-           style="font-size:2.52461px;line-height:1.25;font-family:Arial;-inkscape-font-specification:Arial;fill:#ffffff;fill-opacity:1;stroke-width:0.0631154;"
-           id="text2391"
-           aria-label="2">
+           aria-label="3"
+           id="text1870-1-9"
+           style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:2.52461px;line-height:1.25;font-family:'SF Pro Text';-inkscape-font-specification:'SF Pro Text Bold';fill:#ffffff;fill-opacity:1;stroke-width:0.0631154"
+           transform="matrix(0.31181449,0,0,0.31181449,3.2637763,9.5454602)">
           <path
-             id="path2422"
-             style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:0.757384px;font-family:'NBA Mavericks';-inkscape-font-specification:'NBA Mavericks';fill:#ffffff;fill-opacity:1;stroke-width:0.0631154;"
-             d="M 3.5443816,9.4843755 V 9.451808 q -0.00454,-0.03484 0.036355,-0.037869 h 0.023479 q 0.023479,-0.00151 0.027266,0.026508 v 0.1393587 q 0,0.024994 -0.031053,0.029538 -0.1083059,0.00151 -0.1522341,0.06665 -0.018177,0.027266 -0.021964,0.064378 V 9.9721308 H 3.7359998 V 9.8607953 h -0.104519 v 0.065135 H 3.5246896 v -0.183287 q 0,-0.079525 0.072709,-0.086342 h 0.074224 q 0.059076,0 0.064378,-0.064378 V 9.4343881 q 0,-0.065892 -0.093916,-0.068164 H 3.5193879 q -0.079525,0 -0.085584,0.08407 v 0.034082 z" />
+             d="m 7.1186507,11.218427 c 0.4154265,0 0.6927885,-0.218191 0.6927885,-0.541164 v -0.0025 c 0,-0.241613 -0.1725808,-0.39447 -0.4376156,-0.419124 v -0.0074 c 0.2083297,-0.04315 0.3710487,-0.187373 0.3710487,-0.4092625 v -0.00247 c 0,-0.2835256 -0.246544,-0.4758299 -0.6286871,-0.4758299 -0.3735141,0 -0.6237562,0.207097 -0.6496433,0.5251387 l -0.00123,0.014793 H 6.808008 l 0.00123,-0.011095 C 6.824031,9.7415869 6.941139,9.6466675 7.1161852,9.6466675 c 0.1750462,0 0.277362,0.091221 0.277362,0.2391477 v 0.00247 c 0,0.1442288 -0.1208066,0.2428458 -0.30818,0.2428458 H 6.8868993 v 0.265035 h 0.2033988 c 0.215726,0 0.3426961,0.09369 0.3426961,0.263802 v 0.0025 c 0,0.150392 -0.1245047,0.256406 -0.3143435,0.256406 -0.1923043,0 -0.3192745,-0.09862 -0.3352998,-0.236682 l -0.00123,-0.01356 h -0.356256 l 0.00123,0.01602 c 0.024654,0.318042 0.2896891,0.533768 0.6915558,0.533768 z"
+             style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-family:'SF Pro Text';-inkscape-font-specification:'SF Pro Text Bold';fill:#ffffff;fill-opacity:1;stroke-width:0.0631154"
+             id="path2101" />
         </g>
       </g>
       <g
-         transform="translate(18.767756,-7.3755317)"
-         id="player3">
+         id="player4"
+         transform="translate(8.7103686,-5.6557824)">
         <circle
            r="0.46993622"
-           cy="9.6710892"
-           cx="3.5798573"
-           id="circle2395"
-           style="fill:#00029e;stroke-width:0.0155055;stroke-linecap:round;stroke-linejoin:round;fill-opacity:1;" />
+           cy="12.780014"
+           cx="6.5304942"
+           id="circle2411-4-4-8"
+           style="fill:#002ef8;fill-opacity:1;stroke-width:0.0155055;stroke-linecap:round;stroke-linejoin:round" />
         <g
-           style="font-size:2.52461px;line-height:1.25;font-family:Arial;-inkscape-font-specification:Arial;fill:#ffffff;fill-opacity:1;stroke-width:0.0631154;"
-           id="text2399"
-           aria-label="3">
+           aria-label="4"
+           id="text1870-1-9-3"
+           style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:2.52461px;line-height:1.25;font-family:'SF Pro Text';-inkscape-font-specification:'SF Pro Text Bold';fill:#ffffff;fill-opacity:1;stroke-width:0.0631154"
+           transform="matrix(0.32611686,0,0,0.32611686,5.7947551,9.1617026)">
           <path
-             id="path2425"
-             style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:0.757384px;font-family:'NBA Mavericks';-inkscape-font-specification:'NBA Mavericks';fill:#ffffff;fill-opacity:1;stroke-width:0.0631154;"
-             d="M 3.4487453,9.4722573 V 9.3662236 h 0.2029789 q 0.085584,0 0.093158,0.079525 v 0.1295127 q 0,0.041656 -0.059833,0.061348 0.054532,0.023479 0.059076,0.074981 v 0.1295126 q 0,0.074981 -0.082555,0.1105781 -0.034082,0.015148 -0.082555,0.020449 h -0.13027 V 9.8607953 h 0.1052763 v 0.065892 q 0.079525,-0.01136 0.085584,-0.094673 V 9.696443 Q 3.636576,9.669935 3.59795,9.669177 H 3.51388 V 9.610858 H 3.600222 Q 3.635819,9.615398 3.638849,9.570717 V 9.4457489 Q 3.641879,9.4169679 3.611583,9.4131809 H 3.553264 v 0.059076 z" />
+             d="M 2.366005,11.939524 H 2.7210283 V 11.612853 H 2.9527796 V 11.314535 H 2.7210283 V 10.160709 H 2.1983551 c -0.2366822,0.364885 -0.4782953,0.759355 -0.703883,1.159989 v 0.292155 H 2.366005 Z M 1.8297719,11.324397 v -0.01972 c 0.1602535,-0.287228 0.3513251,-0.59664 0.5239059,-0.861675 h 0.019724 v 0.881395 z"
+             style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-family:'SF Pro Text';-inkscape-font-specification:'SF Pro Text Bold';fill:#ffffff;fill-opacity:1;stroke-width:0.0631154"
+             id="path2104" />
         </g>
       </g>
       <g
-         transform="translate(-1.1442175,4.3480985)"
-         id="player4">
+         id="player5"
+         transform="translate(12.336368,-5.8613441)">
         <circle
            r="0.46993622"
-           cy="9.6710892"
-           cx="3.5798573"
-           id="circle2403"
-           style="fill:#00029e;stroke-width:0.0155055;stroke-linecap:round;stroke-linejoin:round;fill-opacity:1;" />
+           cy="12.763695"
+           cx="7.59128"
+           id="circle2411-4-4-5"
+           style="fill:#002ef8;fill-opacity:1;stroke-width:0.0155055;stroke-linecap:round;stroke-linejoin:round" />
         <g
-           style="font-size:2.52461px;line-height:1.25;font-family:Arial;-inkscape-font-specification:Arial;fill:#ffffff;fill-opacity:1;stroke-width:0.0631154;"
-           id="text2407"
-           aria-label="4">
+           aria-label="5"
+           id="text1870-1-9-3-3"
+           style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:2.52461px;line-height:1.25;font-family:'SF Pro Text';-inkscape-font-specification:'SF Pro Text Bold';fill:#ffffff;fill-opacity:1;stroke-width:0.0631154"
+           transform="matrix(0.31880495,0,0,0.31880495,5.0848636,9.3467082)">
           <path
-             id="path2428"
-             style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:0.757384px;font-family:'NBA Mavericks';-inkscape-font-specification:'NBA Mavericks';fill:#ffffff;fill-opacity:1;stroke-width:0.0631154;"
-             d="m 3.6877332,9.399996 v 0.3143144 h 0.031053 v 0.078011 H 3.6900052 V 10.005903 H 3.5877585 V 9.7809602 H 3.4650623 q -0.059076,-0.00606 -0.061348,-0.091644 l 0.024994,-0.2870485 h 0.099975 L 3.505961,9.6741691 q -7.574e-4,0.00379 -0.00151,0.00757 0,0.034082 0.078768,0.037112 V 9.4870952 q 0.00833,-0.08104 0.104519,-0.087099 z" />
-        </g>
-      </g>
-      <g
-         transform="translate(2.0898986,1.4161188)"
-         id="player5">
-        <circle
-           r="0.46993622"
-           cy="9.6710892"
-           cx="3.5798573"
-           id="circle2411"
-           style="fill:#00029e;stroke-width:0.0155055;stroke-linecap:round;stroke-linejoin:round;fill-opacity:1;" />
-        <g
-           style="font-size:2.52461px;line-height:1.25;font-family:Arial;-inkscape-font-specification:Arial;fill:#ffffff;fill-opacity:1;stroke-width:0.0631154;"
-           id="text2415"
-           aria-label="5">
-          <path
-             id="path2431"
-             style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:0.757384px;font-family:'NBA Mavericks';-inkscape-font-specification:'NBA Mavericks';fill:#ffffff;fill-opacity:1;stroke-width:0.0631154;"
-             d="m 3.4431164,9.3782381 v 0.2340317 q 0,0.049987 0.0462,0.055289 h 0.1128502 q 0.035597,0 0.038627,0.038627 v 0.1476899 q 0,0.036354 -0.029538,0.059833 -0.026509,0.020449 -0.06362,0.023479 V 9.878869 h -0.104519 v 0.1045189 h 0.1378439 q 0.1022469,0 0.143903,-0.074981 0.016662,-0.031053 0.020449,-0.074224 V 9.7137592 q 0.00757,-0.079525 -0.1014894,-0.091643 h -0.070437 q -0.023479,0 -0.026508,-0.034082 V 9.4304976 h 0.092401 v 0.059076 H 3.7453126 V 9.3774807 Z" />
+             d="m 7.8676563,11.683082 c 0.3994012,0 0.6755304,-0.255173 0.6755304,-0.62992 v -0.0025 c 0,-0.338998 -0.2391476,-0.583077 -0.5707493,-0.583077 -0.1701153,0 -0.3081799,0.07396 -0.3796776,0.193537 h -0.022189 l 0.044378,-0.506648 h 0.822224 V 9.8586566 H 7.3252596 L 7.2426676,10.911399 H 7.561942 c 0.019724,-0.03821 0.049309,-0.0715 0.082592,-0.09862 0.05917,-0.05054 0.1355992,-0.07643 0.2255877,-0.07643 0.1886061,0 0.3229726,0.131901 0.3229726,0.32174 v 0.0025 c 0,0.191072 -0.1331338,0.325438 -0.3242053,0.325438 -0.1676499,0 -0.2896892,-0.104781 -0.3155763,-0.235449 l -0.00247,-0.0086 H 7.2130821 l 0.00123,0.01726 c 0.020956,0.297085 0.2724311,0.523906 0.6533415,0.523906 z"
+             style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-family:'SF Pro Text';-inkscape-font-specification:'SF Pro Text Bold';fill:#ffffff;fill-opacity:1;stroke-width:0.0631154"
+             id="path2107" />
         </g>
       </g>
       <g
          id="ball"
-         transform="matrix(0.00160444,0,0,0.00160444,9.0545124,6.359584)">
+         transform="matrix(0.00160444,0,0,0.00160444,17.464884,10.696336)">
         <g
            id="g28974">
           <g
@@ -1409,7 +1508,7 @@
                r="240"
                cy="240"
                cx="240"
-               style="fill:#ff9100;" />
+               style="fill:#ff7c00;fill-opacity:1" />
           </g>
           <g
              id="g28980" />
@@ -1418,7 +1517,7 @@
             <path
                id="path28986"
                d="m 328.203,248 h 151.594 c 0.088,-2.662 0.203,-5.317 0.203,-8 0,-2.683 -0.115,-5.338 -0.203,-8 H 328.203 C 330.442,166.377 360.065,107.596 405.961,66.724 402.096,63.021 398.13,59.425 394.025,55.985 345.596,99.739 314.429,162.267 312.203,232 H 248.219 V 0.208 C 245.485,0.116 242.756,0 240,0 c -2.61,0 -5.192,0.114 -7.781,0.197 V 232 H 175.797 C 173.513,160.446 140.762,96.475 90.15,52.595 c -4.219,3.378 -8.343,6.868 -12.323,10.519 48.277,40.98 79.664,101.29 81.971,168.887 H 0.203 C 0.115,234.662 0,237.317 0,240 c 0,2.683 0.115,5.338 0.203,8 h 159.595 c -2.307,67.597 -33.693,127.906 -81.971,168.887 3.979,3.65 8.104,7.14 12.323,10.519 50.613,-43.88 83.363,-107.852 85.647,-179.405 h 56.422 v 231.803 c 2.589,0.082 5.171,0.196 7.781,0.196 2.756,0 5.485,-0.116 8.219,-0.208 V 248 h 63.984 c 2.226,69.733 33.393,132.261 81.822,176.015 4.104,-3.44 8.07,-7.036 11.936,-10.739 C 360.064,372.404 330.442,313.622 328.203,248 Z"
-               style="fill:#794500;fill-opacity:1;" />
+               style="fill:#000000;fill-opacity:1" />
           </g>
           <g
              id="g28988">
