@@ -13,14 +13,25 @@ html, body {
 #control {
   margin: 10px;
 }
+#row0 {
+  display: grid;
+  grid-template-rows: auto;
+  grid-template-columns: 1fr 1fr;
+  align-items: end;
+  justify-items: start;
+}
 #play {
   width: 6em;
+}
+#heading {
+  font-variant: small-caps;
+  font-size: x-large;
 }
 .label_slider {
   margin-top: 10px;
 }
 #position_display_precise {
-  display: inline-block;
+  display: none;
 }
 #speed_display {
   width: 4em;
@@ -36,7 +47,7 @@ html, body {
   display: grid;
   grid-template-rows: auto;
   grid-template-columns: auto;
-  align-items: start;
+  align-items: stretch;
   justify-items: center;
   font-variant: small-caps;
   height: 20px;
